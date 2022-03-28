@@ -4,7 +4,7 @@
 
 # 게임 컨셉
 - High Concept: 장애물을 피하고 아이템을 획득해 몬스터들을 공격해나가며 달리는 런게임
-- 핵심 메카닉: 플레이어는 달리며 코인과 아이템을 획득할 수 있다. 획득한 아이템으로 몬스터들을 해치우며 앞으로 전진해나간다. 목표 지점까지 도달하면 승리. 플레이하며 얻은 코인과 처치한 몬스터 수로 최종 점수를 환산한다. 중간에 장애물 또는 몬스터에게 죽으면 패배.
+- 핵심 메카닉: 플레이어는 달리며 코인과 아이템을 획득할 수 있다. 아이템을 획득하면 공격이 활성화되며 몬스터들을 해치우며 앞으로 전진해나간다. 목표 지점까지 도달하면 승리. 플레이하며 얻은 코인과 처치한 몬스터 수로 최종 점수를 환산한다. 중간에 몬스터에게 죽으면 패배.
 
 
 # 개발 범위
@@ -19,6 +19,7 @@
 아이템을 획득하면 일반 상태에서 공격할 수 있는 상태가 되어 attack 버튼으로 공격 가능
 (획득하지 못했으면 attack버튼 눌러도 공격안됨)
 공격 상태에서 장애물로 부딪히면 일반 상태로 돌아감
+바닥에 빠지면 패배.
 
 - 게임 난이도
 초반: 코인, 장애물
@@ -30,7 +31,23 @@
 
 # 예상 게임 흐름
 시작 화면
-<img src="https://user-images.githubusercontent.com/55976889/160462538-fa44de3e-d40d-4552-a981-3402a013481b.png" width="300" height="150">
+<img src="https://user-images.githubusercontent.com/55976889/160462538-fa44de3e-d40d-4552-a981-3402a013481b.png" width="330" height="160">
+
+초반: 코인
+<img src="https://user-images.githubusercontent.com/55976889/160467825-700f964e-d5a5-4a03-87a6-1dd312c4ce2e.png" width="330" height="160">
+
+초반: 코인 + 장애물
+<img src="https://user-images.githubusercontent.com/55976889/160467857-a3ee8338-6925-4865-b91b-89ff7337a9cd.png" width="330" height="160">
+
+중반: 랜덤박스
+<img src="https://user-images.githubusercontent.com/55976889/160467908-b3130f08-9347-4916-bc2e-26e0bc2c10d5.png" width="330" height="160">
+
+중후반: 몬스터, 랜덤박스에서 아이템을 얻으면 attack 버튼이 활성화됨
+<img src="https://user-images.githubusercontent.com/55976889/160467964-f938add8-dbb2-49f1-b203-b4effee5b2c9.png" width="330" height="160">
+
+최종 점수 확인. 이전 점수와 비교. 다시 시작
+<img src="https://user-images.githubusercontent.com/55976889/160468228-fa269775-1de9-4995-a56a-0009b848982d.png" width="330" height="160">
+
 
 
 # 개발 일정
@@ -39,7 +56,7 @@
 3주: 플레이어 구현(이동, 점프, 공격)
 4주: 몬스터, 아이템
 5주: 충돌 체크/처리
-6주: UI(남은 생명, 현재 점수), 로비/스코어 신 구현
+6주: UI(현재 점수), 로비/스코어 신 구현, 신 연결
 7주: 부족한 부분 구현, 가능하다면 추가 구현
 8주: 사운드
 9주: 최종 점검, 마무리 작업
