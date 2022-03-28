@@ -29,6 +29,8 @@
 
 
 # 예상 게임 흐름
+시작 화면
+![시작화면](https://user-images.githubusercontent.com/55976889/160461768-a6047073-c9ef-4a99-821f-6c8131ce74d6.png)
 
 
 # 개발 일정
