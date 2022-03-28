@@ -30,8 +30,9 @@
 
 
 # 예상 게임 흐름
-시작 화면
-<img src="https://user-images.githubusercontent.com/55976889/160462538-fa44de3e-d40d-4552-a981-3402a013481b.png" width="330" height="160">
+시작 화면  
+
+<img src="https://user-images.githubusercontent.com/55976889/160470191-783a8aab-26c6-4d6d-ae37-760e9b7ff50c.png" width="330" height="160">
 
 초반: 코인
 <img src="https://user-images.githubusercontent.com/55976889/160467825-700f964e-d5a5-4a03-87a6-1dd312c4ce2e.png" width="330" height="160">
