@@ -30,7 +30,7 @@
 
 # 예상 게임 흐름
 시작 화면
-<img src="https://user-images.githubusercontent.com/55976889/160461768-a6047073-c9ef-4a99-821f-6c8131ce74d6.png", width = 400 height = 200>
+<img src="https://user-images.githubusercontent.com/55976889/160462538-fa44de3e-d40d-4552-a981-3402a013481b.png" width="300" height="150">
 
 
 # 개발 일정
