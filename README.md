@@ -34,19 +34,28 @@
 
 <img src="https://user-images.githubusercontent.com/55976889/160470191-783a8aab-26c6-4d6d-ae37-760e9b7ff50c.png" width="330" height="160">
 
-초반: 코인
+초반: 코인  
+
 <img src="https://user-images.githubusercontent.com/55976889/160467825-700f964e-d5a5-4a03-87a6-1dd312c4ce2e.png" width="330" height="160">
 
-초반: 코인 + 장애물
+초반: 코인 + 장애물  
+
 <img src="https://user-images.githubusercontent.com/55976889/160467857-a3ee8338-6925-4865-b91b-89ff7337a9cd.png" width="330" height="160">
 
-중반: 랜덤박스
+패배 화면  
+
+<img src="https://user-images.githubusercontent.com/55976889/160470959-65272f00-fddc-41a5-9cfd-1911137e6127.png" width="330" height="160">
+
+중반: 랜덤박스  
+
 <img src="https://user-images.githubusercontent.com/55976889/160467908-b3130f08-9347-4916-bc2e-26e0bc2c10d5.png" width="330" height="160">
 
-중후반: 몬스터, 랜덤박스에서 아이템을 얻으면 attack 버튼이 활성화됨
+중후반: 몬스터, 랜덤박스에서 아이템을 얻으면 attack 버튼이 활성화됨  
+
 <img src="https://user-images.githubusercontent.com/55976889/160467964-f938add8-dbb2-49f1-b203-b4effee5b2c9.png" width="330" height="160">
 
-최종 점수 확인. 이전 점수와 비교. 다시 시작
+최종 점수 확인. 이전 점수와 비교. 다시 시작  
+
 <img src="https://user-images.githubusercontent.com/55976889/160468228-fa269775-1de9-4995-a56a-0009b848982d.png" width="330" height="160">
 
 
