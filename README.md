@@ -1,5 +1,5 @@
 # SmartPhoneGameProgramming
-2022_4_1 SmartPhone Game Programming 기획 발표
+2022_4_1 SmartPhone Game Programming 텀프로젝트 <런런런> 기획 발표
 
 
 # 게임 컨셉
