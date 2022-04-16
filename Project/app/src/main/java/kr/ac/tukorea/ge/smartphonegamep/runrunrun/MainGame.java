@@ -1,13 +1,15 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Canvas;
+import android.util.Log;
+import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
 public class MainGame {
     private static final String TAG = MainGame.class.getSimpleName();
     private static MainGame singleton;
-    private float frameTime;
+    public float frameTime;
 
     private ArrayList<GameObject> objects = new ArrayList<>();
     private Player player;
@@ -38,5 +40,16 @@ public class MainGame {
         for (GameObject obj : objects) {
             obj.draw(canvas);
         }
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                player.setIsMove(true);
+                return true;
+        }
+        player.setIsMove(false);
+        return false;
     }
 }
