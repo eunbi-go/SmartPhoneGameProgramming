@@ -13,7 +13,7 @@ public class Sprite implements GameObject {
     public Sprite(float x, float y, int radiusDimenID, int bitmpaResID) {
         this.x = x;
         this.y = y;
-        this.radius = radiusDimenID;
+        this.radius = Metrics.size(radiusDimenID);
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
         bitmap = BitmapPool.get(bitmpaResID);
     }
