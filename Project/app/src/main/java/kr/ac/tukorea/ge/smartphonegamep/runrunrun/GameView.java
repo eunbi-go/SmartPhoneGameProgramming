@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.Choreographer;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
+    public static GameView view;
 
     private static Bitmap attackBitmap;
     private long previousTimeNanos;
@@ -17,6 +19,15 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initView();
+    }
+
+    private void initView() {
+        view = this;
+
+        MainGame game = MainGame.getInstance();
+        game.init();
+        Choreographer.getInstance().postFrameCallback(this);
     }
 
     @Override
@@ -31,5 +42,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
             invalidate();
         }
         Choreographer.getInstance().postFrameCallback(this);
+    }
+
+    protected void onDraw(Canvas canvas) {
+        MainGame.getInstance().draw(canvas);
     }
 }
