@@ -1,6 +1,7 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -59,7 +60,11 @@ public class MainGame {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                player.setIsMove(true);
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+                RectF clickRtF = new RectF(x - 5, y - 5, x + 5, y + 5);
+                if (CollisionHelper.collideRectF(moveButton.getDstRect(), clickRtF))
+                    player.setIsMove(true);
                 return true;
         }
         player.setIsMove(false);

@@ -4,10 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-public class Button implements GameObject{
+public class Button implements GameObject, BoxCollidable{
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
     protected float x, y, radius;
+    protected RectF boundingRect = new RectF();
 
     public Button(float x, float y, int radiusDimenResId, int bitmapResId) {
         this.x = x;
@@ -19,11 +20,21 @@ public class Button implements GameObject{
 
     @Override
     public void update() {
-
+        boundingRect.set(dstRect);
+        boundingRect.inset(radius / 16, radius / 16);
     }
 
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, null, dstRect, null);
+    }
+
+    @Override
+    public RectF getBoudingRect() {
+        return boundingRect;
+    }
+
+    public RectF getDstRect() {
+        return dstRect;
     }
 }
