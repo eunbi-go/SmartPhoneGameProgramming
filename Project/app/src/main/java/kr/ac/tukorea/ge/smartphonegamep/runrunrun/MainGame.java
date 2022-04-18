@@ -13,7 +13,7 @@ public class MainGame {
 
     private ArrayList<GameObject> objects = new ArrayList<>();
     private Player player;
-    private Button attackButton;
+    private Button attackButton, moveButton, jumpButton;
 
     public static MainGame getInstance() {
         if (singleton == null) {
@@ -33,7 +33,8 @@ public class MainGame {
         objects.add(player);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
-
+        moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.run);
+        jumpButton = new Button(Metrics.width/3, Metrics.height-200, R.dimen.button_radius, R.mipmap.jump);
     }
 
     public void update(int elapsedNanos) {
@@ -50,6 +51,8 @@ public class MainGame {
         }
 
         attackButton.draw(canvas);
+        moveButton.draw(canvas);
+        jumpButton.draw(canvas);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
