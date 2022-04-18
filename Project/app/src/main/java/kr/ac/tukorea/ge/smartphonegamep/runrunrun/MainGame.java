@@ -22,13 +22,17 @@ public class MainGame {
         return singleton;
     }
 
+    public static void clear() {
+        singleton = null;
+    }
+
     public void init() {
         objects.clear();
 
         player = new Player(0,0);
         objects.add(player);
 
-        attackButton = new Button(900, 900, R.dimen.button_radius, R.mipmap.attack);
+        attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
 
     }
 

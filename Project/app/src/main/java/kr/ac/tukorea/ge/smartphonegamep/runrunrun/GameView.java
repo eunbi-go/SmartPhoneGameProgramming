@@ -17,10 +17,25 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private static Bitmap attackBitmap;
     private long previousTimeNanos;
     private int framePerSecond;
+    private boolean running, initialized;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initView();
+        //initView();
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Metrics.width = w;
+        Metrics.height = h;
+
+        if (!initialized) {
+            initView();
+            initialized = true;
+            running = true;
+        }
     }
 
     private void initView() {
@@ -53,4 +68,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     public boolean onTouchEvent(MotionEvent event) {
         return MainGame.getInstance().onTouchEvent(event);
     }
+
+
+
 }
