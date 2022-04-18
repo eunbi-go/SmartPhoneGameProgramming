@@ -13,6 +13,7 @@ public class MainGame {
 
     private ArrayList<GameObject> objects = new ArrayList<>();
     private Player player;
+    private Button attackButton;
 
     public static MainGame getInstance() {
         if (singleton == null) {
@@ -26,6 +27,9 @@ public class MainGame {
 
         player = new Player(0,0);
         objects.add(player);
+
+        attackButton = new Button(900, 900, R.dimen.button_radius, R.mipmap.attack);
+
     }
 
     public void update(int elapsedNanos) {
@@ -40,6 +44,8 @@ public class MainGame {
         for (GameObject obj : objects) {
             obj.draw(canvas);
         }
+
+        attackButton.draw(canvas);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
