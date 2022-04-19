@@ -63,11 +63,23 @@ public class MainGame {
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 RectF clickRtF = new RectF(x - 5, y - 5, x + 5, y + 5);
+
                 if (CollisionHelper.collideRectF(moveButton.getDstRect(), clickRtF))
                     player.setIsMove(true);
+                else if (CollisionHelper.collideRectF(attackButton.getDstRect(), clickRtF))
+                    player.attack();
                 return true;
         }
         player.setIsMove(false);
         return false;
+    }
+
+    public void add(GameObject gameObject) {
+        GameView.view.post(new Runnable() {
+            @Override
+            public void run() {
+                objects.add(gameObject);
+            }
+        });
     }
 }

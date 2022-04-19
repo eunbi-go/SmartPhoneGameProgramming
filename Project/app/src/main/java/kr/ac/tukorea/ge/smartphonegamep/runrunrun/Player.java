@@ -31,4 +31,9 @@ public class Player extends Sprite implements BoxCollidable {
     public RectF getBoudingRect() {
         return boundingRect;
     }
+
+    public void attack() {
+        Bullet bullet = new Bullet(dstRect.right, dstRect.top + dstRect.bottom/2);
+        MainGame.getInstance().add(bullet);
+    }
 }
