@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 public class Bullet extends Sprite {
     protected final float dx;
+    private float lifeTime;
 
     public Bullet(float x, float y) {
         super(x, y, R.dimen.bullet_radius, R.mipmap.ball);
@@ -13,6 +14,12 @@ public class Bullet extends Sprite {
 
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
+
+        lifeTime += frameTime;
+        if (lifeTime >= 1.f) {
+            MainGame.getInstance().remove(this);
+        }
+
         float dx = frameTime * Metrics.size(R.dimen.player_speed);
         dstRect.offset(dx, 0);
     }
