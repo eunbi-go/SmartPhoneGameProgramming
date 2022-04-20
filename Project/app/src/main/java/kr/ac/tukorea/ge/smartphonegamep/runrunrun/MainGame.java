@@ -30,7 +30,7 @@ public class MainGame {
     public void init() {
         objects.clear();
 
-        player = new Player(0,0);
+        player = new Player(0,200);
         objects.add(player);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);

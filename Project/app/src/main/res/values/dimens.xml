@@ -2,7 +2,7 @@
 <resources>
     <dimen name="player_radius">30dp</dimen>
     <dimen name="player_speed">300dp</dimen>
-    <dimen name="button_radius">30dp</dimen>
+    <dimen name="button_radius">50dp</dimen>
     <dimen name="bullet_speed">200dp</dimen>
     <dimen name="bullet_radius">20dp</dimen>
 </resources>
