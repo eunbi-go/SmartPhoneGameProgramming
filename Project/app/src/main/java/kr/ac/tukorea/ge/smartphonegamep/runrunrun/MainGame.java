@@ -30,7 +30,7 @@ public class MainGame {
     public void init() {
         objects.clear();
 
-        player = new Player(0,200);
+        player = new Player(0,500);
         objects.add(player);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
@@ -68,6 +68,8 @@ public class MainGame {
                     player.setIsMove(true);
                 else if (CollisionHelper.collideRectF(attackButton.getDstRect(), clickRtF))
                     player.attack();
+                else if (CollisionHelper.collideRectF(jumpButton.getDstRect(), clickRtF))
+                    player.setIsJump(true);
                 return true;
         }
         player.setIsMove(false);
