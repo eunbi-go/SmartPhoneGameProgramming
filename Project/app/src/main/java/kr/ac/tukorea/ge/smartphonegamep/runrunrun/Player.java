@@ -36,12 +36,14 @@ public class Player extends Sprite implements BoxCollidable {
 
         jumpY = jumpPower * jumpTime - 9.8f * jumpTime * jumpTime * 0.5f;
         jumpTime += 10.f * MainGame.getInstance().frameTime;
-        if (dstRect.bottom > 500.f + radius) {
+
+        dstRect.offset(0, -jumpY);
+        if (dstRect.bottom > y + radius) {
+            dstRect.bottom = y + radius;
+            dstRect.top = y - radius;
             isJump = false;
             jumpTime = 0.f;
-
         }
-        dstRect.offset(0, -jumpY);
     }
 
     public void draw(Canvas canvas) {
