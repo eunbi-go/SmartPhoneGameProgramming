@@ -10,7 +10,7 @@ public class Player extends Sprite implements BoxCollidable {
     private boolean isJump = false;
     protected RectF boundingRect = new RectF();
 
-    private float jumpPower = 20.f;
+    private float jumpPower = 15.f;
     private float jumpTime = 0.f;
     private float originalY = 0.f;
 
@@ -35,7 +35,7 @@ public class Player extends Sprite implements BoxCollidable {
         float jumpY = originalY;
 
         jumpY = jumpPower * jumpTime - 9.8f * jumpTime * jumpTime * 0.5f;
-        jumpTime += 3.f * MainGame.getInstance().frameTime;
+        jumpTime += 10.f * MainGame.getInstance().frameTime;
         if (dstRect.bottom > 500.f + radius) {
             isJump = false;
             jumpTime = 0.f;

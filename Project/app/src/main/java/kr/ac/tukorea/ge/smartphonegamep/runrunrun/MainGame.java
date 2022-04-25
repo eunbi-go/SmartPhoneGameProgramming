@@ -66,9 +66,9 @@ public class MainGame {
 
                 if (CollisionHelper.collideRectF(moveButton.getDstRect(), clickRtF))
                     player.setIsMove(true);
-                else if (CollisionHelper.collideRectF(attackButton.getDstRect(), clickRtF))
+                if (CollisionHelper.collideRectF(attackButton.getDstRect(), clickRtF))
                     player.attack();
-                else if (CollisionHelper.collideRectF(jumpButton.getDstRect(), clickRtF))
+                if (CollisionHelper.collideRectF(jumpButton.getDstRect(), clickRtF))
                     player.setIsJump(true);
                 return true;
         }
