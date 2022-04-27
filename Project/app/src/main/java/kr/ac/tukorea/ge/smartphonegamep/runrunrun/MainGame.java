@@ -33,12 +33,19 @@ public class MainGame {
         player = new Player(0,500);
         objects.add(player);
 
-        Enemy enemy = new Enemy(100, 500);
-        objects.add(enemy);
+        //Enemy enemy = new Enemy(100, 500);
+        //objects.add(enemy);
+
+        AttackEnemy attackEnemy = new AttackEnemy(100, 500);
+        objects.add(attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.run);
         jumpButton = new Button(Metrics.width/3, Metrics.height-200, R.dimen.button_radius, R.mipmap.jump);
+    }
+
+    public RectF getPlayerRect() {
+        return player.getDstRect();
     }
 
     public void update(int elapsedNanos) {
