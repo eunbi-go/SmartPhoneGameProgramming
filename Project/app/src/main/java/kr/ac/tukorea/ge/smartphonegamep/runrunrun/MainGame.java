@@ -13,6 +13,7 @@ public class MainGame {
     public float frameTime;
 
     private ArrayList<GameObject> objects = new ArrayList<>();
+
     private Player player;
     private Button attackButton, moveButton, jumpButton;
 
@@ -32,6 +33,9 @@ public class MainGame {
 
         player = new Player(0,500);
         objects.add(player);
+
+        ItemBlock block = new ItemBlock(400, 250, R.dimen.block_radius, R.mipmap.item_block);
+        objects.add(block);
 
         //Enemy enemy = new Enemy(100, 500);
         //objects.add(enemy);
