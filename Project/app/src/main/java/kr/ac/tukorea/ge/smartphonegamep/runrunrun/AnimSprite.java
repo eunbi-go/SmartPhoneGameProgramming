@@ -12,8 +12,10 @@ public class AnimSprite extends Sprite{
     protected final int frameCount;
     private Rect srcRect = new Rect();
     private int frameIndex;
+    private float time;
+    private final float framePerSecond;
 
-    public AnimSprite(float x, float y, int radiusDimenID, int bitmpaResID, int frameCount) {
+    public AnimSprite(float x, float y, int radiusDimenID, int bitmpaResID, float framePerSecond, int frameCount) {
         super(x, y, radiusDimenID, bitmpaResID);
         imageHeight = bitmap.getHeight();
         if (frameCount == 0) {
@@ -23,14 +25,15 @@ public class AnimSprite extends Sprite{
             imageWidth = bitmap.getWidth() / frameCount;
         }
 
+        this.framePerSecond = framePerSecond;
         this.frameCount = frameCount;
         srcRect.set(0, 0, imageWidth, imageHeight);
     }
 
     @Override
     public void update() {
-        frameIndex++;
-        if (frameIndex >= 4) frameIndex = 0;
+        time += MainGame.getInstance().frameTime;
+        int frameIndex = Math.round(time * framePerSecond) % frameCount;
         srcRect.set(frameIndex * imageWidth, 0,
                 (frameIndex + 1) * imageWidth, imageHeight);
         super.update();
