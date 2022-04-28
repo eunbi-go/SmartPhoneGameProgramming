@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
 
-public class Player extends Sprite implements BoxCollidable {
+public class Player extends AnimSprite implements BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
     private boolean isMove = false;
     private boolean isJump = false;
@@ -15,11 +15,13 @@ public class Player extends Sprite implements BoxCollidable {
     private float originalY = 0.f;
 
     public Player(float x, float y) {
-        super(x, y, R.dimen.player_radius, R.mipmap.player);
+        super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 4);
         originalY = y;
     }
 
     public void update() {
+        super.update();
+
         float frameTime = MainGame.getInstance().frameTime;
         if (isJump == true) {
             jumping();
@@ -46,9 +48,9 @@ public class Player extends Sprite implements BoxCollidable {
         }
     }
 
-    public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap, null, dstRect, null);
-    }
+    //public void draw(Canvas canvas) {
+       // canvas.drawBitmap(bitmap, null, dstRect, null);
+   // }
 
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
     public void setIsJump(boolean isJump) {this.isJump = isJump;}

@@ -17,6 +17,14 @@ public class Sprite implements GameObject {
         bitmap = BitmapPool.get(bitmpaResID);
     }
 
+    public Sprite(float x, float y, float w, float h, int bitmapResId) {
+        this.x = x;
+        this.y = y;
+        this.radius = w / 2;
+        dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
+        bitmap = BitmapPool.get(bitmapResId);
+    }
+
     @Override
     public void update() {
 
