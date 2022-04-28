@@ -37,11 +37,14 @@ public class MainGame {
         ItemBlock block = new ItemBlock(400, 250, R.dimen.block_radius, R.mipmap.item_block);
         objects.add(block);
 
+        GroundBlock groundBlock = new GroundBlock(100, 100, R.dimen.block_radius, R.mipmap.normal_block);
+        objects.add(groundBlock);
+
         //Enemy enemy = new Enemy(100, 500);
         //objects.add(enemy);
 
-        AttackEnemy attackEnemy = new AttackEnemy(100, 500);
-        objects.add(attackEnemy);
+        //AttackEnemy attackEnemy = new AttackEnemy(100, 500);
+        //objects.add(attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.run);
