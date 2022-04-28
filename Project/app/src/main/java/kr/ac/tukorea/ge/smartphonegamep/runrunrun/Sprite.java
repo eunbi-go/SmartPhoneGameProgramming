@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 public class Sprite implements GameObject {
-
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
     protected float x, y, radius;

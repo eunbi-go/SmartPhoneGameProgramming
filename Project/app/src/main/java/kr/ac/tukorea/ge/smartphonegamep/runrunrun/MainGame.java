@@ -36,8 +36,8 @@ public class MainGame {
         //Enemy enemy = new Enemy(100, 500);
         //objects.add(enemy);
 
-        AttackEnemy attackEnemy = new AttackEnemy(100, 500);
-        objects.add(attackEnemy);
+        //AttackEnemy attackEnemy = new AttackEnemy(100, 500);
+        //objects.add(attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.run);
