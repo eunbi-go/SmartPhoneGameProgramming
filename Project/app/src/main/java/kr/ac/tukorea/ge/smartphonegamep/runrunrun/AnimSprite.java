@@ -11,12 +11,12 @@ public class AnimSprite extends Sprite{
     protected final int imageWidth;
     protected final int frameCount;
     private Rect srcRect = new Rect();
-    private int frameIndex;
-    private float time;
-    private final float framePerSecond;
+    private final float framesPerSecond;
+    private long createdOn;
 
     public AnimSprite(float x, float y, int radiusDimenID, int bitmpaResID, float framePerSecond, int frameCount) {
         super(x, y, radiusDimenID, bitmpaResID);
+
         imageHeight = bitmap.getHeight();
         if (frameCount == 0) {
             imageWidth = imageHeight;
@@ -25,22 +25,20 @@ public class AnimSprite extends Sprite{
             imageWidth = bitmap.getWidth() / frameCount;
         }
 
-        this.framePerSecond = framePerSecond;
+        this.framesPerSecond = framePerSecond;
         this.frameCount = frameCount;
         srcRect.set(0, 0, imageWidth, imageHeight);
-    }
 
-    @Override
-    public void update() {
-        time += MainGame.getInstance().frameTime;
-        int frameIndex = Math.round(time * framePerSecond) % frameCount;
-        srcRect.set(frameIndex * imageWidth, 0,
-                (frameIndex + 1) * imageWidth, imageHeight);
-        super.update();
+        createdOn = System.currentTimeMillis();
     }
 
     @Override
     public void draw(Canvas canvas) {
+        long now = System.currentTimeMillis();
+        float time = (now - createdOn) / 1000.0f;
+        int frameIndex = Math.round(time * framesPerSecond) % frameCount;
+        srcRect.set(frameIndex * imageWidth, 0,
+                (frameIndex + 1) * imageWidth, imageHeight);
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
     }
 }

@@ -20,8 +20,6 @@ public class Player extends AnimSprite implements BoxCollidable {
     }
 
     public void update() {
-        super.update();
-
         float frameTime = MainGame.getInstance().frameTime;
         if (isJump == true) {
             jumping();
@@ -47,10 +45,6 @@ public class Player extends AnimSprite implements BoxCollidable {
             jumpTime = 0.f;
         }
     }
-
-    //public void draw(Canvas canvas) {
-       // canvas.drawBitmap(bitmap, null, dstRect, null);
-   // }
 
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
     public void setIsJump(boolean isJump) {this.isJump = isJump;}
