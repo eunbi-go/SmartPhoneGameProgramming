@@ -19,15 +19,13 @@ public class AttackEnemy extends Sprite{
         playerRt = MainGame.getInstance().getPlayerRect();
         dx = MainGame.getInstance().frameTime * Metrics.size(R.dimen.enemy_speed);
 
-        if (playerRt.left > dstRect.right) {
+        if (playerRt.left - 300.f > dstRect.right) {
             dx = dx;
             dstRect.offset(dx, 0);
-
         }
-        else if (playerRt.right < dstRect.left) {
+        else if (playerRt.right + 300.f < dstRect.left ) {
             dx = -dx;
             dstRect.offset(dx, 0);
-
         }
 
     }
