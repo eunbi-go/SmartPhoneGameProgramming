@@ -13,6 +13,7 @@ public class AnimSprite extends Sprite{
     private Rect srcRect = new Rect();
     private final float framesPerSecond;
     private long createdOn;
+    protected boolean isMoving = true;
 
     public AnimSprite(float x, float y, int radiusDimenID, int bitmpaResID, float framePerSecond, int frameCount) {
         super(x, y, radiusDimenID, bitmpaResID);
@@ -34,9 +35,15 @@ public class AnimSprite extends Sprite{
 
     @Override
     public void draw(Canvas canvas) {
-        long now = System.currentTimeMillis();
-        float time = (now - createdOn) / 1000.0f;
-        int frameIndex = Math.round(time * framesPerSecond) % frameCount;
+        long now;
+        int frameIndex = 0;
+
+        if (isMoving) {
+            now = System.currentTimeMillis();
+            float time = (now - createdOn) / 1000.0f;
+            frameIndex = Math.round(time * framesPerSecond) % frameCount;
+        }
+
         srcRect.set(frameIndex * imageWidth, 0,
                 (frameIndex + 1) * imageWidth, imageHeight);
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);

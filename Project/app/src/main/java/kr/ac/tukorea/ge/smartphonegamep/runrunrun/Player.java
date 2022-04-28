@@ -15,7 +15,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     private float originalY = 0.f;
 
     public Player(float x, float y) {
-        super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 6, 4);
+        super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
         originalY = y;
     }
 
@@ -25,9 +25,12 @@ public class Player extends AnimSprite implements BoxCollidable {
             jumping();
         }
         if (isMove == true) {
+            isMoving = true;
             float dx = frameTime * Metrics.size(R.dimen.player_speed);
             dstRect.offset(dx, 0);
         }
+        else
+            isMoving = false;
         boundingRect.set(dstRect);
     }
 
