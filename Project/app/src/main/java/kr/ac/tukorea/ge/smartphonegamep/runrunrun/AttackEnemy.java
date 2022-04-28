@@ -21,12 +21,15 @@ public class AttackEnemy extends Sprite{
 
         if (playerRt.left > dstRect.right) {
             dx = dx;
+            dstRect.offset(dx, 0);
+
         }
         else if (playerRt.right < dstRect.left) {
             dx = -dx;
+            dstRect.offset(dx, 0);
+
         }
 
-        dstRect.offset(dx, 0);
     }
 
     public void draw(Canvas canvas) {
