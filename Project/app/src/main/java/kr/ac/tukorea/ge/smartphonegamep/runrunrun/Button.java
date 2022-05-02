@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
 
 public class Button implements GameObject, BoxCollidable{

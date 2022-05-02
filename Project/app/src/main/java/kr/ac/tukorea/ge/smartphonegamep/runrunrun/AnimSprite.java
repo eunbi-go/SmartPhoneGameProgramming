@@ -10,12 +10,13 @@ public class AnimSprite extends Sprite{
     protected final int imageHeight;
     protected final int imageWidth;
     protected final int frameCount;
-    private Rect srcRect = new Rect();
-    private final float framesPerSecond;
-    private long createdOn;
+    protected Rect srcRect = new Rect();
+    protected final float framesPerSecond;
+    protected long createdOn;
     protected boolean isMoving = false;
     protected boolean isJumping = false;
     protected boolean isAttack = false;
+
 
     public AnimSprite(float x, float y, int radiusDimenID, int bitmpaResID, float framePerSecond, int frameCount) {
         super(x, y, radiusDimenID, bitmpaResID);

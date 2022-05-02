@@ -10,13 +10,11 @@ public class Enemy extends AnimSprite implements BoxCollidable{
     boolean left = false;
 
     public Enemy(float x, float y) {
-        //super(x, y, R.dimen.player_radius, R.mipmap.enemy1);
         super(x, y, R.dimen.player_radius, R.mipmap.normal_enemy, 7, 2);
         isMoving = true;
     }
 
     public Enemy(float x, float y, int radiusDimenID, int bitmpaResID) {
-        //super(x, y, radiusDimenID, bitmpaResID);
         super(x, y, radiusDimenID, R.mipmap.normal_enemy, 7, 2);
         isMoving = true;
     }

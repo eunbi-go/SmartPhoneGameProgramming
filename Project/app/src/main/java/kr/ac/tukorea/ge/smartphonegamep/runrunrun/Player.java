@@ -15,6 +15,8 @@ public class Player extends AnimSprite implements BoxCollidable {
     private float originalY = 0.f;
 
     private float attackTime = 0.f;
+    private boolean isLeft = false;
+    private boolean isPrevDirection = false;
 
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
@@ -28,7 +30,11 @@ public class Player extends AnimSprite implements BoxCollidable {
         }
         if (isMove == true) {
             isMoving = true;
-            float dx = frameTime * Metrics.size(R.dimen.player_speed);
+            float dx = 0.f;
+            if (isLeft)
+                dx = -frameTime * Metrics.size(R.dimen.player_speed);
+            else
+                dx = frameTime * Metrics.size(R.dimen.player_speed);
             dstRect.offset(dx, 0);
         }
         else
@@ -60,9 +66,38 @@ public class Player extends AnimSprite implements BoxCollidable {
         }
     }
 
+    @Override
+    public void draw(Canvas canvas) {
+        long now;
+        int frameIndex = 0;
+
+        if (isMoving) {
+            now = System.currentTimeMillis();
+            float time = (now - createdOn) / 1000.0f;
+            frameIndex = Math.round(time * framesPerSecond) % frameCount;
+        }
+        else if (isJumping) {
+            frameIndex = 3;
+        }
+        else if (isAttack) {
+            now = System.currentTimeMillis();
+            float time = (now - createdOn) / 1000.0f;
+            frameIndex = Math.round(time * framesPerSecond) % 3;
+        }
+
+
+        srcRect.set(frameIndex * imageWidth, 0,
+                (frameIndex + 1) * imageWidth, imageHeight);
+
+        if (isLeft)
+            canvas.drawBitmap(reverseBitmap, srcRect, dstRect, null);
+        else
+            canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+    }
+
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
     public void setIsJump(boolean isJump) {this.isJumping = isJump;}
-
+    public void setIsLeftMove(boolean isLeft) {this.isPrevDirection = this.isLeft; this.isLeft = isLeft;}
     @Override
     public RectF getBoudingRect() {
         return boundingRect;

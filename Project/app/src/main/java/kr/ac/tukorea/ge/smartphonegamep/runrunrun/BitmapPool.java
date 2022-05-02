@@ -3,11 +3,13 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 
 import java.util.HashMap;
 
 public class BitmapPool {
     private static HashMap<Integer, Bitmap> bitmaps = new HashMap<>();
+
     public static Bitmap get(int mipmapResId) {
         Bitmap bitmap = bitmaps.get(mipmapResId);
         if (bitmap == null) {

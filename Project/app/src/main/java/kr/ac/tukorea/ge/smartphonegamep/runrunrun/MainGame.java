@@ -15,7 +15,7 @@ public class MainGame {
     private ArrayList<GameObject> objects = new ArrayList<>();
 
     private Player player;
-    private Button attackButton, moveButton, jumpButton;
+    private Button attackButton, moveButton, jumpButton, backButton;
 
     public static MainGame getInstance() {
         if (singleton == null) {
@@ -31,7 +31,7 @@ public class MainGame {
     public void init() {
         objects.clear();
 
-        player = new Player(0,500);
+        player = new Player(100,850);
         objects.add(player);
 
         //ItemBlock block = new ItemBlock(400, 250, R.dimen.block_radius, R.mipmap.item_block);
@@ -46,7 +46,8 @@ public class MainGame {
         //objects.add(attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
-        moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.run);
+        moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.go);
+        backButton = new Button(200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.back);
         jumpButton = new Button(Metrics.width/3, Metrics.height-200, R.dimen.button_radius, R.mipmap.jump);
     }
 
@@ -86,6 +87,7 @@ public class MainGame {
         attackButton.draw(canvas);
         moveButton.draw(canvas);
         jumpButton.draw(canvas);
+        backButton.draw(canvas);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -96,8 +98,14 @@ public class MainGame {
                 int y = (int) event.getY();
                 RectF clickRtF = new RectF(x - 5, y - 5, x + 5, y + 5);
 
-                if (CollisionHelper.collideRectF(moveButton.getDstRect(), clickRtF))
+                if (CollisionHelper.collideRectF(moveButton.getDstRect(), clickRtF)) {
                     player.setIsMove(true);
+                    player.setIsLeftMove(false);
+                }
+                if (CollisionHelper.collideRectF(backButton.getDstRect(), clickRtF)) {
+                    player.setIsMove(true);
+                    player.setIsLeftMove(true);
+                }
                 if (CollisionHelper.collideRectF(attackButton.getDstRect(), clickRtF))
                     player.attack();
                 if (CollisionHelper.collideRectF(jumpButton.getDstRect(), clickRtF))
