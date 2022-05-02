@@ -40,8 +40,8 @@ public class MainGame {
         GroundBlock groundBlock = new GroundBlock(100, 100, R.dimen.block_radius, R.mipmap.normal_block);
         objects.add(groundBlock);
 
-        //Enemy enemy = new Enemy(100, 500);
-        //objects.add(enemy);
+        Enemy enemy = new Enemy(100, 500);
+        objects.add(enemy);
 
         //AttackEnemy attackEnemy = new AttackEnemy(100, 500);
         //objects.add(attackEnemy);

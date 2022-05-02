@@ -13,7 +13,7 @@ public class AnimSprite extends Sprite{
     private Rect srcRect = new Rect();
     private final float framesPerSecond;
     private long createdOn;
-    protected boolean isMoving = true;
+    protected boolean isMoving = false;
 
     public AnimSprite(float x, float y, int radiusDimenID, int bitmpaResID, float framePerSecond, int frameCount) {
         super(x, y, radiusDimenID, bitmpaResID);
