@@ -35,6 +35,7 @@ public class MainGame {
         objects.add(player);
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
+        //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
         objects.add(block);
 
         loadMapBlock();
@@ -45,7 +46,7 @@ public class MainGame {
         //AttackEnemy attackEnemy = new AttackEnemy(100, 850);
         //objects.add(attackEnemy);
 
-        attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
+        attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.go);
         backButton = new Button(200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.back);
         jumpButton = new Button(Metrics.width/3, Metrics.height-200, R.dimen.button_radius, R.mipmap.jump);
@@ -77,6 +78,8 @@ public class MainGame {
         for (GameObject obj : objects) {
             obj.update();
         }
+
+        checkCollision();
     }
 
     public void draw(Canvas canvas) {
@@ -89,6 +92,60 @@ public class MainGame {
         jumpButton.draw(canvas);
         backButton.draw(canvas);
     }
+
+    public void checkCollision() {
+        checkPlayerToItemBlock();
+        checkPlayerToItem();
+    }
+
+    private void checkPlayerToItem() {
+        for (GameObject o1: objects) {
+            if (!(o1 instanceof Player)) {
+                continue;
+            }
+            Player player = (Player) o1;
+            for (GameObject o2: objects) {
+                if (!(o2 instanceof Item)) {
+                    continue;
+                }
+                Item item = (Item) o2;
+                if (CollisionHelper.collideRectF(player.getDstRect(), item.getDstRect())) {
+                    // 아이템 삭제
+                    MainGame.getInstance().remove(o2);
+                    // attack 버튼 활성화
+                    attackButton.onAttack(true);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void checkPlayerToItemBlock() {
+        for (GameObject o1: objects) {
+            if (!(o1 instanceof Player)) {
+                continue;
+            }
+            Player player = (Player) o1;
+            for (GameObject o2: objects) {
+                if (!(o2 instanceof ItemBlock)) {
+                    continue;
+                }
+                ItemBlock itemBlock = (ItemBlock) o2;
+                if (CollisionHelper.collideRectF(player.getDstRect(), itemBlock.getDstRect())) {
+                    // 아이템 생성!
+                    createItem();
+                    return;
+                }
+            }
+        }
+    }
+
+
+    private void createItem() {
+        Item item = new Item(700, 730, R.dimen.itemBlock_radius, R.mipmap.item);
+        objects.add(item);
+    }
+
 
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();

@@ -39,7 +39,8 @@ public class Player extends AnimSprite implements BoxCollidable {
             isMoving = false;
         if (isJumping == true) {
             dy = jumping();
-            dstRect.offset(dx, -dy);
+            if (isJumping)
+                dstRect.offset(dx, -dy);
         }
         else
             dstRect.offset(dx, 0.f);
