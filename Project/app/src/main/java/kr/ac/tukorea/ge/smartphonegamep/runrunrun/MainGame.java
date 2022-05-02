@@ -34,14 +34,13 @@ public class MainGame {
         player = new Player(0,500);
         objects.add(player);
 
-        ItemBlock block = new ItemBlock(400, 250, R.dimen.block_radius, R.mipmap.item_block);
-        objects.add(block);
+        //ItemBlock block = new ItemBlock(400, 250, R.dimen.block_radius, R.mipmap.item_block);
+        //objects.add(block);
 
-        GroundBlock groundBlock = new GroundBlock(100, 100, R.dimen.block_radius, R.mipmap.normal_block);
-        objects.add(groundBlock);
+        loadMapBlock();
 
-        Enemy enemy = new Enemy(100, 500);
-        objects.add(enemy);
+        //Enemy enemy = new Enemy(100, 500);
+        //objects.add(enemy);
 
         //AttackEnemy attackEnemy = new AttackEnemy(100, 500);
         //objects.add(attackEnemy);
@@ -49,6 +48,22 @@ public class MainGame {
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.run);
         jumpButton = new Button(Metrics.width/3, Metrics.height-200, R.dimen.button_radius, R.mipmap.jump);
+    }
+
+    private void loadMapBlock() {
+        for (int i = 0; i < 22; ++i) {
+            GroundBlock groundBlock
+                    = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius),
+                    R.dimen.block_radius, R.mipmap.normal_block);
+            objects.add(groundBlock);
+        }
+
+        for (int i = 0; i < 22; ++i) {
+            GroundBlock groundBlock
+                    = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius) * 3,
+                    R.dimen.block_radius, R.mipmap.normal_block);
+            objects.add(groundBlock);
+        }
     }
 
     public RectF getPlayerRect() {
