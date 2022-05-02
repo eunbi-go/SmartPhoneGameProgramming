@@ -14,6 +14,8 @@ public class Player extends AnimSprite implements BoxCollidable {
     private float jumpTime = 0.f;
     private float originalY = 0.f;
 
+    private float attackTime = 0.f;
+
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
         originalY = y;
@@ -21,7 +23,7 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
-        if (isJump == true) {
+        if (isJumping == true) {
             jumping();
         }
         if (isMove == true) {
@@ -31,6 +33,15 @@ public class Player extends AnimSprite implements BoxCollidable {
         }
         else
             isMoving = false;
+
+        if (isAttack) {
+            attackTime += frameTime;
+            if (attackTime > 0.3f) {
+                attackTime = 0.f;
+                isAttack = false;
+                isMoving = false;
+            }
+        }
         boundingRect.set(dstRect);
     }
 
@@ -44,13 +55,13 @@ public class Player extends AnimSprite implements BoxCollidable {
         if (dstRect.bottom > y + radius) {
             dstRect.bottom = y + radius;
             dstRect.top = y - radius;
-            isJump = false;
+            isJumping = false;
             jumpTime = 0.f;
         }
     }
 
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
-    public void setIsJump(boolean isJump) {this.isJump = isJump;}
+    public void setIsJump(boolean isJump) {this.isJumping = isJump;}
 
     @Override
     public RectF getBoudingRect() {
@@ -61,5 +72,6 @@ public class Player extends AnimSprite implements BoxCollidable {
     public void attack() {
         Bullet bullet = new Bullet(dstRect.right, dstRect.centerY());
         MainGame.getInstance().add(bullet);
+        isAttack = true;
     }
 }

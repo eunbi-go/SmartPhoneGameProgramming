@@ -14,6 +14,8 @@ public class AnimSprite extends Sprite{
     private final float framesPerSecond;
     private long createdOn;
     protected boolean isMoving = false;
+    protected boolean isJumping = false;
+    protected boolean isAttack = false;
 
     public AnimSprite(float x, float y, int radiusDimenID, int bitmpaResID, float framePerSecond, int frameCount) {
         super(x, y, radiusDimenID, bitmpaResID);
@@ -42,6 +44,14 @@ public class AnimSprite extends Sprite{
             now = System.currentTimeMillis();
             float time = (now - createdOn) / 1000.0f;
             frameIndex = Math.round(time * framesPerSecond) % frameCount;
+        }
+        else if (isJumping) {
+            frameIndex = 3;
+        }
+        else if (isAttack) {
+            now = System.currentTimeMillis();
+            float time = (now - createdOn) / 1000.0f;
+            frameIndex = Math.round(time * framesPerSecond) % 3;
         }
 
         srcRect.set(frameIndex * imageWidth, 0,
