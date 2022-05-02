@@ -34,15 +34,15 @@ public class MainGame {
         player = new Player(100,850);
         objects.add(player);
 
-        //ItemBlock block = new ItemBlock(400, 250, R.dimen.block_radius, R.mipmap.item_block);
-        //objects.add(block);
+        ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
+        objects.add(block);
 
         loadMapBlock();
 
         //Enemy enemy = new Enemy(100, 500);
         //objects.add(enemy);
 
-        //AttackEnemy attackEnemy = new AttackEnemy(100, 500);
+        //AttackEnemy attackEnemy = new AttackEnemy(100, 850);
         //objects.add(attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.attack);

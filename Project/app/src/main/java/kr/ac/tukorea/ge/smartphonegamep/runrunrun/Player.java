@@ -16,7 +16,6 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     private float attackTime = 0.f;
     private boolean isLeft = false;
-    private boolean isPrevDirection = false;
 
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
@@ -25,20 +24,25 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     public void update() {
         float frameTime = MainGame.getInstance().frameTime;
-        if (isJumping == true) {
-            jumping();
-        }
+        float dx = 0.f, dy = 0.f;
+
+
         if (isMove == true) {
             isMoving = true;
-            float dx = 0.f;
             if (isLeft)
                 dx = -frameTime * Metrics.size(R.dimen.player_speed);
             else
                 dx = frameTime * Metrics.size(R.dimen.player_speed);
-            dstRect.offset(dx, 0);
+
         }
         else
             isMoving = false;
+        if (isJumping == true) {
+            dy = jumping();
+            dstRect.offset(dx, -dy);
+        }
+        else
+            dstRect.offset(dx, 0.f);
 
         if (isAttack) {
             attackTime += frameTime;
@@ -51,19 +55,21 @@ public class Player extends AnimSprite implements BoxCollidable {
         boundingRect.set(dstRect);
     }
 
-    private void jumping() {
+    private float jumping() {
         float jumpY = originalY;
 
         jumpY = jumpPower * jumpTime - 9.8f * jumpTime * jumpTime * 0.5f;
         jumpTime += 10.f * MainGame.getInstance().frameTime;
 
-        dstRect.offset(0, -jumpY);
+        //dstRect.offset(0, -jumpY);
+
         if (dstRect.bottom > y + radius) {
             dstRect.bottom = y + radius;
             dstRect.top = y - radius;
             isJumping = false;
             jumpTime = 0.f;
         }
+        return jumpY;
     }
 
     @Override
@@ -97,7 +103,7 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
     public void setIsJump(boolean isJump) {this.isJumping = isJump;}
-    public void setIsLeftMove(boolean isLeft) {this.isPrevDirection = this.isLeft; this.isLeft = isLeft;}
+    public void setIsLeftMove(boolean isLeft) {this.isLeft = isLeft;}
     @Override
     public RectF getBoudingRect() {
         return boundingRect;

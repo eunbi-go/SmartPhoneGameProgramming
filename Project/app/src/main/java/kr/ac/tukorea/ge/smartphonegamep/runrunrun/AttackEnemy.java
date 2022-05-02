@@ -8,6 +8,7 @@ public class AttackEnemy extends AnimSprite {
     private float dx = 0.f;
     private boolean isAttack = false;
     private float attackTime = 0.f;
+    private boolean isLeft = false;
 
     public AttackEnemy(float x, float y) {
         //super(x, y, R.dimen.player_radius, R.mipmap.enemy2);
@@ -31,6 +32,7 @@ public class AttackEnemy extends AnimSprite {
             attackTime = 0.f;
             dstRect.offset(dx, 0);
             isMoving = true;
+            isLeft = false;
         }
         else if (playerRt.right + 300.f < dstRect.left ) {
             dx = -dx;
@@ -38,6 +40,7 @@ public class AttackEnemy extends AnimSprite {
             isMoving = true;
             attackTime = 0.f;
             dstRect.offset(dx, 0);
+            isLeft = true;
         }
         else {
             isAttack = true;
@@ -45,8 +48,6 @@ public class AttackEnemy extends AnimSprite {
             attack();
         }
 
-        //if (isAttack)
-         //   attack();
     }
 
     private void attack() {
@@ -59,7 +60,23 @@ public class AttackEnemy extends AnimSprite {
         }
     }
 
-    //public void draw(Canvas canvas) {
-     //   canvas.drawBitmap(bitmap, null, dstRect, null);
-    //}
+    @Override
+    public void draw(Canvas canvas) {
+        long now;
+        int frameIndex = 0;
+
+        if (isMoving) {
+            now = System.currentTimeMillis();
+            float time = (now - createdOn) / 1000.0f;
+            frameIndex = Math.round(time * framesPerSecond) % frameCount;
+        }
+
+        srcRect.set(frameIndex * imageWidth, 0,
+                (frameIndex + 1) * imageWidth, imageHeight);
+
+        if (isLeft)
+            canvas.drawBitmap(reverseBitmap, srcRect, dstRect, null);
+        else
+            canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+    }
 }
