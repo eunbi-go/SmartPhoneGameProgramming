@@ -11,6 +11,15 @@
 
 <img src="https://user-images.githubusercontent.com/55976889/166564734-d84010f0-df97-4c15-b9a0-54e6973957b6.png" width="450" height="220">  
 
+- 플레이어 점프 & NormalEnemy
+<img src="https://user-images.githubusercontent.com/55976889/166568675-87a3a025-10e9-43f3-9d35-df71f6aab6a7.png" width="450" height="220">  
+
+- 플레이어 이동 & AttackEnemy
+<img src="https://user-images.githubusercontent.com/55976889/166568752-a87ebfb7-2ed8-465d-aced-5dea2b05cd91.png" width="450" height="220">  
+
+- 플레이어 공격
+<img src="https://user-images.githubusercontent.com/55976889/166568803-0ddccf72-6dbe-48a0-941d-8778553c4fed.png" width="450" height="220">  
+
 
 # 깃 커밋  
 
