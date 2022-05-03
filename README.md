@@ -21,9 +21,9 @@
 <img src="https://user-images.githubusercontent.com/55976889/166569205-d0d5388a-162f-48cf-b0fd-d6ec963d6e04.png" width="450" height="220">  
 
 
-# 깃 커밋  
+# Git Commit  
 
-<img src="https://user-images.githubusercontent.com/55976889/166565162-e2271073-6b33-4c61-b10c-afa7f4cc1e1e.png" width="500" height="220">  
+<img src="https://user-images.githubusercontent.com/55976889/166570550-fd60d94c-e529-42eb-9fed-17ed11a9e5a5.png" width="500" height="220">  
 
 
 # GameObject 정보  
