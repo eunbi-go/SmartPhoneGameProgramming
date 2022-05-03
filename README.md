@@ -23,12 +23,12 @@
 
 # 깃 커밋  
 
-<img src="https://user-images.githubusercontent.com/55976889/166565162-e2271073-6b33-4c61-b10c-afa7f4cc1e1e.png" width="450" height="220">  
+<img src="https://user-images.githubusercontent.com/55976889/166565162-e2271073-6b33-4c61-b10c-afa7f4cc1e1e.png" width="500" height="220">  
 
 
 # GameObject 정보  
 
-<img src="https://user-images.githubusercontent.com/55976889/166565405-d2b6bc68-e664-4a22-aaa1-42288fd13ee4.png" width="450" height="220">  
+<img src="https://user-images.githubusercontent.com/55976889/166569899-4908050c-910e-4b46-b3de-3f03aa42273e.png" width="450" height="220">  
 
 Button: MainGame에서 해당 버튼이 눌렸는지 확인하고 눌린 버튼에 따라 Player 멤버함수 호출
 (move(), attack(), jump())  
@@ -42,6 +42,11 @@ Item/Ground Block: 플레이어와 충돌체크하여 아이템 블럭이라면 
 NormalEnemy: 플레이어와 상관없이 좌우로만 반복해서 이동.  
 
 AttackEnemy: 플레이어를 따라다니며 일정 거리 이하가 되면 멈춰서 플레이어를 향해 총알을 발사함.  
+
+
+# 구현하면서 어려웠던 점  
+- 플레이어의 걷는 동작 애니메이션 걷는 동작 싱크로율과 실제 이동 속도를 자연스럽게 맞추는 것-> 여러 번 테스트
+- 플레이어의 이동 방향과 동작에 따라 다른 애니메이션과 텍스처가 렌더링돼야 함-> bitmap을 추가로 생성해서 상태에 따라 다른 비트맵 렌더링  
 
 
 # 개발 일정
