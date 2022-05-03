@@ -9,17 +9,17 @@
 
 # 현재까지의 진행상황  
 
-<img src="https://user-images.githubusercontent.com/55976889/166564734-d84010f0-df97-4c15-b9a0-54e6973957b6.png" width="330" height="160">  
+<img src="https://user-images.githubusercontent.com/55976889/166564734-d84010f0-df97-4c15-b9a0-54e6973957b6.png" width="400" height="200">  
 
 
 # 깃 커밋  
 
-<img src="https://user-images.githubusercontent.com/55976889/166565162-e2271073-6b33-4c61-b10c-afa7f4cc1e1e.png" width="330" height="160">  
+<img src="https://user-images.githubusercontent.com/55976889/166565162-e2271073-6b33-4c61-b10c-afa7f4cc1e1e.png" width="400" height="200">  
 
 
 # GameObject 정보  
 
-<img src="https://user-images.githubusercontent.com/55976889/166565405-d2b6bc68-e664-4a22-aaa1-42288fd13ee4.png" width="330" height="160">  
+<img src="https://user-images.githubusercontent.com/55976889/166565405-d2b6bc68-e664-4a22-aaa1-42288fd13ee4.png" width="400" height="200">  
 
 
 # 개발 일정
