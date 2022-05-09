@@ -31,7 +31,7 @@ public class MainGame {
     public void init() {
         objects.clear();
 
-        player = new Player(100,850);
+        player = new Player(100,845);
         objects.add(player);
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
@@ -40,7 +40,7 @@ public class MainGame {
 
         loadMapBlock();
 
-        //Enemy enemy = new Enemy(100, 500);
+        //Enemy enemy = new Enemy(100, 850);
         //objects.add(enemy);
 
         //AttackEnemy attackEnemy = new AttackEnemy(100, 850);

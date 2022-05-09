@@ -12,7 +12,7 @@ public class AttackEnemy extends AnimSprite {
 
     public AttackEnemy(float x, float y) {
         //super(x, y, R.dimen.player_radius, R.mipmap.enemy2);
-        super(x, y, R.dimen.player_radius, R.mipmap.attack_enemy, 20, 4);
+        super(x, y, R.dimen.normalEnemy_radius, R.mipmap.attack_enemy, 20, 4);
         isMoving = false;
     }
 

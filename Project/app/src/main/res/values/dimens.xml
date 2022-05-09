@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="player_radius">30dp</dimen>
+    <dimen name="player_radius">40dp</dimen>
     <dimen name="player_speed">100dp</dimen>
     <dimen name="enemy_speed">100dp</dimen>
     <dimen name="button_radius">30dp</dimen>
@@ -8,4 +8,5 @@
     <dimen name="bullet_radius">20dp</dimen>
     <dimen name="block_radius">30dp</dimen>
     <dimen name="itemBlock_radius">20dp</dimen>
+    <dimen name="normalEnemy_radius">25dp</dimen>
 </resources>
