@@ -1,5 +1,5 @@
 # SmartPhoneGameProgramming
-2022_4_1 SmartPhone Game Programming 텀프로젝트 <런런런> 기획 발표
+2022_4_1 SmartPhone Game Programming 텀프로젝트 <런런런> 중간 발표
 
 
 # 게임 컨셉
@@ -7,59 +7,48 @@
 - 핵심 메카닉: 플레이어는 달리며 코인과 아이템을 획득할 수 있다. 아이템을 획득하면 공격이 활성화되며 몬스터들을 해치우며 앞으로 전진해나간다. 목표 지점까지 도달하면 승리. 플레이하며 얻은 코인과 처치한 몬스터 수로 최종 점수를 환산한다.  
 
 
-# 개발 범위
-- 맵: 곳곳에 장애물과 코인과 아이템이 나오는 랜덤박스 존재
-- 캐릭터 컨트롤: walk 버튼으로 이동, walk 떼면 idle, jump/attack 누르면 점프/공격
-- 캐릭터: 하나의 캐릭터
-- 캐릭터 애니메이션: IDLE, WALK, JUMP, ATTACK
+# 현재까지의 진행상황  
 
-- 게임 주요 기능
-플레이어와 맵 오브젝트/몬스터 간의 충돌체크/처리
-획득한 코인(5점), 처치한 몬스터 수(5점, 10점) 만큼 점수 증가
-아이템을 획득하면 일반 상태에서 공격할 수 있는 상태가 되어 attack 버튼으로 공격 가능
-(획득하지 못했으면 attack버튼 눌러도 공격안됨)
-공격 상태에서 몬스터와 충돌하면 일반 상태로 돌아감
-바닥에 빠지면&일반 상태에서 몬스터와 충돌하면 패배.
-아이템을 하나 얻을 때 마다 5회 공격 가능
-신이 바뀔 때 마다 Activity가 바뀌도록 구현  
+<img src="https://user-images.githubusercontent.com/55976889/166564734-d84010f0-df97-4c15-b9a0-54e6973957b6.png" width="450" height="220">  
 
-- 게임 난이도
-초반: 코인, 장애물
-중반: 이동만 하고 공격하지 않는 몬스터
-후반: 공격하는 몬스터
+- 플레이어 점프 & NormalEnemy
+<img src="https://user-images.githubusercontent.com/55976889/166569118-af0804e3-762d-4684-99d2-2c8f6918f595.png" width="450" height="220">  
 
-- 사운드: 배경음(시작 전, 스테이지, 종료), 플레이어 점프/공격
+- 플레이어 이동 & AttackEnemy
+<img src="https://user-images.githubusercontent.com/55976889/166569152-690d0143-4fec-4ed3-8398-d560b487eddb.png" width="450" height="220">  
+
+- 플레이어 공격
+<img src="https://user-images.githubusercontent.com/55976889/166569205-d0d5388a-162f-48cf-b0fd-d6ec963d6e04.png" width="450" height="220">  
 
 
-# 예상 게임 흐름
-시작 화면  
+# Git Commit  
 
-<img src="https://user-images.githubusercontent.com/55976889/160470191-783a8aab-26c6-4d6d-ae37-760e9b7ff50c.png" width="330" height="160">
+<img src="https://user-images.githubusercontent.com/55976889/166570550-fd60d94c-e529-42eb-9fed-17ed11a9e5a5.png" width="500" height="220">  
 
-초반: 코인  
 
-<img src="https://user-images.githubusercontent.com/55976889/160467825-700f964e-d5a5-4a03-87a6-1dd312c4ce2e.png" width="330" height="160">
+# GameObject 정보  
 
-초반: 코인 + 장애물  
+<img src="https://user-images.githubusercontent.com/55976889/166569899-4908050c-910e-4b46-b3de-3f03aa42273e.png" width="450" height="220">  
 
-<img src="https://user-images.githubusercontent.com/55976889/160467857-a3ee8338-6925-4865-b91b-89ff7337a9cd.png" width="330" height="160">
+- Button: MainGame에서 해당 버튼이 눌렸는지 확인하고 눌린 버튼에 따라 Player 멤버함수 호출
+(move(), attack(), jump())  
 
-패배 화면  
+- Player: 현재 상태에 따라 이동량을 계산, walk/attack 상태라면 애니메이션 렌더링, jump 상태라면 다른 텍스처 렌더링, 총알 발사.  
 
-<img src="https://user-images.githubusercontent.com/55976889/160470959-65272f00-fddc-41a5-9cfd-1911137e6127.png" width="330" height="160">
+- Bullet: 2초 뒤 사라짐. (객체와 충돌하면 사라지도록 구현할예정)  
 
-중반: 랜덤박스 위에서 점프하면 아이템 획득 가능  
+- Item/Ground Block: 플레이어와 충돌체크하여 아이템 블럭이라면 아이템 생성되게 함.  
 
-<img src="https://user-images.githubusercontent.com/55976889/160467908-b3130f08-9347-4916-bc2e-26e0bc2c10d5.png" width="330" height="160">
+- NormalEnemy: 플레이어와 상관없이 좌우로만 반복해서 이동.  
 
-중후반: 몬스터, 랜덤박스에서 아이템을 얻으면 attack 버튼이 활성화됨  
+- AttackEnemy: 플레이어를 따라다니며 일정 거리 이하가 되면 멈춰서 플레이어를 향해 총알을 발사함.  
 
-<img src="https://user-images.githubusercontent.com/55976889/160467964-f938add8-dbb2-49f1-b203-b4effee5b2c9.png" width="330" height="160">
 
-최종 점수 확인. 이전 점수와 비교. 다시 시작 가능  
-
-<img src="https://user-images.githubusercontent.com/55976889/160468228-fa269775-1de9-4995-a56a-0009b848982d.png" width="330" height="160">
-
+# 구현하면서 어려웠던 점  
+- 플레이어의 걷는 동작 애니메이션 걷는 동작 싱크로율과 실제 이동 속도를 자연스럽게 맞추는 것  
+     -> 여러 번 테스트
+- 플레이어의 이동 방향과 동작에 따라 다른 애니메이션과 텍스처가 렌더링돼야 함  
+     -> bitmap을 추가로 생성해서 상태에 따라 다른 비트맵 렌더링  
 
 
 # 개발 일정
