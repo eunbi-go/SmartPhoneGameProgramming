@@ -133,7 +133,8 @@ public class MainGame {
                 ItemBlock itemBlock = (ItemBlock) o2;
                 if (CollisionHelper.collideRectF(player.getDstRect(), itemBlock.getDstRect())) {
                     // 아이템 생성!
-                    createItem();
+                    //createItem();
+                    attackButton.onAttack(true);
                     return;
                 }
             }
