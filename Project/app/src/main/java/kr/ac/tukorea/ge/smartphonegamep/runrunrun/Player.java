@@ -37,7 +37,7 @@ public class Player extends AnimSprite implements BoxCollidable {
         else
             isMoving = false;
         if (isJumping == true) {
-            dy = jumping();
+            dy = jumping(frameTime);
             if (isJumping)
                 dstRect.offset(dx, -dy);
         }
@@ -55,11 +55,11 @@ public class Player extends AnimSprite implements BoxCollidable {
         boundingRect.set(dstRect);
     }
 
-    private float jumping() {
+    private float jumping(float frameTime) {
         float jumpY = originalY;
 
         jumpY = jumpPower * jumpTime - 9.8f * jumpTime * jumpTime * 0.5f;
-        jumpTime += 10.f * MainGame.getInstance().frameTime;
+        jumpTime += 10.f * frameTime;
 
         //dstRect.offset(0, -jumpY);
 
