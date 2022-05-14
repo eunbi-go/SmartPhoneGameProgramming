@@ -22,8 +22,7 @@ public class Player extends AnimSprite implements BoxCollidable {
         originalY = y;
     }
 
-    public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
+    public void update(float frameTime) {
         float dx = 0.f, dy = 0.f;
 
 

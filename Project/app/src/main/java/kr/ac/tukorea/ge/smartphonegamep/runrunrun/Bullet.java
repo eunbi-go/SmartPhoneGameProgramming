@@ -13,9 +13,7 @@ public class Bullet extends Sprite {
         this.dx = Metrics.size(R.dimen.bullet_speed);
     }
 
-    public void update() {
-        float frameTime = MainGame.getInstance().frameTime;
-
+    public void update(float frameTime) {
         lifeTime += frameTime;
         if (lifeTime >= 1.f) {
             MainGame.getInstance().remove(this);

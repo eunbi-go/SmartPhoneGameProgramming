@@ -53,9 +53,13 @@ public class MainGame extends BaseGame {
         add(Layer.enemy.ordinal(), attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack);
+        add(Layer.buttons.ordinal(), attackButton);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.go);
+        add(Layer.buttons.ordinal(), moveButton);
         backButton = new Button(200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.back);
+        add(Layer.buttons.ordinal(), backButton);
         jumpButton = new Button(Metrics.width/3, Metrics.height-200, R.dimen.button_radius, R.mipmap.jump);
+        add(Layer.buttons.ordinal(), jumpButton);
     }
 
     private void loadMapBlock() {

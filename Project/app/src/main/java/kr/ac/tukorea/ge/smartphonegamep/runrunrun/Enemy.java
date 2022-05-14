@@ -19,8 +19,8 @@ public class Enemy extends AnimSprite implements BoxCollidable{
         isMoving = true;
     }
 
-    public void update() {
-        this.frameTime += MainGame.getInstance().frameTime;
+    public void update(float frameTime) {
+        this.frameTime += frameTime;
 
         dx = MainGame.getInstance().frameTime * Metrics.size(R.dimen.enemy_speed);
         if (this.frameTime >= 2.f) {

@@ -22,9 +22,9 @@ public class AttackEnemy extends AnimSprite {
         isMoving = false;
     }
 
-    public void update() {
+    public void update(float frameTime) {
         playerRt = MainGame.getInstance().getPlayerRect();
-        dx = MainGame.getInstance().frameTime * Metrics.size(R.dimen.enemy_speed);
+        dx = frameTime * Metrics.size(R.dimen.enemy_speed);
 
         if (playerRt.left - 300.f > dstRect.right) {
             dx = dx;
@@ -45,17 +45,16 @@ public class AttackEnemy extends AnimSprite {
         else {
             isAttack = true;
             isMoving = false;
-            attack();
+            attack(frameTime);
         }
 
     }
 
-    private void attack() {
-        attackTime += MainGame.getInstance().frameTime;
+    private void attack(float frameTime) {
+        attackTime += frameTime;
         if (attackTime > 3.f) {
             Bullet bullet = new Bullet(dstRect.right, dstRect.centerY());
             bullet.setObject(Bullet.OBJ.ENEMY_BULLET);
-            //MainGame.getInstance().add(bullet);
             MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
 
             attackTime = 0.f;
