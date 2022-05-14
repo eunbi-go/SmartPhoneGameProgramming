@@ -18,7 +18,7 @@ public class ItemBlock implements GameObject{
     }
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
 
     }
     public RectF getDstRect() {return dstRect;}

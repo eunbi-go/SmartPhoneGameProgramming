@@ -22,6 +22,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         //initView();
+        view = this;
     }
 
     @Override
@@ -41,8 +42,11 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private void initView() {
         view = this;
 
-        MainGame game = MainGame.getInstance();
-        game.init();
+        //MainGame game = MainGame.getInstance();
+        //game.init();
+
+        BaseGame.getInstance().init();
+
         Choreographer.getInstance().postFrameCallback(this);
     }
 
@@ -54,19 +58,22 @@ public class GameView extends View implements Choreographer.FrameCallback {
         if (elapsed != 0) {
             framePerSecond = 1_000_000_000 / elapsed;
             previousTimeNanos = now;
-            MainGame.getInstance().update(elapsed);
+            //MainGame.getInstance().update(elapsed);
+            BaseGame game = BaseGame.getInstance();
+            game.update(elapsed);
             invalidate();
         }
         Choreographer.getInstance().postFrameCallback(this);
     }
 
     protected void onDraw(Canvas canvas) {
-        MainGame.getInstance().draw(canvas);
+        //MainGame.getInstance().draw(canvas);
+        BaseGame.getInstance().draw(canvas);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return MainGame.getInstance().onTouchEvent(event);
+        return BaseGame.getInstance().onTouchEvent(event);
     }
 
 

@@ -18,7 +18,7 @@ public class Item implements GameObject{
     }
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
 
     }
     @Override

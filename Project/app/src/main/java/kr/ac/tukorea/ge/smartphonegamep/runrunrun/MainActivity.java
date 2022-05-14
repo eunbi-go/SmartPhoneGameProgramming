@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        MainGame game = MainGame.getInstance();
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);

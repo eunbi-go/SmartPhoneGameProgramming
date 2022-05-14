@@ -7,12 +7,15 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
-public class MainGame {
+public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
-    private static MainGame singleton;
+    //private static MainGame singleton;
     public float frameTime;
 
-    private ArrayList<GameObject> objects = new ArrayList<>();
+    //private ArrayList<GameObject> objects = new ArrayList<>();
+    public enum Layer {
+        player, itemBlock, groundBlock, enemy, bullets, buttons, COUNT
+    }
 
     private Player player;
     private Button attackButton, moveButton, jumpButton, backButton;
@@ -21,22 +24,24 @@ public class MainGame {
         if (singleton == null) {
             singleton = new MainGame();
         }
-        return singleton;
+        return (MainGame) singleton;
     }
 
-    public static void clear() {
-        singleton = null;
-    }
+
 
     public void init() {
-        objects.clear();
+        //objects.clear();
+        super.init();
+        initLayers(Layer.COUNT.ordinal());
 
         player = new Player(100,845);
-        objects.add(player);
+        //objects.add(player);
+        add(Layer.player.ordinal(), player);
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
         //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
-        objects.add(block);
+        //objects.add(block);
+        add(Layer.itemBlock.ordinal(), block);
 
         loadMapBlock();
 
@@ -44,7 +49,8 @@ public class MainGame {
         //objects.add(enemy);
 
         AttackEnemy attackEnemy = new AttackEnemy(100, 850);
-        objects.add(attackEnemy);
+        //objects.add(attackEnemy);
+        add(Layer.enemy.ordinal(), attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.go);
@@ -57,14 +63,16 @@ public class MainGame {
             GroundBlock groundBlock
                     = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius),
                     R.dimen.block_radius, R.mipmap.normal_block);
-            objects.add(groundBlock);
+            //objects.add(groundBlock);
+            add(Layer.groundBlock.ordinal(), groundBlock);
         }
 
         for (int i = 0; i < 22; ++i) {
             GroundBlock groundBlock
                     = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius) * 3,
                     R.dimen.block_radius, R.mipmap.normal_block);
-            objects.add(groundBlock);
+            //objects.add(groundBlock);
+            add(Layer.groundBlock.ordinal(), groundBlock);
         }
     }
 
@@ -72,116 +80,7 @@ public class MainGame {
         return player.getDstRect();
     }
 
-    public void update(int elapsedNanos) {
-        frameTime = elapsedNanos * 1e-9f; // 1_000_000_000.0f;
 
-        for (GameObject obj : objects) {
-            obj.update();
-        }
-
-        checkCollision();
-    }
-
-    public void draw(Canvas canvas) {
-        for (GameObject obj : objects) {
-            obj.draw(canvas);
-        }
-
-        attackButton.draw(canvas);
-        moveButton.draw(canvas);
-        jumpButton.draw(canvas);
-        backButton.draw(canvas);
-    }
-
-    public void checkCollision() {
-        checkPlayerToItemBlock();
-        checkPlayerToItem();
-        checkMonsterToBullet();
-    }
-
-    private void checkMonsterToBullet() {
-        for (GameObject o1: objects) {
-            if (!(o1 instanceof Bullet)) {
-                continue;
-            }
-            Bullet pBullet = (Bullet) o1;
-            if (pBullet.getObject() == Bullet.OBJ.ENEMY_BULLET)
-                continue;
-
-            // NormalEnemy
-            for (GameObject o2: objects) {
-                if (!(o2 instanceof Enemy)) {
-                    continue;
-                }
-                Enemy enemy = (Enemy) o2;
-                if (CollisionHelper.collideRectF(pBullet.getDstRect(), enemy.getDstRect())) {
-                    MainGame.getInstance().remove(enemy);
-                    MainGame.getInstance().remove(pBullet);
-                }
-            }
-
-            // AttackEnemy
-            for (GameObject o2: objects) {
-                if (!(o2 instanceof AttackEnemy)) {
-                    continue;
-                }
-                AttackEnemy enemy = (AttackEnemy) o2;
-                if (CollisionHelper.collideRectF(pBullet.getDstRect(), enemy.getDstRect())) {
-                    MainGame.getInstance().remove(enemy);
-                    MainGame.getInstance().remove(pBullet);
-                }
-            }
-        }
-    }
-
-    private void checkPlayerToItem() {
-        for (GameObject o1: objects) {
-            if (!(o1 instanceof Player)) {
-                continue;
-            }
-            Player player = (Player) o1;
-            for (GameObject o2: objects) {
-                if (!(o2 instanceof Item)) {
-                    continue;
-                }
-                Item item = (Item) o2;
-                if (CollisionHelper.collideRectF(player.getDstRect(), item.getDstRect())) {
-                    // 아이템 삭제
-                    MainGame.getInstance().remove(o2);
-                    // attack 버튼 활성화
-                    attackButton.onAttack(true);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void checkPlayerToItemBlock() {
-        for (GameObject o1: objects) {
-            if (!(o1 instanceof Player)) {
-                continue;
-            }
-            Player player = (Player) o1;
-            for (GameObject o2: objects) {
-                if (!(o2 instanceof ItemBlock)) {
-                    continue;
-                }
-                ItemBlock itemBlock = (ItemBlock) o2;
-                if (CollisionHelper.collideRectF(player.getDstRect(), itemBlock.getDstRect())) {
-                    // 아이템 생성!
-                    //createItem();
-                    attackButton.onAttack(true);
-                    return;
-                }
-            }
-        }
-    }
-
-
-    private void createItem() {
-        Item item = new Item(700, 730, R.dimen.itemBlock_radius, R.mipmap.item);
-        objects.add(item);
-    }
 
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -210,21 +109,5 @@ public class MainGame {
         return false;
     }
 
-    public void add(GameObject gameObject) {
-        GameView.view.post(new Runnable() {
-            @Override
-            public void run() {
-                objects.add(gameObject);
-            }
-        });
-    }
 
-    public void remove(GameObject gameObject) {
-        GameView.view.post(new Runnable() {
-            @Override
-            public void run() {
-                objects.remove(gameObject);
-            }
-        });
-    }
 }

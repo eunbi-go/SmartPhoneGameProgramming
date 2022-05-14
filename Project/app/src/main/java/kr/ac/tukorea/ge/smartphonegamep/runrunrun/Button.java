@@ -27,7 +27,7 @@ public class Button implements GameObject, BoxCollidable{
     }
 
     @Override
-    public void update() {
+    public void update(float frameTime) {
         boundingRect.set(dstRect);
         boundingRect.inset(radius / 16, radius / 16);
     }
