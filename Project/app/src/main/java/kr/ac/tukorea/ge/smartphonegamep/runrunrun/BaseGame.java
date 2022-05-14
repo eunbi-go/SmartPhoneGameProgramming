@@ -76,10 +76,17 @@ public class BaseGame {
         if (touchLayer < 0) return false;
         ArrayList<GameObject> gameObjects = layers.get(touchLayer);
 
-        return MainGame.getInstance().onTouchEvent(event);
+        for (GameObject gobj : gameObjects) {
+            if (!(gobj instanceof Touchable)) {
+                continue;
+            }
+            boolean processed = ((Touchable) gobj).onTouchEvent(event);
+            if (processed) return true;
+        }
+        return false;
     }
 
     protected int getTouchLayerIndex() {
-        return -1;
+        return 5;
     }
 }

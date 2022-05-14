@@ -52,13 +52,55 @@ public class MainGame extends BaseGame {
         //objects.add(attackEnemy);
         add(Layer.enemy.ordinal(), attackEnemy);
 
-        attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack);
+        attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack,
+                new Button.Callback() {
+            public boolean onTouch(Button.Action action) {
+                if (action != Button.Action.pressed) return false;
+                player.attack();
+                return true;
+            }
+                });
         add(Layer.buttons.ordinal(), attackButton);
-        moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.go);
+
+        moveButton = new Button(Metrics.width / 6, Metrics.height - 200, R.dimen.button_radius, R.mipmap.go,
+                new Button.Callback() {
+                    @Override
+                    public boolean onTouch(Button.Action action) {
+                        if (action != Button.Action.pressed)  {
+                            player.setIsMove(false);
+                            return false;
+                        }
+                        player.setIsMove(true);
+                        player.setIsLeftMove(false);
+                        return true;
+                    }
+                });
         add(Layer.buttons.ordinal(), moveButton);
-        backButton = new Button(200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.back);
+
+        backButton = new Button(200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.back,
+                new Button.Callback() {
+                    @Override
+                    public boolean onTouch(Button.Action action) {
+                        if (action != Button.Action.pressed) {
+                            player.setIsMove(false);
+                            return false;
+                        }
+                        player.setIsMove(true);
+                        player.setIsLeftMove(true);
+                        return true;
+                    }
+                });
         add(Layer.buttons.ordinal(), backButton);
-        jumpButton = new Button(Metrics.width/3, Metrics.height-200, R.dimen.button_radius, R.mipmap.jump);
+
+        jumpButton = new Button(Metrics.width / 3, Metrics.height - 200, R.dimen.button_radius, R.mipmap.jump,
+                new Button.Callback() {
+                    @Override
+                    public boolean onTouch(Button.Action action) {
+                        if (action != Button.Action.pressed) return false;
+                        player.setIsJump(true);
+                        return false;
+                    }
+                });
         add(Layer.buttons.ordinal(), jumpButton);
     }
 
@@ -87,31 +129,7 @@ public class MainGame extends BaseGame {
 
 
 
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-                RectF clickRtF = new RectF(x - 5, y - 5, x + 5, y + 5);
 
-                if (CollisionHelper.collideRectF(moveButton.getDstRect(), clickRtF)) {
-                    player.setIsMove(true);
-                    player.setIsLeftMove(false);
-                }
-                if (CollisionHelper.collideRectF(backButton.getDstRect(), clickRtF)) {
-                    player.setIsMove(true);
-                    player.setIsLeftMove(true);
-                }
-                if (CollisionHelper.collideRectF(attackButton.getDstRect(), clickRtF))
-                    player.attack();
-                if (CollisionHelper.collideRectF(jumpButton.getDstRect(), clickRtF))
-                    player.setIsJump(true);
-                return true;
-        }
-        player.setIsMove(false);
-        return false;
-    }
 
 
 }
