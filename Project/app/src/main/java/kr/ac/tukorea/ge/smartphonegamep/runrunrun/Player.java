@@ -113,6 +113,7 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     public void attack() {
         Bullet bullet = new Bullet(dstRect.right, dstRect.centerY());
+        bullet.setObject(Bullet.OBJ.PLAYER_BULLET);
         MainGame.getInstance().add(bullet);
         isAttack = true;
     }

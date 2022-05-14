@@ -54,6 +54,7 @@ public class AttackEnemy extends AnimSprite {
         attackTime += MainGame.getInstance().frameTime;
         if (attackTime > 3.f) {
             Bullet bullet = new Bullet(dstRect.right, dstRect.centerY());
+            bullet.setObject(Bullet.OBJ.ENEMY_BULLET);
             MainGame.getInstance().add(bullet);
 
             attackTime = 0.f;

@@ -43,8 +43,8 @@ public class MainGame {
         //Enemy enemy = new Enemy(100, 850);
         //objects.add(enemy);
 
-        //AttackEnemy attackEnemy = new AttackEnemy(100, 850);
-        //objects.add(attackEnemy);
+        AttackEnemy attackEnemy = new AttackEnemy(100, 850);
+        objects.add(attackEnemy);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack);
         moveButton = new Button(Metrics.width/6, Metrics.height-200, R.dimen.button_radius, R.mipmap.go);
@@ -96,6 +96,42 @@ public class MainGame {
     public void checkCollision() {
         checkPlayerToItemBlock();
         checkPlayerToItem();
+        checkMonsterToBullet();
+    }
+
+    private void checkMonsterToBullet() {
+        for (GameObject o1: objects) {
+            if (!(o1 instanceof Bullet)) {
+                continue;
+            }
+            Bullet pBullet = (Bullet) o1;
+            if (pBullet.getObject() == Bullet.OBJ.ENEMY_BULLET)
+                continue;
+
+            // NormalEnemy
+            for (GameObject o2: objects) {
+                if (!(o2 instanceof Enemy)) {
+                    continue;
+                }
+                Enemy enemy = (Enemy) o2;
+                if (CollisionHelper.collideRectF(pBullet.getDstRect(), enemy.getDstRect())) {
+                    MainGame.getInstance().remove(enemy);
+                    MainGame.getInstance().remove(pBullet);
+                }
+            }
+
+            // AttackEnemy
+            for (GameObject o2: objects) {
+                if (!(o2 instanceof AttackEnemy)) {
+                    continue;
+                }
+                AttackEnemy enemy = (AttackEnemy) o2;
+                if (CollisionHelper.collideRectF(pBullet.getDstRect(), enemy.getDstRect())) {
+                    MainGame.getInstance().remove(enemy);
+                    MainGame.getInstance().remove(pBullet);
+                }
+            }
+        }
     }
 
     private void checkPlayerToItem() {
