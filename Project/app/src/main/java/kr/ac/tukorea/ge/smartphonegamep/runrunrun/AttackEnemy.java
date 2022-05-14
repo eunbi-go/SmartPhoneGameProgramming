@@ -53,8 +53,12 @@ public class AttackEnemy extends AnimSprite {
     private void attack(float frameTime) {
         attackTime += frameTime;
         if (attackTime > 3.f) {
-            Bullet bullet = new Bullet(dstRect.right, dstRect.centerY());
+            Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());
             bullet.setObject(Bullet.OBJ.ENEMY_BULLET);
+            if (isLeft)
+                bullet.setDirection(-1.f);
+            else
+                bullet.setDirection(1.f);
             MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
 
             attackTime = 0.f;

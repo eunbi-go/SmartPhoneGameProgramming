@@ -6,6 +6,7 @@ import android.graphics.Paint;
 public class Bullet extends Sprite {
     protected final float dx;
     private float lifeTime;
+    private float direction = 1.f;
     enum OBJ {PLAYER_BULLET, ENEMY_BULLET, OBJ_END};
     OBJ object;
     public Bullet(float x, float y) {
@@ -19,7 +20,7 @@ public class Bullet extends Sprite {
             MainGame.getInstance().remove(this);
         }
 
-        float dx = frameTime * Metrics.size(R.dimen.player_speed);
+        float dx = frameTime * Metrics.size(R.dimen.player_speed) * direction;
         dstRect.offset(dx, 0);
     }
 
@@ -29,4 +30,6 @@ public class Bullet extends Sprite {
 
     public void setObject(OBJ obj) {object = obj;}
     public OBJ getObject() {return object;}
+
+    public void setDirection(float direction) {this.direction = direction;}
 }
