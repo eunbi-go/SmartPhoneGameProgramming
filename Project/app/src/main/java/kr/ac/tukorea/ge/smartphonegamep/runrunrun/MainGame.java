@@ -131,10 +131,4 @@ public class MainGame extends BaseGame {
         return player.getDstRect();
     }
 
-
-
-
-
-
-
 }

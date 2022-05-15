@@ -86,6 +86,10 @@ public class BaseGame {
         return false;
     }
 
+    public ArrayList<GameObject> objectsAt(int layerIndex) {
+        return layers.get(layerIndex);
+    }
+
     protected int getTouchLayerIndex() {
         return 5;
     }
