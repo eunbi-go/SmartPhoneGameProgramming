@@ -12,7 +12,7 @@ public class MainGame extends BaseGame {
     public float frameTime;
 
     public enum Layer {
-        player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, COUNT
+        player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, COUNT
     }
 
     private Player player;
@@ -53,6 +53,11 @@ public class MainGame extends BaseGame {
             add(Layer.player_heart.ordinal(), playerHeart);
         }
 
+        PlayerScore playerScore = new PlayerScore(R.mipmap.font_0, R.dimen.player_heart_radius, 0,Metrics.width-300, 100);
+        add(Layer.player_score.ordinal(), playerScore);
+
+        PlayerScore playerScore2 = new PlayerScore(R.mipmap.font_0, R.dimen.player_heart_radius, 0,Metrics.width-200, 100);
+        add(Layer.player_score.ordinal(), playerScore2);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack,
                 new Button.Callback() {
