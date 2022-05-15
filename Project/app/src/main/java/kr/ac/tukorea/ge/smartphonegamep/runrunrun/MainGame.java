@@ -52,8 +52,12 @@ public class MainGame extends BaseGame {
         //objects.add(attackEnemy);
         add(Layer.enemy.ordinal(), attackEnemy);
 
-        PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius, 100, 100);
-        add(Layer.player_heart.ordinal(), playerHeart);
+        for (int i = 0; i < 5; ++i) {
+            PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius,
+                    100 + i * 100, 100);
+            add(Layer.player_heart.ordinal(), playerHeart);
+        }
+
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack,
                 new Button.Callback() {
