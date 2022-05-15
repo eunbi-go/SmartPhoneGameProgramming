@@ -11,10 +11,12 @@ public class PlayerHeart implements GameObject{
     private final int imageWidth, imageHeight;
     private final float radius;
     private boolean isDead = false;
+    private int index = -1;
 
-    public PlayerHeart(int mipmapResId, int radius, float x, float y) {
+    public PlayerHeart(int mipmapResId, int radius, float x, float y, int index) {
         this.bitmap = BitmapPool.get(mipmapResId);
 
+        this.index = index;
         this.imageWidth = bitmap.getWidth();
         this.imageHeight = bitmap.getHeight();
         this.radius = Metrics.size(radius);

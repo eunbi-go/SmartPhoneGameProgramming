@@ -9,10 +9,8 @@ import java.util.ArrayList;
 
 public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
-    //private static MainGame singleton;
     public float frameTime;
 
-    //private ArrayList<GameObject> objects = new ArrayList<>();
     public enum Layer {
         player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, COUNT
     }
@@ -35,12 +33,10 @@ public class MainGame extends BaseGame {
         initLayers(Layer.COUNT.ordinal());
 
         player = new Player(100,845);
-        //objects.add(player);
         add(Layer.player.ordinal(), player);
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
         //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
-        //objects.add(block);
         add(Layer.itemBlock.ordinal(), block);
 
         loadMapBlock();
@@ -49,12 +45,11 @@ public class MainGame extends BaseGame {
         //objects.add(enemy);
 
         AttackEnemy attackEnemy = new AttackEnemy(100, 850);
-        //objects.add(attackEnemy);
         add(Layer.enemy.ordinal(), attackEnemy);
 
         for (int i = 0; i < 5; ++i) {
             PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius,
-                    100 + i * 100, 100);
+                    100 + i * 100, 100, i);
             add(Layer.player_heart.ordinal(), playerHeart);
         }
 
@@ -116,7 +111,6 @@ public class MainGame extends BaseGame {
             GroundBlock groundBlock
                     = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius),
                     R.dimen.block_radius, R.mipmap.normal_block);
-            //objects.add(groundBlock);
             add(Layer.groundBlock.ordinal(), groundBlock);
         }
 
@@ -124,7 +118,6 @@ public class MainGame extends BaseGame {
             GroundBlock groundBlock
                     = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius) * 3,
                     R.dimen.block_radius, R.mipmap.normal_block);
-            //objects.add(groundBlock);
             add(Layer.groundBlock.ordinal(), groundBlock);
         }
     }
