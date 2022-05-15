@@ -17,6 +17,8 @@ public class Player extends AnimSprite implements BoxCollidable {
     private float attackTime = 0.f;
     private boolean isLeft = false;
 
+    private int score = 0;
+
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
         originalY = y;
@@ -104,11 +106,14 @@ public class Player extends AnimSprite implements BoxCollidable {
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
     public void setIsJump(boolean isJump) {this.isJumping = isJump;}
     public void setIsLeftMove(boolean isLeft) {this.isLeft = isLeft;}
+    public void setScore(int score) {this.score = score;}
+
     @Override
     public RectF getBoudingRect() {
         return boundingRect;
     }
     public RectF getDstRect() {return dstRect;}
+    public int getScore() {return score;}
 
     public void attack() {
         Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());
