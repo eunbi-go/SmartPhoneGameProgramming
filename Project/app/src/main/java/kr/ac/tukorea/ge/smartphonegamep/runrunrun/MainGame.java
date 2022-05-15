@@ -14,7 +14,7 @@ public class MainGame extends BaseGame {
 
     //private ArrayList<GameObject> objects = new ArrayList<>();
     public enum Layer {
-        player, itemBlock, groundBlock, enemy, bullets, buttons, COUNT
+        player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, COUNT
     }
 
     private Player player;
@@ -51,6 +51,9 @@ public class MainGame extends BaseGame {
         AttackEnemy attackEnemy = new AttackEnemy(100, 850);
         //objects.add(attackEnemy);
         add(Layer.enemy.ordinal(), attackEnemy);
+
+        PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius, 100, 100);
+        add(Layer.player_heart.ordinal(), playerHeart);
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack,
                 new Button.Callback() {
