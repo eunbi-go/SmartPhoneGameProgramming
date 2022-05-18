@@ -37,9 +37,7 @@ public class Enemy extends AnimSprite implements BoxCollidable{
         boundingRect.offset(dx, 0);
     }
 
-    //public void draw(Canvas canvas) {
-      //  canvas.drawBitmap(bitmap, null, dstRect, null);
-    //}
+    public void changeDirection() {left = !left;}
 
     @Override
     public RectF getBoudingRect() {

@@ -22,6 +22,7 @@ public class CollisionChecker implements GameObject{
                 continue;
             }
             if (CollisionHelper.collides(player, (Enemy) enemy)) {
+                ((Enemy) enemy).changeDirection();
                 ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
                 checkPlayerHearts(playerHearts);
                 return;
