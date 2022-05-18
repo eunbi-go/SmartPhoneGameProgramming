@@ -15,7 +15,17 @@ public class CollisionChecker implements GameObject{
     @Override
     public void update(float frameTime) {
         MainGame game = MainGame.getInstance();
-        ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.enemy.ordinal());
+
+        playerToNormalEnemy(game);
+        playerToAttackEnemyBullet(game);
+    }
+
+    private void playerToAttackEnemyBullet(MainGame game) {
+
+    }
+
+    private void playerToNormalEnemy(MainGame game) {
+        ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.normal_enemy.ordinal());
         for (GameObject enemy : enemys) {
             if (!(enemy instanceof BoxCollidable)) {
                 Log.d(TAG, "no boundingBox");

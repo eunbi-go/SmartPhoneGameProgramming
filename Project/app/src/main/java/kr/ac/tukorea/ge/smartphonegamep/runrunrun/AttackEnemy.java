@@ -59,7 +59,7 @@ public class AttackEnemy extends AnimSprite {
                 bullet.setDirection(-1.f);
             else
                 bullet.setDirection(1.f);
-            MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
+            MainGame.getInstance().add(MainGame.Layer.enemy_byllets.ordinal(), bullet);
 
             attackTime = 0.f;
         }
