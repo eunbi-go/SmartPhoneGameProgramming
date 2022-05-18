@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="player_radius">40dp</dimen>
+    <dimen name="player_coll_radius">25dp</dimen>
     <dimen name="player_speed">100dp</dimen>
     <dimen name="enemy_speed">100dp</dimen>
     <dimen name="button_radius">30dp</dimen>

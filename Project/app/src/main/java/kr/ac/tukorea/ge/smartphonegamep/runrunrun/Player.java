@@ -22,7 +22,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
         originalY = y;
-        boundingRect.set(dstRect);
+        boundingRect.set(x - Metrics.size(R.dimen.player_coll_radius), y - Metrics.size(R.dimen.player_coll_radius), x + Metrics.size(R.dimen.player_coll_radius), y + Metrics.size(R.dimen.player_coll_radius));
     }
 
     public void update(float frameTime) {

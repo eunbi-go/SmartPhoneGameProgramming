@@ -1,7 +1,9 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 public class BaseGame {
     protected static BaseGame singleton;
     protected float frameTime, elapsedTime;
+    private Paint collisionPaint;
 
     protected ArrayList<ArrayList<GameObject>> layers;
 
@@ -22,6 +25,10 @@ public class BaseGame {
 
     public void init() {
         elapsedTime = 0;
+
+        collisionPaint = new Paint();
+        collisionPaint.setColor(Color.RED);
+        collisionPaint.setStyle(Paint.Style.STROKE);
     }
 
     protected void initLayers(int count) {
@@ -45,6 +52,10 @@ public class BaseGame {
         for (ArrayList<GameObject> gameObjects : layers) {
             for (GameObject gobj : gameObjects) {
                 gobj.draw(canvas);
+                if (gobj instanceof BoxCollidable) {
+                    RectF rect = ((BoxCollidable) gobj).getBoudingRect();
+                    canvas.drawRect(rect, collisionPaint);
+                }
             }
         }
     }
