@@ -36,6 +36,11 @@ public class PlayerScore implements GameObject{
         canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 
+    @Override
+    public RectF getDstRect() {
+        return dstRect;
+    }
+
     public void setScore(int number) {
         this.number = number;
         setScoreRes();

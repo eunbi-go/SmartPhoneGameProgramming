@@ -84,4 +84,6 @@ public class AttackEnemy extends AnimSprite {
         else
             canvas.drawBitmap(bitmap, srcRect, dstRect, null);
     }
+
+    public RectF getDstRect() {return dstRect;}
 }

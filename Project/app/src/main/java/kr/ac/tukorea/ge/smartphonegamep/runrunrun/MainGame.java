@@ -12,7 +12,7 @@ public class MainGame extends BaseGame {
     public float frameTime;
 
     public enum Layer {
-        player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, COUNT
+        player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, controller, COUNT
     }
 
     private Player player;
@@ -35,17 +35,19 @@ public class MainGame extends BaseGame {
         player = new Player(100,845);
         add(Layer.player.ordinal(), player);
 
+        add(Layer.controller.ordinal(), new CollisionChecker(player));
+
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
         //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
         add(Layer.itemBlock.ordinal(), block);
 
         loadMapBlock();
 
-        //Enemy enemy = new Enemy(100, 850);
-        //objects.add(enemy);
+        Enemy enemy = new Enemy(800, 850);
+        add(Layer.enemy.ordinal(), enemy);
 
-        AttackEnemy attackEnemy = new AttackEnemy(100, 850);
-        add(Layer.enemy.ordinal(), attackEnemy);
+        //AttackEnemy attackEnemy = new AttackEnemy(100, 850);
+        //add(Layer.enemy.ordinal(), attackEnemy);
 
         for (int i = 0; i < 5; ++i) {
             PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius,

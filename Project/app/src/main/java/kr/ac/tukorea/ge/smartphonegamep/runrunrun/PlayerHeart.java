@@ -36,6 +36,13 @@ public class PlayerHeart implements GameObject{
             canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 
+    @Override
+    public RectF getDstRect() {
+        return dstRect;
+    }
+
     void setDead(boolean isDead) {this.isDead = isDead;}
+    void setIndex(int index) {this.index = index;}
     boolean getIsDead() {return isDead;}
+    int getIndex() {return index;}
 }

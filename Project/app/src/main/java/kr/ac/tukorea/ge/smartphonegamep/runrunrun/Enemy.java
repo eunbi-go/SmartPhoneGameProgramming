@@ -22,7 +22,7 @@ public class Enemy extends AnimSprite implements BoxCollidable{
     public void update(float frameTime) {
         this.frameTime += frameTime;
 
-        dx = MainGame.getInstance().frameTime * Metrics.size(R.dimen.enemy_speed);
+        dx = frameTime * Metrics.size(R.dimen.enemy_speed);
         if (this.frameTime >= 2.f) {
             this.frameTime = 0.f;
             left = !left;
@@ -42,4 +42,5 @@ public class Enemy extends AnimSprite implements BoxCollidable{
     public RectF getBoudingRect() {
         return boundingRect;
     }
+    public RectF getDstRect() {return dstRect;}
 }
