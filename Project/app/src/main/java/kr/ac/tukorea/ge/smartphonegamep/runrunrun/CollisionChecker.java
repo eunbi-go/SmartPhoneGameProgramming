@@ -21,14 +21,26 @@ public class CollisionChecker implements GameObject{
     }
 
     private void playerToAttackEnemyBullet(MainGame game) {
-
+        ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullets.ordinal());
+        for (GameObject bullet : bullets) {
+            if (Bullet.OBJ.ENEMY_BULLET != ((Bullet)bullet).getObject())
+                continue;
+            if (!(bullet instanceof BoxCollidable)) {
+                continue;
+            }
+            if (CollisionHelper.collides(player, (Bullet) bullet)) {
+                BaseGame.getInstance().remove(bullet);
+                ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
+                checkPlayerHearts(playerHearts);
+                return;
+            }
+        }
     }
 
     private void playerToNormalEnemy(MainGame game) {
-        ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.normal_enemy.ordinal());
+        ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.enemy.ordinal());
         for (GameObject enemy : enemys) {
             if (!(enemy instanceof BoxCollidable)) {
-                Log.d(TAG, "no boundingBox");
                 continue;
             }
             if (CollisionHelper.collides(player, (Enemy) enemy)) {

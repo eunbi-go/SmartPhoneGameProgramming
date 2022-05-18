@@ -7,6 +7,7 @@
     <dimen name="button_radius">30dp</dimen>
     <dimen name="bullet_speed">200dp</dimen>
     <dimen name="bullet_radius">20dp</dimen>
+    <dimen name="bullet_coll_radius">15dp</dimen>
     <dimen name="block_radius">30dp</dimen>
     <dimen name="itemBlock_radius">20dp</dimen>
     <dimen name="normalEnemy_radius">25dp</dimen>
