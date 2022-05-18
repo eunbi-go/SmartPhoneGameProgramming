@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class CollisionChecker implements GameObject{
     private final Player player;
+    private static final String TAG = CollisionChecker.class.getSimpleName();
 
     public CollisionChecker(Player player) {this.player = player;}
 
@@ -16,9 +17,14 @@ public class CollisionChecker implements GameObject{
         MainGame game = MainGame.getInstance();
         ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.enemy.ordinal());
         for (GameObject enemy : enemys) {
-            if (CollisionHelper.collideRectF(player.getDstRect(), enemy.getDstRect())) {
+            if (!(enemy instanceof BoxCollidable)) {
+                Log.d(TAG, "no boundingBox");
+                continue;
+            }
+            if (CollisionHelper.collides(player, (Enemy) enemy)) {
                 ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
                 checkPlayerHearts(playerHearts);
+                return;
             }
         }
     }
@@ -27,7 +33,7 @@ public class CollisionChecker implements GameObject{
         for (GameObject playerHeart : playerHearts) {
             if (!((PlayerHeart) playerHeart).getIsDead()) {
                 ((PlayerHeart) playerHeart).setDead(true);
-                break;
+                return;
             }
         }
     }

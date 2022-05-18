@@ -34,7 +34,6 @@ public class MainGame extends BaseGame {
 
         player = new Player(100,845);
         add(Layer.player.ordinal(), player);
-
         add(Layer.controller.ordinal(), new CollisionChecker(player));
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);

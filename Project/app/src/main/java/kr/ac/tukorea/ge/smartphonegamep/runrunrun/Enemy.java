@@ -12,6 +12,7 @@ public class Enemy extends AnimSprite implements BoxCollidable{
     public Enemy(float x, float y) {
         super(x, y, R.dimen.normalEnemy_radius, R.mipmap.normal_enemy, 7, 2);
         isMoving = true;
+        boundingRect.set(dstRect);
     }
 
     public Enemy(float x, float y, int radiusDimenID, int bitmpaResID) {
@@ -32,6 +33,8 @@ public class Enemy extends AnimSprite implements BoxCollidable{
             dx = -dx;
 
         dstRect.offset(dx, 0);
+        //boundingRect.set(dstRect);
+        boundingRect.offset(dx, 0);
     }
 
     //public void draw(Canvas canvas) {
