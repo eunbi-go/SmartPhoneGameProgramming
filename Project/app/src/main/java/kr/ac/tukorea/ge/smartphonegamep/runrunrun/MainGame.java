@@ -12,7 +12,7 @@ public class MainGame extends BaseGame {
     public float frameTime;
 
     public enum Layer {
-        player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, controller, COUNT
+        bg, player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, controller, COUNT
     }
 
     private Player player;
@@ -34,7 +34,9 @@ public class MainGame extends BaseGame {
 
         player = new Player(100,845);
         add(Layer.player.ordinal(), player);
+
         add(Layer.controller.ordinal(), new CollisionChecker(player));
+        add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.background1, Metrics.size(R.dimen.bg_scroll_1)));
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
         //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
