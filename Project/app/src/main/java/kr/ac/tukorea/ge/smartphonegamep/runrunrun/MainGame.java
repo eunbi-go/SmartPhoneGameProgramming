@@ -46,7 +46,7 @@ public class MainGame extends BaseGame {
         //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
         add(Layer.itemBlock.ordinal(), block);
 
-        loadMapBlock();
+        //loadMapBlock();
 
         MapLoader mapLoader = MapLoader.get();
         mapLoader.init(0);

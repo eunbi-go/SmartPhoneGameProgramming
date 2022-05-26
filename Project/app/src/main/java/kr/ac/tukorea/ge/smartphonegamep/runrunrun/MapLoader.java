@@ -106,7 +106,11 @@ public class MapLoader implements GameObject {
     private void createObject(char ch, float leftUnit, float topUnit) {
         MainGame game = MainGame.getInstance();
         if (ch == '-') {
-            Log.d(TAG, "벽돌이다");
+            GroundBlock groundBlock
+                    = new GroundBlock(Metrics.size(R.dimen.block_radius) + leftUnit * Metrics.size(R.dimen.block_radius),
+                                        Metrics.height-Metrics.size(R.dimen.block_radius),
+                                        R.dimen.block_radius, R.mipmap.normal_block);
+            game.add(MainGame.Layer.groundBlock.ordinal(), groundBlock);
         }
     }
 
@@ -122,7 +126,6 @@ public class MapLoader implements GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-
     }
 
     @Override
