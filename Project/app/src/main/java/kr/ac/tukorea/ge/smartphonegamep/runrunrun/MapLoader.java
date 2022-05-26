@@ -91,7 +91,30 @@ public class MapLoader implements GameObject {
     }
 
     private void createColumn(float leftUnit) {
+        float y = 0;
+        for (int row = 0; row < rows; row++) {
+            char ch = getAt(current, row);
+            if (ch == 0) {
+                speed = 0;
+                return;
+            }
+            createObject(ch, leftUnit, row);
+            y += unit;
+        }
+    }
 
+    private void createObject(char ch, float leftUnit, float topUnit) {
+
+    }
+
+    private char getAt(int x, int y) {
+        try {
+            int lineIndex = x / colums * rows + y;
+            String line = lines.get(lineIndex);
+            return line.charAt(x % colums);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override
