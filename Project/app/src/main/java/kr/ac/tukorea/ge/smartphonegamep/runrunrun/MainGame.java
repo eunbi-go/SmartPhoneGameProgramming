@@ -48,7 +48,9 @@ public class MainGame extends BaseGame {
 
         loadMapBlock();
 
-        MapLoader.get().init(0);
+        MapLoader mapLoader = MapLoader.get();
+        mapLoader.init(0);
+        add(Layer.controller.ordinal(), mapLoader);
 
         //Enemy enemy = new Enemy(800, 850);
         //add(Layer.normal_enemy.ordinal(), enemy);

@@ -104,7 +104,10 @@ public class MapLoader implements GameObject {
     }
 
     private void createObject(char ch, float leftUnit, float topUnit) {
-
+        MainGame game = MainGame.getInstance();
+        if (ch == '-') {
+            Log.d(TAG, "벽돌이다");
+        }
     }
 
     private char getAt(int x, int y) {
