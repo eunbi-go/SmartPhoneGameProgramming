@@ -42,7 +42,7 @@ public class MapLoader implements GameObject {
         scroll = 0;
         current = 0;
         loadFromTextAsset(MAP_FILES[mapIndex]);
-        speed = 5.f;
+        speed = Metrics.size(R.dimen.bg_scroll_1);
     }
 
     private void loadFromTextAsset(String filename) {
@@ -68,8 +68,6 @@ public class MapLoader implements GameObject {
             int pages = lines.size() / rows;
             int lastCol = lines.get(lines.size() - 1).length();
             length = (pages - 1) * colums + lastCol;
-
-            Log.d(TAG, "다 읽음ㅋ");
 
         } catch (IOException e) {
             e.printStackTrace();
