@@ -11,6 +11,10 @@ public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
     public float frameTime;
 
+    public float size(float unit) {
+        return Metrics.height / 9.5f * unit;
+    }
+
     public enum Layer {
         bg, player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, controller, COUNT
     }

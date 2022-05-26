@@ -26,9 +26,11 @@ public class MapLoader implements GameObject {
     private int colums;
     private int rows;
     private int length;
+    private float unit;
 
     private MapLoader() {
         random = new Random();
+        unit = MainGame.getInstance().size(1);
     }
 
     public static MapLoader get() {
@@ -76,6 +78,19 @@ public class MapLoader implements GameObject {
 
     @Override
     public void update(float frameTime) {
+        scroll += speed * frameTime;
+        MainGame game = MainGame.getInstance();
+
+        float left = scroll + current * unit;
+
+        while (left < Metrics.width + unit) {
+            createColumn(left / unit);
+            current++;
+            left += unit;
+        }
+    }
+
+    private void createColumn(float leftUnit) {
 
     }
 
