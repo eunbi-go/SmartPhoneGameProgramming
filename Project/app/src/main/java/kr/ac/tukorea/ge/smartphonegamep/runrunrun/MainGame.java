@@ -35,8 +35,8 @@ public class MainGame extends BaseGame {
         player = new Player(100,845);
         add(Layer.player.ordinal(), player);
 
-        add(Layer.controller.ordinal(), new CollisionChecker(player));
         add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.background1, Metrics.size(R.dimen.bg_scroll_1)));
+        add(Layer.controller.ordinal(), new CollisionChecker(player));
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
         //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
@@ -47,8 +47,8 @@ public class MainGame extends BaseGame {
         //Enemy enemy = new Enemy(800, 850);
         //add(Layer.normal_enemy.ordinal(), enemy);
 
-        AttackEnemy attackEnemy = new AttackEnemy(500, 850);
-        add(Layer.enemy.ordinal(), attackEnemy);
+        //AttackEnemy attackEnemy = new AttackEnemy(500, 850);
+        //add(Layer.enemy.ordinal(), attackEnemy);
 
         for (int i = 0; i < 5; ++i) {
             PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius,
@@ -64,11 +64,13 @@ public class MainGame extends BaseGame {
 
         attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack,
                 new Button.Callback() {
-            public boolean onTouch(Button.Action action) {
-                if (action != Button.Action.pressed) return false;
-                player.attack();
-                return true;
-            }
+                    public boolean onTouch(Button.Action action) {
+                        if (action != Button.Action.pressed) {
+                            return false;
+                        }
+                        player.attack();
+                        return true;
+                    }
                 });
         add(Layer.buttons.ordinal(), attackButton);
 
@@ -81,6 +83,7 @@ public class MainGame extends BaseGame {
                             return false;
                         }
                         player.setIsMove(true);
+                        Log.d(TAG, "눌림");
                         player.setIsLeftMove(false);
                         return true;
                     }

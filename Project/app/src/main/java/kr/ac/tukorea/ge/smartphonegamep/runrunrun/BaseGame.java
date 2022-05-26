@@ -102,6 +102,6 @@ public class BaseGame {
     }
 
     protected int getTouchLayerIndex() {
-        return 5;
+        return 6;
     }
 }
