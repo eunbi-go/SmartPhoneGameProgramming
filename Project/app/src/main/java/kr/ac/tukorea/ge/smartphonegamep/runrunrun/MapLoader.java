@@ -20,7 +20,7 @@ public class MapLoader implements GameObject {
     private int current;
     private float speed;
     private static String[] MAP_FILES = {
-            "stage_01.txt"
+            "stage_01.txt", "stage_02.txt"
     };
     private ArrayList<String> lines;
     private int colums;
@@ -51,7 +51,7 @@ public class MapLoader implements GameObject {
         lines = new ArrayList<>();
         AssetManager assets = GameView.view.getContext().getAssets();
         try {
-            InputStream is = assets.open(filename);
+            InputStream is = assets.open("stage_01.txt");
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
             String header = reader.readLine();
@@ -108,7 +108,7 @@ public class MapLoader implements GameObject {
         if (ch == '-') {
             GroundBlock groundBlock
                     = new GroundBlock(Metrics.size(R.dimen.block_radius) + leftUnit * Metrics.size(R.dimen.block_radius),
-                                        Metrics.height-Metrics.size(R.dimen.block_radius),
+                    Metrics.height-Metrics.size(R.dimen.block_radius),
                                         R.dimen.block_radius, R.mipmap.normal_block);
             game.add(MainGame.Layer.groundBlock.ordinal(), groundBlock);
         }

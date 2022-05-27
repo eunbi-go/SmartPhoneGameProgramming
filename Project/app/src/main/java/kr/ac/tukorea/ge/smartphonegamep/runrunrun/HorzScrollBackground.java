@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 public class HorzScrollBackground extends Sprite{
     private final float speed;
     private final int width;
+    private boolean isMove = false;
 
     public HorzScrollBackground(int bitmapResId, float speed) {
         super(Metrics.width / 2, Metrics.height / 2,
@@ -16,7 +17,8 @@ public class HorzScrollBackground extends Sprite{
 
     @Override
     public void update(float frameTime) {
-        this.x += speed * frameTime;
+        if (isMove)
+            this.x += speed * frameTime;
     }
 
     @Override
@@ -29,4 +31,6 @@ public class HorzScrollBackground extends Sprite{
             curr += width;
         }
     }
+
+    public void setIsMove(boolean isMove) {this.isMove = isMove;}
 }

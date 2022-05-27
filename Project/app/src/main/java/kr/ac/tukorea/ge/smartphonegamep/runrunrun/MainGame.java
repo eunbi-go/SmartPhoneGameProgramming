@@ -12,7 +12,7 @@ public class MainGame extends BaseGame {
     public float frameTime;
 
     public float size(float unit) {
-        return Metrics.height / 9.5f * unit;
+        return Metrics.height / 11.2f * unit;
     }
 
     public enum Layer {
@@ -20,6 +20,7 @@ public class MainGame extends BaseGame {
     }
 
     private Player player;
+    private HorzScrollBackground background;
     private Button attackButton, moveButton, jumpButton, backButton;
 
     public static MainGame getInstance() {
@@ -39,7 +40,8 @@ public class MainGame extends BaseGame {
         player = new Player(100,845);
         add(Layer.player.ordinal(), player);
 
-        add(Layer.bg.ordinal(), new HorzScrollBackground(R.mipmap.background1, Metrics.size(R.dimen.bg_scroll_1)));
+        background = new HorzScrollBackground(R.mipmap.background1, Metrics.size(R.dimen.bg_scroll_1));
+        add(Layer.bg.ordinal(), background);
         add(Layer.controller.ordinal(), new CollisionChecker(player));
 
         ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
@@ -49,7 +51,7 @@ public class MainGame extends BaseGame {
         //loadMapBlock();
 
         MapLoader mapLoader = MapLoader.get();
-        mapLoader.init(0);
+        mapLoader.init(1);
         add(Layer.controller.ordinal(), mapLoader);
 
         //Enemy enemy = new Enemy(800, 850);
@@ -88,10 +90,11 @@ public class MainGame extends BaseGame {
                     public boolean onTouch(Button.Action action) {
                         if (action != Button.Action.pressed)  {
                             player.setIsMove(false);
+                            background.setIsMove(false);
                             return false;
                         }
+                        background.setIsMove(true);
                         player.setIsMove(true);
-                        Log.d(TAG, "눌림");
                         player.setIsLeftMove(false);
                         return true;
                     }
@@ -106,6 +109,7 @@ public class MainGame extends BaseGame {
                             player.setIsMove(false);
                             return false;
                         }
+
                         player.setIsMove(true);
                         player.setIsLeftMove(true);
                         return true;
