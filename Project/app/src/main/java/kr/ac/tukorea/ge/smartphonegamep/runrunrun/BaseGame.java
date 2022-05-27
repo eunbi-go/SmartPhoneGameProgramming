@@ -27,7 +27,7 @@ public class BaseGame {
         elapsedTime = 0;
 
         collisionPaint = new Paint();
-        collisionPaint.setColor(Color.RED);
+        collisionPaint.setColor(Color.WHITE);
         collisionPaint.setStyle(Paint.Style.STROKE);
     }
 

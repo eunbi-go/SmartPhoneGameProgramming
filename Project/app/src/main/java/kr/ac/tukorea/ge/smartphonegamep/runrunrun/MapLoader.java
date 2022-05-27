@@ -18,7 +18,7 @@ public class MapLoader implements GameObject {
     private final Random random;
     private float scroll;
     private int current;
-    private float speed;
+    public float speed;
     private static String[] MAP_FILES = {
             "stage_01.txt", "stage_02.txt"
     };
@@ -107,9 +107,7 @@ public class MapLoader implements GameObject {
         MainGame game = MainGame.getInstance();
         if (ch == '-') {
             GroundBlock groundBlock
-                    = new GroundBlock(Metrics.size(R.dimen.block_radius) + leftUnit * Metrics.size(R.dimen.block_radius),
-                    Metrics.height-Metrics.size(R.dimen.block_radius),
-                                        R.dimen.block_radius, R.mipmap.normal_block);
+                    = new GroundBlock(game.size(leftUnit), game.size(topUnit));
             game.add(MainGame.Layer.groundBlock.ordinal(), groundBlock);
         }
     }

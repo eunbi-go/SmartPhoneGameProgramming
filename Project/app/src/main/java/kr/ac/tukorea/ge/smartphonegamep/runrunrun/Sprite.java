@@ -36,6 +36,10 @@ public class Sprite implements GameObject {
         reverseBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
     }
 
+    protected Sprite() {
+
+    }
+
     @Override
     public void update(float frameTime) {
 

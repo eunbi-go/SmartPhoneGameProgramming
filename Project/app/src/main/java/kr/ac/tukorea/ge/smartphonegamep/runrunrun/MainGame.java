@@ -12,14 +12,14 @@ public class MainGame extends BaseGame {
     public float frameTime;
 
     public float size(float unit) {
-        return Metrics.height / 11.2f * unit;
+        return Metrics.height / 10.f * unit;
     }
 
     public enum Layer {
         bg, player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, controller, COUNT
     }
 
-    private Player player;
+    public Player player;
     private HorzScrollBackground background;
     private Button attackButton, moveButton, jumpButton, backButton;
 
@@ -129,21 +129,7 @@ public class MainGame extends BaseGame {
         add(Layer.buttons.ordinal(), jumpButton);
     }
 
-    private void loadMapBlock() {
-        for (int i = 0; i < 22; ++i) {
-            GroundBlock groundBlock
-                    = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius),
-                    R.dimen.block_radius, R.mipmap.normal_block);
-            add(Layer.groundBlock.ordinal(), groundBlock);
-        }
 
-        for (int i = 0; i < 22; ++i) {
-            GroundBlock groundBlock
-                    = new GroundBlock(Metrics.size(R.dimen.block_radius) + i * Metrics.size(R.dimen.block_radius), Metrics.height-Metrics.size(R.dimen.block_radius) * 3,
-                    R.dimen.block_radius, R.mipmap.normal_block);
-            add(Layer.groundBlock.ordinal(), groundBlock);
-        }
-    }
 
     public RectF getPlayerRect() {
         return player.getDstRect();
