@@ -102,6 +102,7 @@ public class MainGame extends BaseGame {
                     public boolean onTouch(Button.Action action) {
                         if (action != Button.Action.pressed) {
                             player.setIsMove(false);
+                            background.setIsMove(false);
                             return false;
                         }
                         background.setIsMove(true);
@@ -119,6 +120,7 @@ public class MainGame extends BaseGame {
                     public boolean onTouch(Button.Action action) {
                         if (action != Button.Action.pressed) return false;
                         player.setIsJump(true);
+                        background.setIsMove(false);
                         return false;
                     }
                 });
