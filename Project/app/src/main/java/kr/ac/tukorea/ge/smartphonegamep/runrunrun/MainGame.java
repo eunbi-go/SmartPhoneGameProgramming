@@ -37,18 +37,12 @@ public class MainGame extends BaseGame {
         super.init();
         initLayers(Layer.COUNT.ordinal());
 
-        player = new Player(100,845);
+        player = new Player(size(2),size(7));
         add(Layer.player.ordinal(), player);
 
         background = new HorzScrollBackground(R.mipmap.background1, Metrics.size(R.dimen.bg_scroll_1));
         add(Layer.bg.ordinal(), background);
         add(Layer.controller.ordinal(), new CollisionChecker(player));
-
-        ItemBlock block = new ItemBlock(700, 600, R.dimen.itemBlock_radius, R.mipmap.item_block);
-        //ItemBlock block = new ItemBlock(700, 870, R.dimen.itemBlock_radius, R.mipmap.item_block);
-        add(Layer.itemBlock.ordinal(), block);
-
-        //loadMapBlock();
 
         MapLoader mapLoader = MapLoader.get();
         mapLoader.init(1);

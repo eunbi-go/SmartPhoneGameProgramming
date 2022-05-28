@@ -110,6 +110,11 @@ public class MapLoader implements GameObject {
                     = new GroundBlock(game.size(leftUnit), game.size(topUnit));
             game.add(MainGame.Layer.groundBlock.ordinal(), groundBlock);
         }
+        else if (ch == '3') {
+            ItemBlock itemBlock
+                    = new ItemBlock(game.size(leftUnit), game.size(topUnit));
+            game.add(MainGame.Layer.itemBlock.ordinal(), itemBlock);
+        }
     }
 
     private char getAt(int x, int y) {

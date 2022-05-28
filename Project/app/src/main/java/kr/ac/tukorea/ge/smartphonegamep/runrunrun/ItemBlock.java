@@ -4,26 +4,19 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-public class ItemBlock implements GameObject{
-    protected Bitmap bitmap;
-    protected RectF dstRect = new RectF();
-    protected float x, y, radius;
+public class ItemBlock extends MapSprite{
 
-    public ItemBlock(float x, float y, int radiusDimenId, int bitmapResID) {
-        this.x = x;
-        this.y = y;
-        this.radius = Metrics.size(radiusDimenId);
-        dstRect.set(x - radius, y - radius, x + radius, y + radius);
-        bitmap = BitmapPool.get(bitmapResID);
+    public ItemBlock(float topX, float topY) {
+        bitmap = BitmapPool.get(R.mipmap.item_block);
+        MainGame game = MainGame.getInstance();
+        float left = topX;
+        float top = topY;
+        dstRect.set(left, top, left + Metrics.size(R.dimen.block_radius), top + + Metrics.size(R.dimen.block_radius));
     }
 
     @Override
     public void update(float frameTime) {
-
+        super.update(frameTime);
     }
     public RectF getDstRect() {return dstRect;}
-    @Override
-    public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap, null, dstRect, null);
-    }
 }
