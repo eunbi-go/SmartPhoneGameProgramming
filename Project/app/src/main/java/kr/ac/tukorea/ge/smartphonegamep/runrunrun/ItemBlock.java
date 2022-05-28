@@ -4,8 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-public class ItemBlock extends MapSprite{
-
+public class ItemBlock extends MapSprite {
     public ItemBlock(float topX, float topY) {
         bitmap = BitmapPool.get(R.mipmap.item_block);
         MainGame game = MainGame.getInstance();

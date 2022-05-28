@@ -18,6 +18,19 @@ public class CollisionChecker implements GameObject{
 
         playerToNormalEnemy(game);
         playerToAttackEnemyBullet(game);
+
+        playerToItemBlock(game);
+    }
+
+    private void playerToItemBlock(MainGame game) {
+        ArrayList<GameObject> itemBlocks = game.objectsAt(MainGame.Layer.itemBlock.ordinal());
+        for (GameObject itemBlock : itemBlocks) {
+            if (CollisionHelper.collides(player, (ItemBlock)itemBlock)) {
+                BaseGame.getInstance().remove(itemBlock);
+                player.setAttackCount();
+            }
+        }
+
     }
 
     private void playerToAttackEnemyBullet(MainGame game) {

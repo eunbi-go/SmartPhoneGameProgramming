@@ -18,6 +18,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     private boolean isLeft = false;
 
     private int score = 0;
+    private int attackCount = 0;
 
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
@@ -73,6 +74,8 @@ public class Player extends AnimSprite implements BoxCollidable {
         if (dstRect.bottom > y + radius) {
             dstRect.bottom = y + radius;
             dstRect.top = y - radius;
+            boundingRect.bottom = y + radius;
+            boundingRect.top = y - radius;
             isJumping = false;
             jumpTime = 0.f;
         }
@@ -112,6 +115,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     public void setIsJump(boolean isJump) {this.isJumping = isJump;}
     public void setIsLeftMove(boolean isLeft) {this.isLeft = isLeft;}
     public void setScore(int score) {this.score = score;}
+    public void setAttackCount() {this.attackCount += 5;}
 
     @Override
     public RectF getBoudingRect() {
@@ -123,14 +127,17 @@ public class Player extends AnimSprite implements BoxCollidable {
     public boolean getIsLeftMove() {return isLeft;}
 
     public void attack() {
-        Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());
-        bullet.setObject(Bullet.OBJ.PLAYER_BULLET);
-        if (isLeft)
-            bullet.setDirection(-1.f);
-        else
-            bullet.setDirection(1.f);
-        MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
+        if (attackCount > 0) {
+            Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());
+            bullet.setObject(Bullet.OBJ.PLAYER_BULLET);
+            if (isLeft)
+                bullet.setDirection(-1.f);
+            else
+                bullet.setDirection(1.f);
+            MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
 
-        isAttack = true;
+            isAttack = true;
+            attackCount -= 1;
+        }
     }
 }
