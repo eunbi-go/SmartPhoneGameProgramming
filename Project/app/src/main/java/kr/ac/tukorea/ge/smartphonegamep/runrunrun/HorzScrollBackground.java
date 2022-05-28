@@ -6,6 +6,7 @@ public class HorzScrollBackground extends Sprite{
     private final float speed;
     private final int width;
     private boolean isMove = false;
+    private boolean isLeft = false;
 
     public HorzScrollBackground(int bitmapResId, float speed) {
         super(Metrics.width / 2, Metrics.height / 2,
@@ -17,8 +18,10 @@ public class HorzScrollBackground extends Sprite{
 
     @Override
     public void update(float frameTime) {
-        if (isMove)
-            this.x += speed * frameTime;
+        if (isMove) {
+            if (isLeft) this.x += speed * frameTime;
+            else    this.x -= speed * frameTime;
+        }
     }
 
     @Override
@@ -33,4 +36,5 @@ public class HorzScrollBackground extends Sprite{
     }
 
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
+    public void setIsLeft(boolean isLeft) {this.isLeft = isLeft;}
 }

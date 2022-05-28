@@ -13,8 +13,12 @@ public class MapSprite extends Sprite implements BoxCollidable{
 
     @Override
     public void update(float frameTime) {
+        float speed = 0.f;
         if (MainGame.getInstance().player.isMove()) {
-            float speed = MapLoader.get().speed;
+            if (MainGame.getInstance().player.getIsLeftMove())
+                speed = -MapLoader.get().speed;
+            else
+                speed = MapLoader.get().speed;
             float dx = speed * frameTime;
             dstRect.offset(dx, 0);
             if (dstRect.right < 0)

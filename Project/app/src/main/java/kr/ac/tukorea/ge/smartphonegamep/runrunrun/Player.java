@@ -120,6 +120,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     public RectF getDstRect() {return dstRect;}
     public int getScore() {return score;}
     public boolean isMove() {return isMove;}
+    public boolean getIsLeftMove() {return isLeft;}
 
     public void attack() {
         Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());

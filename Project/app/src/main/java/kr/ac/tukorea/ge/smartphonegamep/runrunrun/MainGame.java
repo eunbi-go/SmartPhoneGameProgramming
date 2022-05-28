@@ -88,6 +88,7 @@ public class MainGame extends BaseGame {
                             return false;
                         }
                         background.setIsMove(true);
+                        background.setIsLeft(true);
                         player.setIsMove(true);
                         player.setIsLeftMove(false);
                         return true;
@@ -103,7 +104,8 @@ public class MainGame extends BaseGame {
                             player.setIsMove(false);
                             return false;
                         }
-
+                        background.setIsMove(true);
+                        background.setIsLeft(false);
                         player.setIsMove(true);
                         player.setIsLeftMove(true);
                         return true;
