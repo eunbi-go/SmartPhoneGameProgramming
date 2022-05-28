@@ -28,6 +28,7 @@ public class CollisionChecker implements GameObject{
             if (CollisionHelper.collides(player, (ItemBlock)itemBlock)) {
                 BaseGame.getInstance().remove(itemBlock);
                 player.setAttackCount();
+                MainGame.getInstance().attackButton.onAttack(true);
             }
         }
 

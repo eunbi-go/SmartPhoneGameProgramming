@@ -139,5 +139,8 @@ public class Player extends AnimSprite implements BoxCollidable {
             isAttack = true;
             attackCount -= 1;
         }
+        if (attackCount == 0) {
+            MainGame.getInstance().attackButton.onAttack(false);
+        }
     }
 }

@@ -21,7 +21,7 @@ public class MainGame extends BaseGame {
 
     public Player player;
     private HorzScrollBackground background;
-    private Button attackButton, moveButton, jumpButton, backButton;
+    public Button attackButton, moveButton, jumpButton, backButton;
 
     public static MainGame getInstance() {
         if (singleton == null) {
