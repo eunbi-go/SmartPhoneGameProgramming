@@ -48,11 +48,11 @@ public class MainGame extends BaseGame {
         mapLoader.init(1);
         add(Layer.controller.ordinal(), mapLoader);
 
-        Enemy enemy = new Enemy(size(10), size(7));
-        add(Layer.enemy.ordinal(), enemy);
+        //Enemy enemy = new Enemy(size(10), size(7));
+        //add(Layer.enemy.ordinal(), enemy);
 
-        //AttackEnemy attackEnemy = new AttackEnemy(500, 850);
-        //add(Layer.enemy.ordinal(), attackEnemy);
+        AttackEnemy attackEnemy = new AttackEnemy(size(20), size(7));
+        add(Layer.enemy.ordinal(), attackEnemy);
 
         for (int i = 0; i < 5; ++i) {
             PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius,
@@ -83,14 +83,14 @@ public class MainGame extends BaseGame {
                     @Override
                     public boolean onTouch(Button.Action action) {
                         if (action != Button.Action.pressed)  {
-                            //player.setIsMove(false);
-                            //background.setIsMove(false);
+                            player.setIsMove(false);
+                            background.setIsMove(false);
                             return false;
                         }
-                        //background.setIsMove(true);
-                        //background.setIsLeft(true);
-                        //player.setIsMove(true);
-                        //player.setIsLeftMove(false);
+                        background.setIsMove(true);
+                        background.setIsLeft(true);
+                        player.setIsMove(true);
+                        player.setIsLeftMove(false);
                         return true;
                     }
                 });
@@ -101,14 +101,14 @@ public class MainGame extends BaseGame {
                     @Override
                     public boolean onTouch(Button.Action action) {
                         if (action != Button.Action.pressed) {
-                            //player.setIsMove(false);
-                            //background.setIsMove(false);
+                            player.setIsMove(false);
+                            background.setIsMove(false);
                             return false;
                         }
-                        //background.setIsMove(true);
-                        //background.setIsLeft(false);
-                        //player.setIsMove(true);
-                        //player.setIsLeftMove(true);
+                        background.setIsMove(true);
+                        background.setIsLeft(false);
+                        player.setIsMove(true);
+                        player.setIsLeftMove(true);
                         return true;
                     }
                 });

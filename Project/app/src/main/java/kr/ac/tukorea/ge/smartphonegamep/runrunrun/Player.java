@@ -6,7 +6,7 @@ import android.util.Log;
 
 public class Player extends AnimSprite implements BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
-    private boolean isMove = true;
+    private boolean isMove = false;
     private boolean isJump = false;
     protected RectF boundingRect = new RectF();
 

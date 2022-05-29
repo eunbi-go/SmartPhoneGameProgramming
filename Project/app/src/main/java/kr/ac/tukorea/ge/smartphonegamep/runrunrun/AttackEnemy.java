@@ -19,35 +19,47 @@ public class AttackEnemy extends AnimSprite {
     public AttackEnemy(float x, float y, int radiusDimenID, int bitmpaResID) {
         //super(x, y, radiusDimenID, bitmpaResID);
         super(x, y, radiusDimenID, R.mipmap.attack_enemy, 60, 4);
+        dstRect.set(x, y, x + Metrics.size(R.dimen.normalEnemy_radius), y + Metrics.size(R.dimen.normalEnemy_radius));
         isMoving = false;
     }
 
     public void update(float frameTime) {
         playerRt = MainGame.getInstance().getPlayerRect();
+        float speed = 0.f, dx = 0.f;
+
+        if (MainGame.getInstance().player.isMove()) {
+            if (MainGame.getInstance().player.getIsLeftMove())
+                speed = -MapLoader.get().speed;
+            else
+                speed = MapLoader.get().speed;
+        }
+
         dx = frameTime * Metrics.size(R.dimen.enemy_speed);
 
-        if (playerRt.left - 300.f > dstRect.right) {
-            dx = dx;
-            isAttack = false;
-            attackTime = 0.f;
-            dstRect.offset(dx, 0);
-            isMoving = true;
-            isLeft = false;
+        if (dstRect.left - playerRt.left < 1900.f) {
+            if (playerRt.left - 300.f > dstRect.right) {
+                dx = dx;
+                isAttack = false;
+                attackTime = 0.f;
+                dstRect.offset(dx, 0);
+                isMoving = true;
+                isLeft = false;
+            } else if (playerRt.right + 300.f < dstRect.left) {
+                dx = -dx;
+                isAttack = false;
+                isMoving = true;
+                attackTime = 0.f;
+                dstRect.offset(dx, 0);
+                isLeft = true;
+            } else {
+                dstRect.offset(frameTime * speed, 0);
+                isAttack = true;
+                isMoving = false;
+                attack(frameTime);
+            }
         }
-        else if (playerRt.right + 300.f < dstRect.left ) {
-            dx = -dx;
-            isAttack = false;
-            isMoving = true;
-            attackTime = 0.f;
-            dstRect.offset(dx, 0);
-            isLeft = true;
-        }
-        else {
-            isAttack = true;
-            isMoving = false;
-            attack(frameTime);
-        }
-
+        else
+            dstRect.offset(frameTime * speed, 0);
     }
 
     private void attack(float frameTime) {
