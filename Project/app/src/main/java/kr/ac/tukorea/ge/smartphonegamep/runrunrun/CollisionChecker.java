@@ -16,7 +16,7 @@ public class CollisionChecker implements GameObject{
     public void update(float frameTime) {
         MainGame game = MainGame.getInstance();
 
-        playerToNormalEnemy(game);
+        //playerToNormalEnemy(game);
         playerToAttackEnemyBullet(game);
 
         playerToItemBlock(game);
