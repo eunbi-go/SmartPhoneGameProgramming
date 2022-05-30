@@ -17,9 +17,24 @@ public class CollisionChecker implements GameObject{
         MainGame game = MainGame.getInstance();
 
         //playerToNormalEnemy(game);
-        playerToAttackEnemyBullet(game);
+        //playerToAttackEnemyBullet(game);
 
         playerToItemBlock(game);
+        playerToCoin(game);
+    }
+
+    private void playerToCoin(MainGame game) {
+        ArrayList<GameObject> coins = game.objectsAt(MainGame.Layer.playerCoin.ordinal());
+        for (GameObject coin : coins) {
+            if (!(coin instanceof BoxCollidable)) {
+                continue;
+            }
+            if (CollisionHelper.collides(player, (Coin) coin)) {
+                game.remove(coin);
+                player.getCoin();
+                return;
+            }
+        }
     }
 
     private void playerToItemBlock(MainGame game) {

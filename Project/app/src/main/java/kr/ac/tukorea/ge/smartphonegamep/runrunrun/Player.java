@@ -131,6 +131,17 @@ public class Player extends AnimSprite implements BoxCollidable {
     public boolean getIsLeftMove() {return isLeft;}
     public int getAttackCount() {return this.attackCount;}
 
+    public void getCoin() {
+        score += 1;
+
+        ArrayList<GameObject> playerScoreUIs = MainGame.getInstance().objectsAt(MainGame.Layer.player_score.ordinal());
+        GameObject tenScore = playerScoreUIs.get(0);
+        GameObject oneScore = playerScoreUIs.get(1);
+
+        ((PlayerScore)tenScore).setScore(score / 10);
+        ((PlayerScore)oneScore).setScore(score % 10);
+    }
+
     public void attack() {
         if (attackCount > 0) {
 

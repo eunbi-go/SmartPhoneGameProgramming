@@ -50,24 +50,34 @@ public class PlayerScore implements GameObject{
         switch (this.number) {
             case 0:
                 this.bitmap = BitmapPool.get(R.mipmap.font_0);
+                break;
             case 1:
                 this.bitmap = BitmapPool.get(R.mipmap.font_1);
+                break;
             case 2:
                 this.bitmap = BitmapPool.get(R.mipmap.font_2);
+                break;
             case 3:
                 this.bitmap = BitmapPool.get(R.mipmap.font_3);
+                break;
             case 4:
                 this.bitmap = BitmapPool.get(R.mipmap.font_4);
+                break;
             case 5:
                 this.bitmap = BitmapPool.get(R.mipmap.font_5);
+                break;
             case 6:
                 this.bitmap = BitmapPool.get(R.mipmap.font_6);
+                break;
             case 7:
                 this.bitmap = BitmapPool.get(R.mipmap.font_7);
+                break;
             case 8:
                 this.bitmap = BitmapPool.get(R.mipmap.font_8);
+                break;
             case 9:
                 this.bitmap = BitmapPool.get(R.mipmap.font_9);
+                break;
         }
     }
 }
