@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class Player extends AnimSprite implements BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
     private boolean isMove = false;
@@ -115,7 +117,9 @@ public class Player extends AnimSprite implements BoxCollidable {
     public void setIsJump(boolean isJump) {this.isJumping = isJump;}
     public void setIsLeftMove(boolean isLeft) {this.isLeft = isLeft;}
     public void setScore(int score) {this.score = score;}
-    public void setAttackCount() {this.attackCount += 5;}
+    public void setAttackCount() {
+        this.attackCount += 5;
+    }
 
     @Override
     public RectF getBoudingRect() {
@@ -125,6 +129,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     public int getScore() {return score;}
     public boolean isMove() {return isMove;}
     public boolean getIsLeftMove() {return isLeft;}
+    public int getAttackCount() {return this.attackCount;}
 
     public void attack() {
         if (attackCount > 0) {

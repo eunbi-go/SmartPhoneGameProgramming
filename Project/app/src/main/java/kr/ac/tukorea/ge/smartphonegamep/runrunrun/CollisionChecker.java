@@ -27,8 +27,16 @@ public class CollisionChecker implements GameObject{
         for (GameObject itemBlock : itemBlocks) {
             if (CollisionHelper.collides(player, (ItemBlock)itemBlock)) {
                 BaseGame.getInstance().remove(itemBlock);
+                int playerBullets = player.getAttackCount();
+
                 player.setAttackCount();
                 MainGame.getInstance().attackButton.onAttack(true);
+
+                for (int i = playerBullets; i < 5 + playerBullets; ++i) {
+                    PlayerBullet playerBullet = new PlayerBullet(R.mipmap.bullet_ui, R.dimen.player_heart_radius,
+                            100 + i * 100, 200, i + playerBullets);
+                    game.add(MainGame.Layer.player_bulletUI.ordinal(), playerBullet);
+                }
             }
         }
 
