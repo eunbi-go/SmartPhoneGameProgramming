@@ -133,6 +133,8 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     public void attack() {
         if (attackCount > 0) {
+
+            // Create Bullet
             Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());
             bullet.setObject(Bullet.OBJ.PLAYER_BULLET);
             if (isLeft)
@@ -140,6 +142,11 @@ public class Player extends AnimSprite implements BoxCollidable {
             else
                 bullet.setDirection(1.f);
             MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
+
+            // Apply UI
+            ArrayList<GameObject> playerBullets = MainGame.getInstance().objectsAt(MainGame.Layer.player_bulletUI.ordinal());
+            GameObject playerBullet = playerBullets.get(attackCount-1);
+            MainGame.getInstance().remove(playerBullet);
 
             isAttack = true;
             attackCount -= 1;
