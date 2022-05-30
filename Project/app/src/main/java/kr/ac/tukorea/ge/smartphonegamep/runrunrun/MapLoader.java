@@ -111,9 +111,13 @@ public class MapLoader implements GameObject {
             game.add(MainGame.Layer.groundBlock.ordinal(), groundBlock);
         }
         else if (ch == '3') {
-            ItemBlock itemBlock
-                    = new ItemBlock(game.size(leftUnit), game.size(topUnit));
-            game.add(MainGame.Layer.itemBlock.ordinal(), itemBlock);
+            //ItemBlock itemBlock
+              //      = new ItemBlock(game.size(leftUnit), game.size(topUnit));
+            //game.add(MainGame.Layer.itemBlock.ordinal(), itemBlock);
+
+            Coin itemBlock
+                    = new Coin(game.size(leftUnit), game.size(topUnit));
+            game.add(MainGame.Layer.playerCoin.ordinal(), itemBlock);
         }
     }
 

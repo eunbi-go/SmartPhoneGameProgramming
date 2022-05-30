@@ -16,7 +16,7 @@ public class MainGame extends BaseGame {
     }
 
     public enum Layer {
-        bg, player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, player_bulletUI, controller, COUNT
+        bg, player, itemBlock, groundBlock, enemy, bullets, buttons, player_heart, player_score, player_bulletUI, playerCoin, controller, COUNT
     }
 
     public Player player;

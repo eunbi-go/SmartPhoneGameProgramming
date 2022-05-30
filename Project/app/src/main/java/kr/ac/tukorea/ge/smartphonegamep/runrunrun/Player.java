@@ -148,6 +148,7 @@ public class Player extends AnimSprite implements BoxCollidable {
             GameObject playerBullet = playerBullets.get(attackCount-1);
             MainGame.getInstance().remove(playerBullet);
 
+            // Change Player State
             isAttack = true;
             attackCount -= 1;
         }
