@@ -31,7 +31,7 @@ public class Bullet extends Sprite implements BoxCollidable{
             MainGame.getInstance().remove(this);
         }
 
-        float dx = frameTime * Metrics.size(R.dimen.player_speed) * direction;
+        float dx = frameTime * Metrics.size(R.dimen.bullet_speed) * direction;
         dstRect.offset(dx, 0);
         boundingRect.offset(dx, 0);
     }

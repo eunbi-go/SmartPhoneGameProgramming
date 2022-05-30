@@ -51,8 +51,8 @@ public class MainGame extends BaseGame {
         //Enemy enemy = new Enemy(size(10), size(7));
         //add(Layer.enemy.ordinal(), enemy);
 
-        AttackEnemy attackEnemy = new AttackEnemy(size(20), size(7));
-        add(Layer.enemy.ordinal(), attackEnemy);
+        //AttackEnemy attackEnemy = new AttackEnemy(size(20), size(7));
+        //add(Layer.enemy.ordinal(), attackEnemy);
 
         for (int i = 0; i < 5; ++i) {
             PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius,
