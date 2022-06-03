@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Player extends AnimSprite implements BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
-    private boolean isMove = false;
+    private boolean isMove = true;
     private boolean isJump = false;
     protected RectF boundingRect = new RectF();
 
@@ -30,8 +30,7 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     public void update(float frameTime) {
         float dx = 0.f, dy = 0.f;
-
-
+        float foot = boundingRect.top;
         if (isMove == true) {
             isMoving = true;
             if (isLeft)
@@ -62,7 +61,29 @@ public class Player extends AnimSprite implements BoxCollidable {
                 isMoving = false;
             }
         }
-        //boundingRect.set(dstRect);
+
+
+        if (findNearestPlatform(dstRect.centerX()) == null)
+        {
+            Log.d(TAG, "벽돌없다!!!!!!!!");
+        }
+    }
+
+    private GroundBlock findNearestPlatform(float foot) {
+        GroundBlock nearest = null;
+        MainGame game = MainGame.getInstance();
+        ArrayList<GameObject> platforms = game.objectsAt(MainGame.Layer.groundBlock.ordinal());
+
+        float top = Metrics.height;
+        for (GameObject obj: platforms) {
+            GroundBlock platform = (GroundBlock) obj;
+            RectF rect = platform.getDstRect();
+            if (rect.left <= foot && foot <= rect.right) {
+                nearest = platform;
+                return nearest;
+            }
+        }
+        return null;
     }
 
     private float jumping(float frameTime) {
@@ -130,6 +151,8 @@ public class Player extends AnimSprite implements BoxCollidable {
     public boolean isMove() {return isMove;}
     public boolean getIsLeftMove() {return isLeft;}
     public int getAttackCount() {return this.attackCount;}
+
+
 
     public void getCoin() {
         score += 1;

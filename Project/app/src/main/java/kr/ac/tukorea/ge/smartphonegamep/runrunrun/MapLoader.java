@@ -110,14 +110,15 @@ public class MapLoader implements GameObject {
                     = new GroundBlock(game.size(leftUnit), game.size(topUnit));
             game.add(MainGame.Layer.groundBlock.ordinal(), groundBlock);
         }
-        else if (ch == '3') {
-            //ItemBlock itemBlock
-              //      = new ItemBlock(game.size(leftUnit), game.size(topUnit));
-            //game.add(MainGame.Layer.itemBlock.ordinal(), itemBlock);
-
+        else if (ch == '2') {
             Coin itemBlock
                     = new Coin(game.size(leftUnit), game.size(topUnit));
             game.add(MainGame.Layer.playerCoin.ordinal(), itemBlock);
+        }
+        else if (ch == '3') {
+            ItemBlock itemBlock
+                  = new ItemBlock(game.size(leftUnit), game.size(topUnit));
+            game.add(MainGame.Layer.itemBlock.ordinal(), itemBlock);
         }
     }
 

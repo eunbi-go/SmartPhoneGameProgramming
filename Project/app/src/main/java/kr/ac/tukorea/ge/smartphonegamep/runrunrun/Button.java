@@ -80,7 +80,6 @@ public class Button implements GameObject, BoxCollidable, Touchable{
         float x = e.getX();
         float y = e.getY();
         if (!pressed && !dstRect.contains(x, y)) {
-            Log.d(TAG, "안눌림");
             return false;
         }
 
