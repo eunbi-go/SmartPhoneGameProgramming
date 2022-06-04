@@ -3,6 +3,7 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -16,13 +17,47 @@ public class CollisionChecker implements GameObject{
     public void update(float frameTime) {
         MainGame game = MainGame.getInstance();
 
-        //playerToNormalEnemy(game);
-        //playerToAttackEnemyBullet(game);
+        playerToNormalEnemy(game);
+        playerToAttackEnemyBullet(game);
+        playerBulletToEnemys(game);
 
         playerToItemBlock(game);
         playerToCoin(game);
     }
 
+    // Player & NormalEnemy, AttackEnemy
+    private void playerBulletToEnemys(MainGame game) {
+        ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullets.ordinal());
+        for (GameObject bullet : bullets) {
+            if (Bullet.OBJ.PLAYER_BULLET != ((Bullet)bullet).getObject())
+                continue;
+            if (!(bullet instanceof BoxCollidable)) {
+                continue;
+            }
+            ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.enemy.ordinal());
+            for (GameObject enemy : enemys) {
+                if (enemy instanceof Enemy) {
+                    if (CollisionHelper.collides((Enemy)enemy, (Bullet) bullet)) {
+                        BaseGame.getInstance().remove(bullet);
+                        ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
+                        checkPlayerHearts(playerHearts);
+                        return;
+                    }
+                }
+                else if (enemy instanceof AttackEnemy) {
+                    if (CollisionHelper.collides((AttackEnemy)enemy, (Bullet) bullet)) {
+                        BaseGame.getInstance().remove(bullet);
+                        ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
+                        checkPlayerHearts(playerHearts);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Player & Coin
     private void playerToCoin(MainGame game) {
         ArrayList<GameObject> coins = game.objectsAt(MainGame.Layer.playerCoin.ordinal());
         for (GameObject coin : coins) {
@@ -37,6 +72,7 @@ public class CollisionChecker implements GameObject{
         }
     }
 
+    // Player & ItemBlock
     private void playerToItemBlock(MainGame game) {
         ArrayList<GameObject> itemBlocks = game.objectsAt(MainGame.Layer.itemBlock.ordinal());
         for (GameObject itemBlock : itemBlocks) {
@@ -57,6 +93,7 @@ public class CollisionChecker implements GameObject{
 
     }
 
+    // Player & AttackEnemy Bullet
     private void playerToAttackEnemyBullet(MainGame game) {
         ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullets.ordinal());
         for (GameObject bullet : bullets) {
@@ -74,6 +111,7 @@ public class CollisionChecker implements GameObject{
         }
     }
 
+    // Player & NormalEnemy
     private void playerToNormalEnemy(MainGame game) {
         ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.enemy.ordinal());
         for (GameObject enemy : enemys) {

@@ -3,7 +3,8 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-public class AttackEnemy extends AnimSprite {
+public class AttackEnemy extends AnimSprite implements BoxCollidable{
+    protected RectF boundingRect = new RectF();
     private RectF playerRt = new RectF();
     private float dx = 0.f;
     private boolean isAttack = false;
@@ -14,6 +15,7 @@ public class AttackEnemy extends AnimSprite {
         //super(x, y, R.dimen.player_radius, R.mipmap.enemy2);
         super(x, y, R.dimen.normalEnemy_radius, R.mipmap.attack_enemy, 20, 4);
         isMoving = false;
+        boundingRect.set(dstRect);
     }
 
     public AttackEnemy(float x, float y, int radiusDimenID, int bitmpaResID) {
@@ -42,6 +44,7 @@ public class AttackEnemy extends AnimSprite {
                 isAttack = false;
                 attackTime = 0.f;
                 dstRect.offset(dx, 0);
+                boundingRect.offset(dx, 0);
                 isMoving = true;
                 isLeft = false;
             } else if (playerRt.right + 300.f < dstRect.left) {
@@ -50,16 +53,20 @@ public class AttackEnemy extends AnimSprite {
                 isMoving = true;
                 attackTime = 0.f;
                 dstRect.offset(dx, 0);
+                boundingRect.offset(dx, 0);
                 isLeft = true;
             } else {
                 dstRect.offset(frameTime * speed, 0);
+                boundingRect.offset(frameTime * speed, 0);
                 isAttack = true;
                 isMoving = false;
                 attack(frameTime);
             }
         }
-        else
+        else {
             dstRect.offset(frameTime * speed, 0);
+            boundingRect.offset(frameTime * speed, 0);
+        }
     }
 
     private void attack(float frameTime) {
@@ -98,4 +105,9 @@ public class AttackEnemy extends AnimSprite {
     }
 
     public RectF getDstRect() {return dstRect;}
+
+    @Override
+    public RectF getBoudingRect() {
+        return boundingRect;
+    }
 }
