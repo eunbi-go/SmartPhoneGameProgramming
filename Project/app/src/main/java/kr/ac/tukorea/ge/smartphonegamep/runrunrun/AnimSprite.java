@@ -38,25 +38,6 @@ public class AnimSprite extends Sprite{
 
     @Override
     public void draw(Canvas canvas) {
-        long now;
-        int frameIndex = 0;
 
-        if (isMoving) {
-            now = System.currentTimeMillis();
-            float time = (now - createdOn) / 1000.0f;
-            frameIndex = Math.round(time * framesPerSecond) % frameCount;
-        }
-        else if (isJumping) {
-            frameIndex = 3;
-        }
-        else if (isAttack) {
-            now = System.currentTimeMillis();
-            float time = (now - createdOn) / 1000.0f;
-            frameIndex = Math.round(time * framesPerSecond) % 3;
-        }
-
-        srcRect.set(frameIndex * imageWidth, 0,
-                (frameIndex + 1) * imageWidth, imageHeight);
-        canvas.drawBitmap(bitmap, srcRect, dstRect, null);
     }
 }
