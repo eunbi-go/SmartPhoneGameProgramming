@@ -21,8 +21,8 @@ public class MapSprite extends Sprite implements BoxCollidable{
                 speed = MapLoader.get().speed;
             float dx = speed * frameTime;
             dstRect.offset(dx, 0);
-            if (dstRect.right < 0)
-                BaseGame.getInstance().remove(this);
+            //if (dstRect.right < 0)
+                //BaseGame.getInstance().remove(this);
         }
     }
 

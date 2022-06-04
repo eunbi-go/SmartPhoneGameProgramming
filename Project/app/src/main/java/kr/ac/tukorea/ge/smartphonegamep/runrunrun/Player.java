@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 public class Player extends AnimSprite implements BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
-    private boolean isMove = true;
+    private boolean isMove = false;
     private boolean isJump = false;
+    private boolean isFall = false;
     protected RectF boundingRect = new RectF();
 
     private float jumpPower = 15.f;
@@ -29,6 +30,15 @@ public class Player extends AnimSprite implements BoxCollidable {
     }
 
     public void update(float frameTime) {
+        if (findNearestPlatform(dstRect.centerX()) == null)
+        {
+            float dy = frameTime * 2.f;
+            dstRect.offset(0, 5.f);
+            boundingRect.offset(0, 5.f);
+            Log.d(TAG, "떨어짐");
+            return;
+        }
+
         float dx = 0.f, dy = 0.f;
         float foot = boundingRect.top;
         if (isMove == true) {
@@ -63,10 +73,7 @@ public class Player extends AnimSprite implements BoxCollidable {
         }
 
 
-        if (findNearestPlatform(dstRect.centerX()) == null)
-        {
-            Log.d(TAG, "벽돌없다!!!!!!!!");
-        }
+
     }
 
     private GroundBlock findNearestPlatform(float foot) {
