@@ -33,10 +33,10 @@ public class Player extends AnimSprite implements BoxCollidable {
         if (findNearestPlatform(dstRect.centerX()) == null)
         {
             float dy = frameTime * 2.f;
-            dstRect.offset(0, 5.f);
-            boundingRect.offset(0, 5.f);
-            Log.d(TAG, "떨어짐");
-            return;
+            //dstRect.offset(0, 5.f);
+            //boundingRect.offset(0, 5.f);
+            //Log.d(TAG, "떨어짐");
+            //return;
         }
 
         float dx = 0.f, dy = 0.f;
@@ -161,9 +161,13 @@ public class Player extends AnimSprite implements BoxCollidable {
 
 
 
-    public void getCoin() {
-        score += 1;
+    public void getCoin(int score) {
+        this.score += score;
+        setPlayerScoreUI();
+    }
 
+    private void setPlayerScoreUI()
+    {
         ArrayList<GameObject> playerScoreUIs = MainGame.getInstance().objectsAt(MainGame.Layer.player_score.ordinal());
         GameObject tenScore = playerScoreUIs.get(0);
         GameObject oneScore = playerScoreUIs.get(1);
@@ -171,6 +175,7 @@ public class Player extends AnimSprite implements BoxCollidable {
         ((PlayerScore)tenScore).setScore(score / 10);
         ((PlayerScore)oneScore).setScore(score % 10);
     }
+
 
     public void attack() {
         if (attackCount > 0) {

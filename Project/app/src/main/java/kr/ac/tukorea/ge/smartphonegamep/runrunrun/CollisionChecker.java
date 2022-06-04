@@ -17,7 +17,7 @@ public class CollisionChecker implements GameObject{
     public void update(float frameTime) {
         MainGame game = MainGame.getInstance();
 
-        playerToNormalEnemy(game);
+        //playerToNormalEnemy(game);
         playerToAttackEnemyBullet(game);
         playerBulletToEnemys(game);
 
@@ -39,16 +39,16 @@ public class CollisionChecker implements GameObject{
                 if (enemy instanceof Enemy) {
                     if (CollisionHelper.collides((Enemy)enemy, (Bullet) bullet)) {
                         BaseGame.getInstance().remove(bullet);
-                        ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
-                        checkPlayerHearts(playerHearts);
+                        BaseGame.getInstance().remove(enemy);
+                        player.getCoin(3);
                         return;
                     }
                 }
                 else if (enemy instanceof AttackEnemy) {
                     if (CollisionHelper.collides((AttackEnemy)enemy, (Bullet) bullet)) {
                         BaseGame.getInstance().remove(bullet);
-                        ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
-                        checkPlayerHearts(playerHearts);
+                        BaseGame.getInstance().remove(enemy);
+                        player.getCoin(5);
                         return;
                     }
                 }
@@ -66,7 +66,7 @@ public class CollisionChecker implements GameObject{
             }
             if (CollisionHelper.collides(player, (Coin) coin)) {
                 game.remove(coin);
-                player.getCoin();
+                player.getCoin(1);
                 return;
             }
         }

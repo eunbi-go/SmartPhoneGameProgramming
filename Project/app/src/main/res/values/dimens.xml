@@ -11,6 +11,7 @@
     <dimen name="block_radius">40dp</dimen>
     <dimen name="itemBlock_radius">20dp</dimen>
     <dimen name="normalEnemy_radius">50dp</dimen>
+    <dimen name="attackEnemy_radius">30dp</dimen>
     <dimen name="player_heart_radius">15dp</dimen>
     <dimen name="bg_scroll_1">-70dp</dimen>
 </resources>
