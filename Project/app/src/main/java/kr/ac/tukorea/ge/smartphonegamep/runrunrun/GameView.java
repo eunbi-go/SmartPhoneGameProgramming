@@ -21,7 +21,6 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        //initView();
         view = this;
     }
 
