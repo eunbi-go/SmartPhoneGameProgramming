@@ -21,6 +21,7 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     private int score = 0;
     private int attackCount = 0;
+    private float allTime = 0.f;
 
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
@@ -29,12 +30,17 @@ public class Player extends AnimSprite implements BoxCollidable {
     }
 
     public void update(float frameTime) {
-        if (findNearestPlatform(dstRect.centerX()) == null)
+        allTime += frameTime;
+        if (findNearestPlatform(dstRect.centerX()) == null && allTime > 2.f)
         {
-            //float dy = frameTime * 2.f;
-            //dstRect.offset(0, 5.f);
-            //boundingRect.offset(0, 5.f);
-            //return;
+            float dy = frameTime * 2.f;
+            dstRect.offset(0, 5.f);
+            boundingRect.offset(0, 5.f);
+           // Scene.getInstance().finish();
+            RankingScene game = RankingScene.get();
+            Scene.popScene();
+            Scene.push(game);
+            return;
         }
 
         float dx = 0.f, dy = 0.f;
