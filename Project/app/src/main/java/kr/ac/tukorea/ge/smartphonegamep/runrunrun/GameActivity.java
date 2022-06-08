@@ -10,17 +10,17 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-
         MainScene game = MainScene.getInstance();
-
-        //game.setMapIndex(stageIndex);
+        game.setMapIndex(1);
+        Scene.push(game);
 
         setContentView(new GameView(this, null));
     }
 
     @Override
     protected void onDestroy() {
-        GameView.view = null;
-        super.onDestroy();
+            GameView.view = null;
+            Scene.clear();
+            super.onDestroy();
     }
 }

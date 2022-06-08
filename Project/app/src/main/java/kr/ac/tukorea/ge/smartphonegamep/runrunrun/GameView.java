@@ -1,6 +1,8 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -70,6 +72,15 @@ public class GameView extends View implements Choreographer.FrameCallback {
         return Scene.getInstance().onTouchEvent(event);
     }
 
-
+    public Activity getActivity() {
+        Context context = getContext();
+        while (context instanceof ContextWrapper) {
+            if (context instanceof Activity) {
+                return (Activity)context;
+            }
+            context = ((ContextWrapper)context).getBaseContext();
+        }
+        return null;
+    }
 
 }

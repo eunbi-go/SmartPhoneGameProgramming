@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBtnFirst(View view) {
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("stage1", 1);
+        intent.putExtra(MainScene.PARAM_STAGE_INDEX, 0);
         startActivity(intent);
     }
 }

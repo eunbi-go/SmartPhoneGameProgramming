@@ -36,16 +36,16 @@ public class CollisionChecker implements GameObject{
             for (GameObject enemy : enemys) {
                 if (enemy instanceof Enemy) {
                     if (CollisionHelper.collides((Enemy)enemy, (Bullet) bullet)) {
-                        BaseGame.getInstance().remove(bullet);
-                        BaseGame.getInstance().remove(enemy);
+                        Scene.getInstance().remove(bullet);
+                        Scene.getInstance().remove(enemy);
                         player.getCoin(3);
                         return;
                     }
                 }
                 else if (enemy instanceof AttackEnemy) {
                     if (CollisionHelper.collides((AttackEnemy)enemy, (Bullet) bullet)) {
-                        BaseGame.getInstance().remove(bullet);
-                        BaseGame.getInstance().remove(enemy);
+                        Scene.getInstance().remove(bullet);
+                        Scene.getInstance().remove(enemy);
                         player.getCoin(5);
                         return;
                     }
@@ -75,7 +75,7 @@ public class CollisionChecker implements GameObject{
         ArrayList<GameObject> itemBlocks = game.objectsAt(MainScene.Layer.itemBlock.ordinal());
         for (GameObject itemBlock : itemBlocks) {
             if (CollisionHelper.collides(player, (ItemBlock)itemBlock)) {
-                BaseGame.getInstance().remove(itemBlock);
+                Scene.getInstance().remove(itemBlock);
                 int playerBullets = player.getAttackCount();
 
                 player.setAttackCount();
@@ -101,7 +101,7 @@ public class CollisionChecker implements GameObject{
                 continue;
             }
             if (CollisionHelper.collides(player, (Bullet) bullet)) {
-                BaseGame.getInstance().remove(bullet);
+                Scene.getInstance().remove(bullet);
                 ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
                 checkPlayerHearts(playerHearts);
                 return;

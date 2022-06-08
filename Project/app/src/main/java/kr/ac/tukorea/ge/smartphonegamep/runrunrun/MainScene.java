@@ -6,6 +6,7 @@ public class MainScene extends Scene {
     public static final String PARAM_STAGE_INDEX = "stage_index";
     private static final String TAG = MainScene.class.getSimpleName();
     public float frameTime;
+    protected int mapIndex;
 
     public float size(float unit) {
         return Metrics.height / 10.f * unit;
@@ -26,7 +27,9 @@ public class MainScene extends Scene {
         return (MainScene) singleton;
     }
 
-
+    public void setMapIndex(int mapIndex) {
+        this.mapIndex = mapIndex;
+    }
 
     public void init() {
         //objects.clear();
@@ -41,7 +44,7 @@ public class MainScene extends Scene {
         add(Layer.controller.ordinal(), new CollisionChecker(player));
 
         MapLoader mapLoader = MapLoader.get();
-        mapLoader.init(1);
+        mapLoader.init(mapIndex);   // 1
         add(Layer.controller.ordinal(), mapLoader);
 
         //Enemy enemy = new Enemy(size(10), size(7));
