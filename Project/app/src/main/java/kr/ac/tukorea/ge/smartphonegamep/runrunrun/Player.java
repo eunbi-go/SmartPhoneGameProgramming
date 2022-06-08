@@ -31,11 +31,10 @@ public class Player extends AnimSprite implements BoxCollidable {
     public void update(float frameTime) {
         if (findNearestPlatform(dstRect.centerX()) == null)
         {
-            float dy = frameTime * 2.f;
-            dstRect.offset(0, 5.f);
-            boundingRect.offset(0, 5.f);
-            //Log.d(TAG, "떨어짐");
-            return;
+            //float dy = frameTime * 2.f;
+            //dstRect.offset(0, 5.f);
+            //boundingRect.offset(0, 5.f);
+            //return;
         }
 
         float dx = 0.f, dy = 0.f;
