@@ -126,10 +126,12 @@ public class MainScene extends Scene {
         add(Layer.buttons.ordinal(), jumpButton);
     }
 
-
-
     public RectF getPlayerRect() {
         return player.getDstRect();
     }
 
+    @Override
+    public void start() {
+        Sound.playMusic(R.raw.logo);
+    }
 }

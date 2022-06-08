@@ -10,11 +10,12 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
+        setContentView(new GameView(this, null));
+
         MainScene game = MainScene.getInstance();
         game.setMapIndex(1);
         Scene.push(game);
 
-        setContentView(new GameView(this, null));
     }
 
     @Override
