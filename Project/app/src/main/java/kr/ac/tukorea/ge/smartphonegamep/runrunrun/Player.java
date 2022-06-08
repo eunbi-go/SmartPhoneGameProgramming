@@ -12,7 +12,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     private boolean isFall = false;
     protected RectF boundingRect = new RectF();
 
-    private float jumpPower = 15.f;
+    private float jumpPower = 17.f;
     private float jumpTime = 0.f;
     private float originalY = 0.f;
 
@@ -26,6 +26,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     public Player(float x, float y) {
         super(x, y, R.dimen.player_radius, R.mipmap.player_walk, 20, 4);
         originalY = y;
+        reverseBitmap = BitmapPool.get(R.mipmap.player_walk_left);
         boundingRect.set(x - Metrics.size(R.dimen.player_coll_radius), y - Metrics.size(R.dimen.player_coll_radius), x + Metrics.size(R.dimen.player_coll_radius), y + Metrics.size(R.dimen.player_coll_radius));
     }
 
@@ -36,10 +37,7 @@ public class Player extends AnimSprite implements BoxCollidable {
             float dy = frameTime * 2.f;
             dstRect.offset(0, 5.f);
             boundingRect.offset(0, 5.f);
-           // Scene.getInstance().finish();
-            RankingScene game = RankingScene.get();
             Scene.popScene();
-            Scene.push(game);
             return;
         }
 
@@ -121,15 +119,16 @@ public class Player extends AnimSprite implements BoxCollidable {
         long now;
         int frameIndex = 0;
 
-        if (isMoving) {
+        if (isMove) {
             now = System.currentTimeMillis();
             float time = (now - createdOn) / 1000.0f;
             frameIndex = Math.round(time * framesPerSecond) % frameCount;
         }
-        else if (isJumping) {
+        if (isJumping) {
             frameIndex = 3;
+
         }
-        else if (isAttack) {
+        if (isAttack) {
             now = System.currentTimeMillis();
             float time = (now - createdOn) / 1000.0f;
             frameIndex = Math.round(time * framesPerSecond) % 3;
@@ -139,10 +138,13 @@ public class Player extends AnimSprite implements BoxCollidable {
         srcRect.set(frameIndex * imageWidth, 0,
                 (frameIndex + 1) * imageWidth, imageHeight);
 
-        if (isLeft)
+        if (isLeft) {
             canvas.drawBitmap(reverseBitmap, srcRect, dstRect, null);
+        }
         else
+        {
             canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+        }
     }
 
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
