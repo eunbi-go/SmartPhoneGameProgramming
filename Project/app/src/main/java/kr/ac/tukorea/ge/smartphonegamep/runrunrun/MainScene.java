@@ -1,14 +1,10 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
-import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.Log;
-import android.view.MotionEvent;
 
-import java.util.ArrayList;
-
-public class MainGame extends BaseGame {
-    private static final String TAG = MainGame.class.getSimpleName();
+public class MainScene extends Scene {
+    public static final String PARAM_STAGE_INDEX = "stage_index";
+    private static final String TAG = MainScene.class.getSimpleName();
     public float frameTime;
 
     public float size(float unit) {
@@ -23,11 +19,11 @@ public class MainGame extends BaseGame {
     private HorzScrollBackground background;
     public Button attackButton, moveButton, jumpButton, backButton;
 
-    public static MainGame getInstance() {
+    public static MainScene getInstance() {
         if (singleton == null) {
-            singleton = new MainGame();
+            singleton = new MainScene();
         }
-        return (MainGame) singleton;
+        return (MainScene) singleton;
     }
 
 

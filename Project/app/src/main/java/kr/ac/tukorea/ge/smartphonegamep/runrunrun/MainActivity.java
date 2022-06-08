@@ -13,24 +13,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //MainGame game = MainGame.getInstance();
-        //getSupportActionBar().hide();
-
+        getSupportActionBar().hide();
     }
 
 
     @Override
     protected void onDestroy() {
         GameView.view = null;
-        MainGame.clear();
+        MainScene.clear();
         super.onDestroy();
     }
 
     public void onBtnFirst(View view) {
-        //MainGame game = MainGame.getInstance();
-        Intent intent = new Intent(this, MainGame.class);
-        intent.putExtra("stage2", 0);
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("stage1", 1);
         startActivity(intent);
     }
 }

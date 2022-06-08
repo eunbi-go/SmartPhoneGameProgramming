@@ -3,7 +3,6 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 import android.content.res.AssetManager;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class MapLoader implements GameObject {
 
     private MapLoader() {
         random = new Random();
-        unit = MainGame.getInstance().size(1);
+        unit = MainScene.getInstance().size(1);
     }
 
     public static MapLoader get() {
@@ -79,7 +78,7 @@ public class MapLoader implements GameObject {
     @Override
     public void update(float frameTime) {
         scroll += speed * frameTime;
-        MainGame game = MainGame.getInstance();
+        MainScene game = MainScene.getInstance();
 
         float left = scroll + current * unit;
 
@@ -104,21 +103,21 @@ public class MapLoader implements GameObject {
     }
 
     private void createObject(char ch, float leftUnit, float topUnit) {
-        MainGame game = MainGame.getInstance();
+        MainScene game = MainScene.getInstance();
         if (ch == '-') {
             GroundBlock groundBlock
                     = new GroundBlock(game.size(leftUnit), game.size(topUnit));
-            game.add(MainGame.Layer.groundBlock.ordinal(), groundBlock);
+            game.add(MainScene.Layer.groundBlock.ordinal(), groundBlock);
         }
         else if (ch == '2') {
             Coin itemBlock
                     = new Coin(game.size(leftUnit), game.size(topUnit));
-            game.add(MainGame.Layer.playerCoin.ordinal(), itemBlock);
+            game.add(MainScene.Layer.playerCoin.ordinal(), itemBlock);
         }
         else if (ch == '3') {
             ItemBlock itemBlock
                   = new ItemBlock(game.size(leftUnit), game.size(topUnit));
-            game.add(MainGame.Layer.itemBlock.ordinal(), itemBlock);
+            game.add(MainScene.Layer.itemBlock.ordinal(), itemBlock);
         }
     }
 

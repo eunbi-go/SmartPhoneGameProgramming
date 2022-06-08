@@ -2,7 +2,6 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -78,8 +77,8 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     private GroundBlock findNearestPlatform(float foot) {
         GroundBlock nearest = null;
-        MainGame game = MainGame.getInstance();
-        ArrayList<GameObject> platforms = game.objectsAt(MainGame.Layer.groundBlock.ordinal());
+        MainScene game = MainScene.getInstance();
+        ArrayList<GameObject> platforms = game.objectsAt(MainScene.Layer.groundBlock.ordinal());
 
         float top = Metrics.height;
         for (GameObject obj: platforms) {
@@ -168,7 +167,7 @@ public class Player extends AnimSprite implements BoxCollidable {
 
     private void setPlayerScoreUI()
     {
-        ArrayList<GameObject> playerScoreUIs = MainGame.getInstance().objectsAt(MainGame.Layer.player_score.ordinal());
+        ArrayList<GameObject> playerScoreUIs = MainScene.getInstance().objectsAt(MainScene.Layer.player_score.ordinal());
         GameObject tenScore = playerScoreUIs.get(0);
         GameObject oneScore = playerScoreUIs.get(1);
 
@@ -187,19 +186,19 @@ public class Player extends AnimSprite implements BoxCollidable {
                 bullet.setDirection(-1.f);
             else
                 bullet.setDirection(1.f);
-            MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
+            MainScene.getInstance().add(MainScene.Layer.bullets.ordinal(), bullet);
 
             // Apply UI
-            ArrayList<GameObject> playerBullets = MainGame.getInstance().objectsAt(MainGame.Layer.player_bulletUI.ordinal());
+            ArrayList<GameObject> playerBullets = MainScene.getInstance().objectsAt(MainScene.Layer.player_bulletUI.ordinal());
             GameObject playerBullet = playerBullets.get(attackCount-1);
-            MainGame.getInstance().remove(playerBullet);
+            MainScene.getInstance().remove(playerBullet);
 
             // Change Player State
             isAttack = true;
             attackCount -= 1;
         }
         if (attackCount == 0) {
-            MainGame.getInstance().attackButton.onAttack(false);
+            MainScene.getInstance().attackButton.onAttack(false);
         }
     }
 }

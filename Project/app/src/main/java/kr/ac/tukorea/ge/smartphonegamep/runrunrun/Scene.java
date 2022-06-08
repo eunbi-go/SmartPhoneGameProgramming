@@ -1,6 +1,7 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
@@ -10,6 +11,9 @@ import java.util.ArrayList;
 public class Scene {
     protected static Scene singleton;
     protected float frameTime, elapsedTime;
+    private Paint collisionPaint;
+
+    protected ArrayList<ArrayList<GameObject>> layers;
 
     public static Scene getInstance() {
         return singleton;
@@ -19,16 +23,17 @@ public class Scene {
         singleton = null;
     }
 
-    protected ArrayList<ArrayList<GameObject>> layers;
-    protected Paint collisionPaint;
-
     public void init() {
         elapsedTime = 0;
+
+        collisionPaint = new Paint();
+        collisionPaint.setColor(Color.WHITE);
+        collisionPaint.setStyle(Paint.Style.STROKE);
     }
 
     protected void initLayers(int count) {
         layers = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; ++i) {
             layers.add(new ArrayList<>());
         }
     }

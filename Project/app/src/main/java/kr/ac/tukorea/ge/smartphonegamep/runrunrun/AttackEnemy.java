@@ -26,11 +26,11 @@ public class AttackEnemy extends AnimSprite implements BoxCollidable{
     }
 
     public void update(float frameTime) {
-        playerRt = MainGame.getInstance().getPlayerRect();
+        playerRt = MainScene.getInstance().getPlayerRect();
         float speed = 0.f, dx = 0.f;
 
-        if (MainGame.getInstance().player.isMove()) {
-            if (MainGame.getInstance().player.getIsLeftMove())
+        if (MainScene.getInstance().player.isMove()) {
+            if (MainScene.getInstance().player.getIsLeftMove())
                 speed = -MapLoader.get().speed;
             else
                 speed = MapLoader.get().speed;
@@ -78,7 +78,7 @@ public class AttackEnemy extends AnimSprite implements BoxCollidable{
                 bullet.setDirection(-1.f);
             else
                 bullet.setDirection(1.f);
-            MainGame.getInstance().add(MainGame.Layer.bullets.ordinal(), bullet);
+            MainScene.getInstance().add(MainScene.Layer.bullets.ordinal(), bullet);
 
             attackTime = 0.f;
         }

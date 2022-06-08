@@ -1,7 +1,6 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class Bullet extends Sprite implements BoxCollidable{
@@ -28,7 +27,7 @@ public class Bullet extends Sprite implements BoxCollidable{
     public void update(float frameTime) {
         lifeTime += frameTime;
         if (lifeTime >= 1.f) {
-            MainGame.getInstance().remove(this);
+            MainScene.getInstance().remove(this);
         }
 
         float dx = frameTime * Metrics.size(R.dimen.bullet_speed) * direction;

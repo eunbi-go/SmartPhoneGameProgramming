@@ -2,8 +2,6 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -15,7 +13,7 @@ public class CollisionChecker implements GameObject{
 
     @Override
     public void update(float frameTime) {
-        MainGame game = MainGame.getInstance();
+        MainScene game = MainScene.getInstance();
 
         //playerToNormalEnemy(game);
         playerToAttackEnemyBullet(game);
@@ -26,15 +24,15 @@ public class CollisionChecker implements GameObject{
     }
 
     // Player & NormalEnemy, AttackEnemy
-    private void playerBulletToEnemys(MainGame game) {
-        ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullets.ordinal());
+    private void playerBulletToEnemys(MainScene game) {
+        ArrayList<GameObject> bullets = game.objectsAt(MainScene.Layer.bullets.ordinal());
         for (GameObject bullet : bullets) {
             if (Bullet.OBJ.PLAYER_BULLET != ((Bullet)bullet).getObject())
                 continue;
             if (!(bullet instanceof BoxCollidable)) {
                 continue;
             }
-            ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.enemy.ordinal());
+            ArrayList<GameObject> enemys = game.objectsAt(MainScene.Layer.enemy.ordinal());
             for (GameObject enemy : enemys) {
                 if (enemy instanceof Enemy) {
                     if (CollisionHelper.collides((Enemy)enemy, (Bullet) bullet)) {
@@ -58,8 +56,8 @@ public class CollisionChecker implements GameObject{
 
 
     // Player & Coin
-    private void playerToCoin(MainGame game) {
-        ArrayList<GameObject> coins = game.objectsAt(MainGame.Layer.playerCoin.ordinal());
+    private void playerToCoin(MainScene game) {
+        ArrayList<GameObject> coins = game.objectsAt(MainScene.Layer.playerCoin.ordinal());
         for (GameObject coin : coins) {
             if (!(coin instanceof BoxCollidable)) {
                 continue;
@@ -73,20 +71,20 @@ public class CollisionChecker implements GameObject{
     }
 
     // Player & ItemBlock
-    private void playerToItemBlock(MainGame game) {
-        ArrayList<GameObject> itemBlocks = game.objectsAt(MainGame.Layer.itemBlock.ordinal());
+    private void playerToItemBlock(MainScene game) {
+        ArrayList<GameObject> itemBlocks = game.objectsAt(MainScene.Layer.itemBlock.ordinal());
         for (GameObject itemBlock : itemBlocks) {
             if (CollisionHelper.collides(player, (ItemBlock)itemBlock)) {
                 BaseGame.getInstance().remove(itemBlock);
                 int playerBullets = player.getAttackCount();
 
                 player.setAttackCount();
-                MainGame.getInstance().attackButton.onAttack(true);
+                MainScene.getInstance().attackButton.onAttack(true);
 
                 for (int i = playerBullets; i < 5 + playerBullets; ++i) {
                     PlayerBullet playerBullet = new PlayerBullet(R.mipmap.bullet_ui, R.dimen.player_heart_radius,
                             100 + i * 100, 200, i + playerBullets);
-                    game.add(MainGame.Layer.player_bulletUI.ordinal(), playerBullet);
+                    game.add(MainScene.Layer.player_bulletUI.ordinal(), playerBullet);
                 }
             }
         }
@@ -94,8 +92,8 @@ public class CollisionChecker implements GameObject{
     }
 
     // Player & AttackEnemy Bullet
-    private void playerToAttackEnemyBullet(MainGame game) {
-        ArrayList<GameObject> bullets = game.objectsAt(MainGame.Layer.bullets.ordinal());
+    private void playerToAttackEnemyBullet(MainScene game) {
+        ArrayList<GameObject> bullets = game.objectsAt(MainScene.Layer.bullets.ordinal());
         for (GameObject bullet : bullets) {
             if (Bullet.OBJ.ENEMY_BULLET != ((Bullet)bullet).getObject())
                 continue;
@@ -104,7 +102,7 @@ public class CollisionChecker implements GameObject{
             }
             if (CollisionHelper.collides(player, (Bullet) bullet)) {
                 BaseGame.getInstance().remove(bullet);
-                ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
+                ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
                 checkPlayerHearts(playerHearts);
                 return;
             }
@@ -112,15 +110,15 @@ public class CollisionChecker implements GameObject{
     }
 
     // Player & NormalEnemy
-    private void playerToNormalEnemy(MainGame game) {
-        ArrayList<GameObject> enemys = game.objectsAt(MainGame.Layer.enemy.ordinal());
+    private void playerToNormalEnemy(MainScene game) {
+        ArrayList<GameObject> enemys = game.objectsAt(MainScene.Layer.enemy.ordinal());
         for (GameObject enemy : enemys) {
             if (!(enemy instanceof BoxCollidable)) {
                 continue;
             }
             if (CollisionHelper.collides(player, (Enemy) enemy)) {
                 ((Enemy) enemy).changeDirection();
-                ArrayList<GameObject> playerHearts = game.objectsAt(MainGame.Layer.player_heart.ordinal());
+                ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
                 checkPlayerHearts(playerHearts);
                 return;
             }

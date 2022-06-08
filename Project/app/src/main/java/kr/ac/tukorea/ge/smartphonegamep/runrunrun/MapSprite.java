@@ -1,6 +1,5 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
-import android.graphics.Canvas;
 import android.graphics.RectF;
 
 public class MapSprite extends Sprite implements BoxCollidable{
@@ -14,8 +13,8 @@ public class MapSprite extends Sprite implements BoxCollidable{
     @Override
     public void update(float frameTime) {
         float speed = 0.f;
-        if (MainGame.getInstance().player.isMove()) {
-            if (MainGame.getInstance().player.getIsLeftMove())
+        if (MainScene.getInstance().player.isMove()) {
+            if (MainScene.getInstance().player.getIsLeftMove())
                 speed = -MapLoader.get().speed;
             else
                 speed = MapLoader.get().speed;

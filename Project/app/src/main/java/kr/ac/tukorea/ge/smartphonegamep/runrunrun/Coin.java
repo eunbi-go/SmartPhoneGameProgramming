@@ -5,7 +5,7 @@ import android.graphics.RectF;
 public class Coin extends MapSprite {
     public Coin(float topX, float topY) {
         bitmap = BitmapPool.get(R.mipmap.coin);
-        MainGame game = MainGame.getInstance();
+        MainScene game = MainScene.getInstance();
         float left = topX;
         float top = topY;
         dstRect.set(left, top, left + Metrics.size(R.dimen.block_radius), top + + Metrics.size(R.dimen.block_radius));
