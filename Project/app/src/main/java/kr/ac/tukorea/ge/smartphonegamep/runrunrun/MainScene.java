@@ -39,7 +39,7 @@ public class MainScene extends Scene {
         player = new Player(size(1),size(7));
         add(Layer.player.ordinal(), player);
 
-        background = new HorzScrollBackground(R.mipmap.background1, Metrics.size(R.dimen.bg_scroll_1));
+        background = new HorzScrollBackground(R.mipmap.background, Metrics.size(R.dimen.bg_scroll_1));
         add(Layer.bg.ordinal(), background);
         add(Layer.controller.ordinal(), new CollisionChecker(player));
 
