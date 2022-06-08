@@ -93,7 +93,7 @@ public class Scene {
                 gobj.draw(canvas);
                 if (gobj instanceof BoxCollidable) {
                     RectF rect = ((BoxCollidable) gobj).getBoudingRect();
-                    canvas.drawRect(rect, collisionPaint);
+                    //canvas.drawRect(rect, collisionPaint);
                 }
             }
         }

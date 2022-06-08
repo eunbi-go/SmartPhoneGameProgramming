@@ -64,6 +64,7 @@ public class CollisionChecker implements GameObject{
             }
             if (CollisionHelper.collides(player, (Coin) coin)) {
                 game.remove(coin);
+                Sound.playEffect(R.raw.coin);
                 player.getCoin(1);
                 return;
             }
