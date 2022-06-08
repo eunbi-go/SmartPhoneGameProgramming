@@ -22,12 +22,9 @@ public class Scene {
         int lastIndex = sceneStack.size() - 1;
         if (lastIndex < 0) return null;
         return sceneStack.get(lastIndex);
-
-        //return singleton;
     }
 
     public static void clear() {
-        //singleton = null;
         sceneStack.clear();
     }
 

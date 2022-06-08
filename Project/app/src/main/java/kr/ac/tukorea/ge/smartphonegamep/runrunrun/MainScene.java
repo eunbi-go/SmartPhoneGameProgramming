@@ -36,7 +36,7 @@ public class MainScene extends Scene {
         super.init();
         initLayers(Layer.COUNT.ordinal());
 
-        player = new Player(size(4),size(7));
+        player = new Player(size(1),size(7));
         add(Layer.player.ordinal(), player);
 
         background = new HorzScrollBackground(R.mipmap.background1, Metrics.size(R.dimen.bg_scroll_1));
