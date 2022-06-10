@@ -103,6 +103,13 @@ public class CollisionChecker implements GameObject{
             }
             if (CollisionHelper.collides(player, (Bullet) bullet)) {
                 Scene.getInstance().remove(bullet);
+
+                // 플레이어가 공격상태면 일반상태로 바뀜
+                if (player.getAttackCount() > 0) {
+                    player.hitByEnemy();
+                }
+
+                // 일반상태면 하트 제거
                 ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
                 checkPlayerHearts(playerHearts);
                 return;
@@ -119,6 +126,13 @@ public class CollisionChecker implements GameObject{
             }
             if (CollisionHelper.collides(player, (Enemy) enemy)) {
                 ((Enemy) enemy).changeDirection();
+
+                // 플레이어가 공격상태면 일반상태로 바뀜
+                if (player.getAttackCount() > 0) {
+                    player.hitByEnemy();
+                }
+
+                // 일반상태면 하트 제거
                 ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
                 checkPlayerHearts(playerHearts);
                 return;

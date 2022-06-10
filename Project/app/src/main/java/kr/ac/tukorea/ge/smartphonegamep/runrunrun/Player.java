@@ -34,11 +34,11 @@ public class Player extends AnimSprite implements BoxCollidable {
         allTime += frameTime;
         if (findNearestPlatform(dstRect.centerX()) == null && allTime > 2.f)
         {
-            float dy = frameTime * 2.f;
-            dstRect.offset(0, 5.f);
-            boundingRect.offset(0, 5.f);
-            Scene.popScene();
-            return;
+            //float dy = frameTime * 2.f;
+            //dstRect.offset(0, 5.f);
+            //boundingRect.offset(0, 5.f);
+            //Scene.popScene();
+            //return;
         }
 
         float dx = 0.f, dy = 0.f;
@@ -206,6 +206,16 @@ public class Player extends AnimSprite implements BoxCollidable {
         }
         if (attackCount == 0) {
             MainScene.getInstance().attackButton.onAttack(false);
+        }
+    }
+
+    public void hitByEnemy() {
+        attackCount = 0;
+        MainScene.getInstance().attackButton.onAttack(false);
+
+        ArrayList<GameObject> playerBullets = MainScene.getInstance().objectsAt(MainScene.Layer.player_bulletUI.ordinal());
+        for (GameObject playerBullet : playerBullets) {
+            MainScene.getInstance().remove(playerBullet);
         }
     }
 }
