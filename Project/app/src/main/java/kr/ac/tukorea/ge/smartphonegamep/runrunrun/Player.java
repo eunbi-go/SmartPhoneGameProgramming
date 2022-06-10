@@ -1,5 +1,6 @@
 package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 public class Player extends AnimSprite implements BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
-    private boolean isMove = false;
+    private boolean isMove = true;
     private boolean isJump = false;
     private boolean isFall = false;
     protected RectF boundingRect = new RectF();
@@ -39,6 +40,8 @@ public class Player extends AnimSprite implements BoxCollidable {
             //boundingRect.offset(0, 5.f);
             //Scene.popScene();
             //return;
+            GameView.view.rankingScene();
+            return;
         }
 
         float dx = 0.f, dy = 0.f;

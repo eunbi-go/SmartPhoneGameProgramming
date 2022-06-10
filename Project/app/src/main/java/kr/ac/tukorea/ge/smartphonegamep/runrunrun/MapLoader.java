@@ -110,9 +110,9 @@ public class MapLoader implements GameObject {
             game.add(MainScene.Layer.groundBlock.ordinal(), groundBlock);
         }
         else if (ch == '2') {
-            Coin itemBlock
+            Coin coin
                     = new Coin(game.size(leftUnit), game.size(topUnit));
-            game.add(MainScene.Layer.playerCoin.ordinal(), itemBlock);
+            game.add(MainScene.Layer.playerCoin.ordinal(), coin);
         }
         else if (ch == '3') {
             ItemBlock itemBlock

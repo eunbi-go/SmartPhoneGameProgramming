@@ -32,16 +32,16 @@ public class Enemy extends AnimSprite implements BoxCollidable{
         this.frameTime += frameTime;
         dx = 1;
         float fTime = frameTime;
+
         if (left)
             fTime = fTime * -2.f;
+
         dx = fTime * Metrics.size(R.dimen.enemy_speed);
 
         if (this.frameTime >= 1.f) {
             this.frameTime = 0.f;
             left = !left;
         }
-
-
 
         dstRect.offset(dx, 0);
         boundingRect.offset(dx, 0);

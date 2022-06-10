@@ -47,11 +47,10 @@ public class MainScene extends Scene {
         mapLoader.init(mapIndex);   // 1
         add(Layer.controller.ordinal(), mapLoader);
 
-        //Enemy enemy = new Enemy(size(10), size(7));
-        //add(Layer.enemy.ordinal(), enemy);
+        //crateEnemys();
 
-        AttackEnemy attackEnemy = new AttackEnemy(size(10), size(7));
-        add(Layer.enemy.ordinal(), attackEnemy);
+        //AttackEnemy attackEnemy = new AttackEnemy(size(10), size(7));
+        //add(Layer.enemy.ordinal(), attackEnemy);
 
         for (int i = 0; i < 5; ++i) {
             PlayerHeart playerHeart = new PlayerHeart(R.mipmap.player_heart, R.dimen.player_heart_radius,
@@ -124,6 +123,11 @@ public class MainScene extends Scene {
                     }
                 });
         add(Layer.buttons.ordinal(), jumpButton);
+    }
+
+    private void crateEnemys() {
+        Enemy enemy = new Enemy(size(40), size(7));
+        add(Layer.enemy.ordinal(), enemy);
     }
 
     public RectF getPlayerRect() {

@@ -17,11 +17,10 @@ public class RankingScene extends  Scene{
 
     public void init() {
         super.init();
+        initLayers(RankingScene.Layer.COUNT.ordinal());
 
         HorzScrollBackground background = new HorzScrollBackground(R.mipmap.background, Metrics.size(R.dimen.bg_scroll_1));
         add(RankingScene.Layer.bg.ordinal(), background);
-
-        initLayers(Layer.COUNT.ordinal());
     }
 
     @Override

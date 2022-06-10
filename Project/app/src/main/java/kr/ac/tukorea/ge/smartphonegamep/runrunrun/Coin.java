@@ -8,7 +8,7 @@ public class Coin extends MapSprite {
         MainScene game = MainScene.getInstance();
         float left = topX;
         float top = topY;
-        dstRect.set(left, top, left + Metrics.size(R.dimen.block_radius), top + + Metrics.size(R.dimen.block_radius));
+        dstRect.set(left, top, left + Metrics.size(R.dimen.coin_radius), top + + Metrics.size(R.dimen.coin_radius));
     }
 
     @Override

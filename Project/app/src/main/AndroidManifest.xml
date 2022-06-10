@@ -12,6 +12,9 @@
         <activity android:name=".GameActivity"
             android:screenOrientation="landscape"
             android:exported="false"/>
+        <activity android:name=".RankingActivity"
+            android:screenOrientation="landscape"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

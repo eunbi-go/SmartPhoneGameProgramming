@@ -9,6 +9,7 @@
     <dimen name="bullet_radius">10dp</dimen>
     <dimen name="bullet_coll_radius">15dp</dimen>
     <dimen name="block_radius">40dp</dimen>
+    <dimen name="coin_radius">25dp</dimen>
     <dimen name="itemBlock_radius">20dp</dimen>
     <dimen name="normalEnemy_radius">50dp</dimen>
     <dimen name="attackEnemy_radius">30dp</dimen>
