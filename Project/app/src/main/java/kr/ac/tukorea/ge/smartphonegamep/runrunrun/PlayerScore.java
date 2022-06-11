@@ -17,6 +17,7 @@ public class PlayerScore implements GameObject{
     public PlayerScore(int mipmapResId, int radius, int number, float x, float y) {
         this.bitmap = BitmapPool.get(mipmapResId);
         this.number = number;
+        setScoreRes();
 
         this.imageWidth = bitmap.getWidth();
         this.imageHeight = bitmap.getHeight();

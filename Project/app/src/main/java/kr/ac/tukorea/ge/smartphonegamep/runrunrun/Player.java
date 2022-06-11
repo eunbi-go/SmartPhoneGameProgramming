@@ -40,7 +40,9 @@ public class Player extends AnimSprite implements BoxCollidable {
             //boundingRect.offset(0, 5.f);
             //Scene.popScene();
             //return;
-            GameView.view.rankingScene();
+
+
+            GameView.view.rankingScene(this.score);
             return;
         }
 

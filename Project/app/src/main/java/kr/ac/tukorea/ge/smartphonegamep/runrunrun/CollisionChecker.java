@@ -16,8 +16,8 @@ public class CollisionChecker implements GameObject{
         MainScene game = MainScene.getInstance();
 
         //playerToNormalEnemy(game);
-        playerToAttackEnemyBullet(game);
-        playerBulletToEnemys(game);
+        //playerToAttackEnemyBullet(game);
+        //playerBulletToEnemys(game);
 
         playerToItemBlock(game);
         playerToCoin(game);

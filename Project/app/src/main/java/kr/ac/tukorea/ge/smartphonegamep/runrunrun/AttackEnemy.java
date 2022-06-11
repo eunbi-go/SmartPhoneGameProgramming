@@ -39,7 +39,7 @@ public class AttackEnemy extends AnimSprite implements BoxCollidable{
         dx = frameTime * Metrics.size(R.dimen.enemy_speed);
 
         if (dstRect.left - playerRt.left < 1900.f) {
-            if (playerRt.left - 300.f > dstRect.right) {
+            if (playerRt.left - 80.f > dstRect.right) {
                 dx = dx;
                 isAttack = false;
                 attackTime = 0.f;
@@ -47,7 +47,7 @@ public class AttackEnemy extends AnimSprite implements BoxCollidable{
                 boundingRect.offset(dx, 0);
                 isMoving = true;
                 isLeft = false;
-            } else if (playerRt.right + 300.f < dstRect.left) {
+            } else if (playerRt.right + 80.f < dstRect.left) {
                 dx = -dx;
                 isAttack = false;
                 isMoving = true;
@@ -71,7 +71,7 @@ public class AttackEnemy extends AnimSprite implements BoxCollidable{
 
     private void attack(float frameTime) {
         attackTime += frameTime;
-        if (attackTime > 3.f) {
+        if (attackTime > 1.f) {
             Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());
             bullet.setObject(Bullet.OBJ.ENEMY_BULLET);
             if (isLeft)
