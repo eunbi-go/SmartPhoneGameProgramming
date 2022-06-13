@@ -26,7 +26,7 @@ public class Bullet extends Sprite implements BoxCollidable{
 
     public void update(float frameTime) {
         lifeTime += frameTime;
-        if (lifeTime >= 1.f) {
+        if (lifeTime >= 2.f) {
             MainScene.getInstance().remove(this);
         }
 

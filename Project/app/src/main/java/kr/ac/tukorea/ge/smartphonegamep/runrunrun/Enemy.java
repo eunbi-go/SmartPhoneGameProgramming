@@ -12,6 +12,8 @@ public class Enemy extends AnimSprite implements BoxCollidable{
     boolean left = false;
     private float limitLeftX, limitRightX;
     float speed;
+    private RectF playerRt = new RectF();
+    private boolean isStart = false;
 
     public Enemy(float x, float y) {
         super(x, y, R.dimen.normalEnemy_radius, R.mipmap.normal_enemy, 7, 2);
@@ -29,22 +31,43 @@ public class Enemy extends AnimSprite implements BoxCollidable{
     }
 
     public void update(float frameTime) {
+        playerRt = MainScene.getInstance().getPlayerRect();
+        if (MainScene.getInstance().player.isMove()) {
+            if (MainScene.getInstance().player.getIsLeftMove())
+                speed = -MapLoader.get().speed;
+            else
+                speed = MapLoader.get().speed;
+        }
+
         this.frameTime += frameTime;
-        dx = 1;
-        float fTime = frameTime;
-
-        if (left)
-            fTime = fTime * -2.f;
-
-        dx = fTime * Metrics.size(R.dimen.enemy_speed);
-
         if (this.frameTime >= 1.f) {
             this.frameTime = 0.f;
             left = !left;
         }
 
-        dstRect.offset(dx, 0);
-        boundingRect.offset(dx, 0);
+        if (!isStart) {
+        if (dstRect.left - playerRt.left < 500.f) {
+            isStart = true;
+        }
+        else isStart = false;
+        }
+
+
+
+        if (isStart) {
+            // 움직이기 시작
+            dx = frameTime * Metrics.size(R.dimen.enemy_speed);
+            if (left) {
+                dx = -dx;
+            }
+            dstRect.offset(dx, 0);
+            boundingRect.offset(dx, 0);
+        }
+        else {
+
+            dstRect.offset(frameTime * speed, 0);
+            boundingRect.offset(frameTime * speed, 0);
+        }
     }
 
     @Override

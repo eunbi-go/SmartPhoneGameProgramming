@@ -4,6 +4,7 @@ public class RankingScene extends  Scene{
     private static final String TAG = RankingScene.class.getSimpleName();
     private static RankingScene singleton;
     private int score;
+    boolean isClear;
 
     public static RankingScene get() {
         if (singleton == null) {
@@ -15,10 +16,14 @@ public class RankingScene extends  Scene{
     public enum Layer {
         bg, ui, player_score, buttons, COUNT;
     }
-
-    public void init(int score) {
+    protected int getTouchLayerIndex() {
+        return 3;
+    }
+    public void init(int score, boolean isClear) {
         super.init();
         initLayers(RankingScene.Layer.COUNT.ordinal());
+
+        this.isClear = isClear;
 
         HorzScrollBackground background = new HorzScrollBackground(R.mipmap.background, Metrics.size(R.dimen.bg_scroll_1));
         add(RankingScene.Layer.bg.ordinal(), background);
@@ -33,13 +38,14 @@ public class RankingScene extends  Scene{
                 Metrics.width/2+150.f, Metrics.height/2);
         add(RankingScene.Layer.player_score.ordinal(), playerOneScore);
 
-        Button attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.before_attack,
+        Button attackButton = new Button(Metrics.width - 200, Metrics.height - 200, R.dimen.button_radius, R.mipmap.retry,
                 new Button.Callback() {
                     public boolean onTouch(Button.Action action) {
                         if (action != Button.Action.pressed) {
                             return false;
                         }
                         //player.attack();
+                        RankingScene.getInstance().refreshLayers();
                         GameView.view.stageScene();
                         //return;
                         return true;
@@ -52,7 +58,7 @@ public class RankingScene extends  Scene{
 
     @Override
     public void start() {
-        Sound.playMusic(R.raw.logo);
+        Sound.playEffect(R.raw.clear);
     }
 
     @Override

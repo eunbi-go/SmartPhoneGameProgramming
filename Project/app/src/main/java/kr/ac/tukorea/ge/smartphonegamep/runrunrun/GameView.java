@@ -40,11 +40,11 @@ public class GameView extends View implements Choreographer.FrameCallback {
         }
     }
 
-    public void rankingScene(int score) {
+    public void rankingScene(int score, boolean isClear) {
         Scene.popScene();
 
         RankingScene game = new RankingScene();
-        game.init(score);
+        game.init(score, isClear);
         Scene.push(game);
 
         Choreographer.getInstance().postFrameCallback(this);
@@ -53,7 +53,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     public void stageScene() {
         Scene.popScene();
 
-        MainScene game = new MainScene();
+        MainScene game = MainScene.getInstance();
         game.init();
         Scene.push(game);
 

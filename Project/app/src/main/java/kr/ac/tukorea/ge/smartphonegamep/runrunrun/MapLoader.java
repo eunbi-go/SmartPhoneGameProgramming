@@ -116,7 +116,7 @@ public class MapLoader implements GameObject {
         }
         else if (ch == '3') {
             ItemBlock itemBlock
-                  = new ItemBlock(game.size(leftUnit), game.size(topUnit));
+                    = new ItemBlock(game.size(leftUnit), game.size(topUnit));
             game.add(MainScene.Layer.itemBlock.ordinal(), itemBlock);
         }
     }

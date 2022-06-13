@@ -13,7 +13,8 @@ public class AttackEnemy extends AnimSprite implements BoxCollidable{
 
     public AttackEnemy(float x, float y) {
         //super(x, y, R.dimen.player_radius, R.mipmap.enemy2);
-        super(x, y, R.dimen.attackEnemy_radius, R.mipmap.attack_enemy, 20, 4);
+        super(x, y, R.dimen.attackEnemy_radius, R.mipmap.attack_enemy, 7, 4);
+        reverseBitmap = BitmapPool.get(R.mipmap.attack_enemy_left);
         isMoving = false;
         boundingRect.set(dstRect);
     }
@@ -71,7 +72,7 @@ public class AttackEnemy extends AnimSprite implements BoxCollidable{
 
     private void attack(float frameTime) {
         attackTime += frameTime;
-        if (attackTime > 1.f) {
+        if (attackTime > 2.f) {
             Bullet bullet = new Bullet(dstRect.centerX(), dstRect.centerY());
             bullet.setObject(Bullet.OBJ.ENEMY_BULLET);
             if (isLeft)

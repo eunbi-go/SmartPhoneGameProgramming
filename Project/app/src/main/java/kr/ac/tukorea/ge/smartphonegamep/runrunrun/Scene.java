@@ -77,6 +77,13 @@ public class Scene {
         }
     }
 
+    protected void refreshLayers() {
+        for (ArrayList<GameObject> gameObjects : layers) {
+            gameObjects.clear();
+        }
+        layers.clear();
+    }
+
     public void update(int elapsedNanos) {
         frameTime = (float) (elapsedNanos / 1_000_000_000f);
         elapsedTime += frameTime;

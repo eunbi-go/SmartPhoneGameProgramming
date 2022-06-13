@@ -2,18 +2,24 @@ package kr.ac.tukorea.ge.smartphonegamep.runrunrun;
 
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 import java.util.ArrayList;
 
 public class Player extends AnimSprite implements BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
-    private boolean isMove = true;
+    private final Paint shieldPaint;
+    private boolean isMove = false;
     private boolean isJump = false;
     private boolean isFall = false;
+    private float fallTime = 0.f;
+    private boolean isShield = false;
     protected RectF boundingRect = new RectF();
 
-    private float jumpPower = 17.f;
+
+    private float jumpPower = 15.f;
     private float jumpTime = 0.f;
     private float originalY = 0.f;
 
@@ -29,21 +35,31 @@ public class Player extends AnimSprite implements BoxCollidable {
         originalY = y;
         reverseBitmap = BitmapPool.get(R.mipmap.player_walk_left);
         boundingRect.set(x - Metrics.size(R.dimen.player_coll_radius), y - Metrics.size(R.dimen.player_coll_radius), x + Metrics.size(R.dimen.player_coll_radius), y + Metrics.size(R.dimen.player_coll_radius));
+
+        shieldPaint = new Paint();
+        shieldPaint.setColor(Color.RED);
+        shieldPaint.setStyle(Paint.Style.STROKE);
+        shieldPaint.setStrokeWidth(5.f);
     }
 
     public void update(float frameTime) {
         allTime += frameTime;
-        if (findNearestPlatform(dstRect.centerX()) == null && allTime > 2.f)
+        if (isFall) {
+            fallTime += frameTime;
+            if (fallTime > 1.f) {
+                GameView.view.rankingScene(this.score, false);
+                return;
+            }
+        }
+
+        if (findNearestPlatform(dstRect.centerX()) == null && allTime > 2.f && !isJumping)
         {
-            //float dy = frameTime * 2.f;
-            //dstRect.offset(0, 5.f);
-            //boundingRect.offset(0, 5.f);
-            //Scene.popScene();
-            //return;
+            isFall = true;
+            float dy = frameTime * 2.f;
+            dstRect.offset(0, 5.f);
+            boundingRect.offset(0, 5.f);
 
 
-            GameView.view.rankingScene(this.score);
-            return;
         }
 
         float dx = 0.f, dy = 0.f;
@@ -58,9 +74,13 @@ public class Player extends AnimSprite implements BoxCollidable {
         }
         else
             isMoving = false;
+
         if (isJumping == true) {
             dy = jumping(frameTime);
             if (isJumping) {
+                if (isLeft) dx -= 7.f;
+                else if (!isLeft) dx += 7.f;
+
                 dstRect.offset(dx, -dy);
                 boundingRect.offset(dx, -dy);
             }
@@ -106,8 +126,6 @@ public class Player extends AnimSprite implements BoxCollidable {
         jumpY = jumpPower * jumpTime - 9.8f * jumpTime * jumpTime * 0.5f;
         jumpTime += 10.f * frameTime;
 
-        //dstRect.offset(0, -jumpY);
-
         if (dstRect.bottom > y + radius) {
             dstRect.bottom = y + radius;
             dstRect.top = y - radius;
@@ -150,6 +168,10 @@ public class Player extends AnimSprite implements BoxCollidable {
         {
             canvas.drawBitmap(bitmap, srcRect, dstRect, null);
         }
+
+        if (isShield) {
+            canvas.drawCircle(dstRect.centerX(), dstRect.centerY(), Metrics.size(R.dimen.player_radius), shieldPaint);
+        }
     }
 
     public void setIsMove(boolean isMove) {this.isMove = isMove;}
@@ -159,6 +181,7 @@ public class Player extends AnimSprite implements BoxCollidable {
     public void setAttackCount() {
         this.attackCount += 5;
     }
+    public void setIsShield(boolean isShield) {this.isShield = isShield;}
 
     @Override
     public RectF getBoudingRect() {
@@ -167,9 +190,10 @@ public class Player extends AnimSprite implements BoxCollidable {
     public RectF getDstRect() {return dstRect;}
     public int getScore() {return score;}
     public boolean isMove() {return isMove;}
+    public boolean isJump() {return isJumping;}
     public boolean getIsLeftMove() {return isLeft;}
     public int getAttackCount() {return this.attackCount;}
-
+    public boolean isShield() {return isShield;}
 
 
     public void getCoin(int score) {

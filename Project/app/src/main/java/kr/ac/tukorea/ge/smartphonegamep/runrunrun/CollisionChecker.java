@@ -15,12 +15,25 @@ public class CollisionChecker implements GameObject{
     public void update(float frameTime) {
         MainScene game = MainScene.getInstance();
 
-        //playerToNormalEnemy(game);
-        //playerToAttackEnemyBullet(game);
-        //playerBulletToEnemys(game);
+        playerToNormalEnemy(game);
+        playerToAttackEnemyBullet(game);
+        playerBulletToEnemys(game);
 
         playerToItemBlock(game);
         playerToCoin(game);
+        playerToFinalBlock(game);
+    }
+
+    private void playerToFinalBlock(MainScene game) {
+        ArrayList<GameObject> finalBlocks = game.objectsAt(MainScene.Layer.final_block.ordinal());
+        for (GameObject finalBlock : finalBlocks) {
+            if (CollisionHelper.collides(player, (FinalBlock)finalBlock)) {
+                Scene.getInstance().remove(finalBlock);
+
+                GameView.view.rankingScene(player.getScore(), true);
+                return;
+            }
+        }
     }
 
     // Player & NormalEnemy, AttackEnemy
@@ -103,16 +116,22 @@ public class CollisionChecker implements GameObject{
             }
             if (CollisionHelper.collides(player, (Bullet) bullet)) {
                 Scene.getInstance().remove(bullet);
-
-                // 플레이어가 공격상태면 일반상태로 바뀜
-                if (player.getAttackCount() > 0) {
-                    player.hitByEnemy();
+                if (player.isShield()) {
+                    player.setIsShield(false);
+                    return;
                 }
+                else {
+                    // 플레이어가 공격상태면 일반상태로 바뀜
+                    if (player.getAttackCount() > 0) {
+                        player.hitByEnemy();
+                        return;
+                    }
 
-                // 일반상태면 하트 제거
-                ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
-                checkPlayerHearts(playerHearts);
-                return;
+                    // 일반상태면 하트 제거
+                    ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
+                    checkPlayerHearts(playerHearts);
+                    return;
+                }
             }
         }
     }
@@ -124,19 +143,38 @@ public class CollisionChecker implements GameObject{
             if (!(enemy instanceof BoxCollidable)) {
                 continue;
             }
-            if (CollisionHelper.collides(player, (Enemy) enemy)) {
-                ((Enemy) enemy).changeDirection();
+            if (enemy instanceof Enemy) {
+                if (CollisionHelper.collides(player, (Enemy) enemy)) {
+                    ((Enemy) enemy).changeDirection();
 
-                // 플레이어가 공격상태면 일반상태로 바뀜
-                if (player.getAttackCount() > 0) {
-                    player.hitByEnemy();
+                        // 플레이어가 공격상태면 일반상태로 바뀜
+                        if (player.getAttackCount() > 0) {
+                            player.hitByEnemy();
+                            return;
+                        }
+
+                        // 일반상태면 하트 제거
+                        ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
+                        checkPlayerHearts(playerHearts);
+                        return;
+                    }
                 }
 
-                // 일반상태면 하트 제거
-                ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
-                checkPlayerHearts(playerHearts);
-                return;
-            }
+            else if (enemy instanceof Flower) {
+                if (CollisionHelper.collides(player, (Flower) enemy)) {
+                        // 플레이어가 공격상태면 일반상태로 바뀜
+                        if (player.getAttackCount() > 0) {
+                            player.hitByEnemy();
+                            return;
+                        }
+
+                        // 일반상태면 하트 제거
+                        ArrayList<GameObject> playerHearts = game.objectsAt(MainScene.Layer.player_heart.ordinal());
+                        checkPlayerHearts(playerHearts);
+                        return;
+                    }
+                }
+
         }
     }
 
@@ -147,6 +185,9 @@ public class CollisionChecker implements GameObject{
                 return;
             }
         }
+        // 하트 다 까이면 랭킹 신으로
+        GameView.view.rankingScene(player.getScore(), false);
+        return;
     }
 
     @Override
