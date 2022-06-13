@@ -8,10 +8,9 @@
 플레이어는 달리며 코인과 아이템을 획득할 수 있다. 아이템을 획득하면 공격이 활성화되며 몬스터들을 해치우며 앞으로 전진해나간다. 목표 지점까지 도달하면 승리. 플레이하며 얻은 코인과 처치한 몬스터 수로 최종 점수를 환산한다.  
 
 
-# 개발 계획/ 일정 / 실저 진행
+# 개발 계획/ 일정 / 실제 진행, 
 
-<img src="https://user-images.githubusercontent.com/55976889/173269006-62c94992-b4e2-46de-83cf-cfbc00053678.png" width="600" height="500">  
-
+<img src="https://user-images.githubusercontent.com/55976889/173270742-d66fc3e8-14cf-4e74-8c90-b981e1019b11.png" width="600" height="500">
 <img src="https://user-images.githubusercontent.com/55976889/173269189-da49c690-ba43-4eee-9a25-0991ef9f7908.png" width="500" height="300">  
 
 
@@ -22,7 +21,7 @@
 
 # 아쉬운 것  
 - 하고 싶었지만 못 한 것들  
-여러 스테이지 구상, 동시 입력 받기
+여러 스테이지 구상, 장애물 추가
 
 - (앱 스토어에 판다면) 팔기 위해 보충할 것들  
 스테이지 추가 구현, 장애물 추가
