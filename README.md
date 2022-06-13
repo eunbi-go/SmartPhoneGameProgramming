@@ -4,13 +4,14 @@
 
 # 게임 소개  
 
-<장애물을 피하고 아이템을 획득해 몬스터들을 공격해나가며 달리는 런게임>
+<장애물을 피하고 아이템을 획득해 몬스터들을 공격해나가며 달리는 런게임>  
+
 플레이어는 달리며 코인과 아이템을 획득할 수 있다. 아이템을 획득하면 공격이 활성화되며 몬스터들을 해치우며 앞으로 전진해나간다. 목표 지점까지 도달하면 승리. 플레이하며 얻은 코인과 처치한 몬스터 수로 최종 점수를 환산한다.  
 
 
 # 개발 계획/ 일정 / 실제 진행, 
 
-<img src="https://user-images.githubusercontent.com/55976889/173270742-d66fc3e8-14cf-4e74-8c90-b981e1019b11.png" width="600" height="500">
+<img src="https://user-images.githubusercontent.com/55976889/173274720-7e432ec5-92df-4886-9064-abf89a98b63b.png" width="600" height="500">
 <img src="https://user-images.githubusercontent.com/55976889/173269189-da49c690-ba43-4eee-9a25-0991ef9f7908.png" width="500" height="300">  
 
 
